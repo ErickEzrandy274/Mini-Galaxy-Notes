@@ -2,10 +2,10 @@ import { useState } from "react";
 import { InputType } from "./interface";
 import { useNavigate } from "react-router-dom";
 import InputForm from "./InputForm";
-import SubmitButton from "./SubmitButton";
 import { database } from "../../utils/firebase/firebase";
 import { ref, push } from "firebase/database";
 import { v4 as uuidv4  } from 'uuid';
+import SubmitButton from "./SubmitButton";
 
 const NotesForm = () => {
 	const navigate = useNavigate();

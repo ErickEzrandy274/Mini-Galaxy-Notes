@@ -1,11 +1,16 @@
 import React from "react";
-import MainLayout from "../MainLayout/MainLayout";
+import NotesCard from "../Card/NotesCard";
+import { DataProps, ListNotesProps } from "../ListPage/interface";
 
-const NotesList = () => {
+const NotesList: React.FC<DataProps> = ({ data }) => {
 	return (
-		<MainLayout>
-			<div>Notes List</div>
-		</MainLayout>
+		<div className="flex flex-wrap gap-6 m-5">
+			{data.map((item: ListNotesProps) => {
+				return (
+					<NotesCard {...item} key={item.id} />
+				)
+			})}
+		</div>
 	);
 };
 

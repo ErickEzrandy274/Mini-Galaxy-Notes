@@ -1,16 +1,41 @@
-import React, { useState, useEffect } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useState, useEffect } from "react";
 import { database } from "../../utils/firebase/firebase";
-// import { ref, onValue } from "firebase/database";
+import { ref, onValue } from "firebase/database";
+import NotesList from "../NotesList/NotesList";
+import { ListNotesProps } from "./interface";
+import MainLayout from "../MainLayout/MainLayout";
 
 const ListPage = () => {
-    // const [data, setData] = useState([] as any[]);
-    // const notesListRef = ref(database, "Notes")
+	const [data, setData] = useState<ListNotesProps[]>([] as any[]);
+	const notesListRef = ref(database, "Notes");
 
-    // useEffect(() => {
-        
-    // }, []);
+	useEffect(() => {
+		const tempData: ListNotesProps[] = [];
+		onValue(notesListRef, (snapshot) => {
+			snapshot.forEach((childSnapshot) => {
+				const { id, title, createdAt, body, archived } =
+					childSnapshot.val();
+				const newObject = {
+					objKey: childSnapshot.key,
+					id,
+					title,
+					body,
+					archived,
+					createdAt,
+				};
+				tempData.push(newObject);
+			});
+		});
 
-	return <div>ListPage</div>;
+		setData(tempData);
+	}, []);
+
+	return (
+		<MainLayout>
+			<NotesList data={data} />;
+		</MainLayout>
+	);
 };
 
 export default ListPage;
