@@ -6,5 +6,7 @@ export interface InputType {
 export interface InputProps {
     type?: string
     placeholder: string
-    id: string
+    name: string
+    handleChange: (e: any) => void
+    value: string
 }
