@@ -25,25 +25,29 @@ const NotesForm = () => {
 		});
 	};
 
-	const handleSubmit = (e: any, title: string, content: string) => {
-		e.preventDefault()
+	const handleSubmit = async (e: any, title: string, content: string) => {
+		try {
+			e.preventDefault()
 
-		const newNotes = {
-			id: uuidv4(),
-			title,
-			body: content,
-			archived: false,
-			createdAt: new Date().toISOString(),
+			const newNotes = {
+				id: uuidv4(),
+				title,
+				body: content,
+				archived: false,
+				createdAt: new Date().toISOString(),
+			}
+
+			await push(ref(database, "Notes"), newNotes)
+
+			setField({
+				title: "",
+				content: "",
+			})
+
+			navigate('/list')
+		} catch (error) {
+			console.log(error)
 		}
-
-		push(ref(database, "Notes"), newNotes)
-
-		setField({
-			title: "",
-			content: "",
-		})
-
-		navigate('/list')
 	};
 
 	return (
