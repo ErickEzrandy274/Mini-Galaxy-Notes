@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { InputType } from "./interface";
 import { useNavigate } from "react-router-dom";
 import InputForm from "./InputForm";
