@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Home = () => {
+const HomePage = () => {
 	return (
 		<div className="bg-indigo-900 relative overflow-hidden h-screen cursor-default">
 			<img
@@ -61,4 +61,4 @@ const Home = () => {
 	);
 };
 
-export default Home;
+export default HomePage;
