@@ -4,7 +4,7 @@ import { DataProps, ListNotesProps } from "../ListPage/interface";
 
 const NotesList: React.FC<DataProps> = ({ data }) => {
 	return (
-		<div className="flex flex-wrap gap-6 m-5">
+		<div className="flex flex-wrap gap-6 m-5 justify-center">
 			{data.map((item: ListNotesProps) => {
 				return (
 					<NotesCard {...item} key={item.id} />
