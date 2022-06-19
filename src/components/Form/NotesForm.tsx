@@ -5,7 +5,8 @@ import InputForm from "./InputForm";
 import { database } from "../../utils/firebase/firebase";
 import { ref, push } from "firebase/database";
 import { v4 as uuidv4  } from 'uuid';
-import SubmitButton from "./SubmitButton";
+import Button from "../Button/Button";
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 const NotesForm = () => {
 	const navigate = useNavigate();
@@ -70,7 +71,12 @@ const NotesForm = () => {
 					handleChange={handleChange}
 					value={field.content}
 				/>
-				<SubmitButton />
+				<Button
+					type="submit"
+					iconName={faPlus}
+					buttonName="Add New Notes"
+					className="mt-2 bg-purple-600 hover:bg-purple-700 focus:ring-purple-500 focus:ring-offset-purple-200 w-full"
+				/>
 			</form>
 		</div>
 	);
