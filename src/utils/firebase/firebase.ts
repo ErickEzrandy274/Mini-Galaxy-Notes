@@ -1,6 +1,7 @@
 // reference link: https://www.youtube.com/watch?v=v0TKYSkZ2tI
 // reference link: https://www.npmjs.com/package/firebase
-import firebase from "firebase/app";
+import { initializeApp } from "firebase/app";
+import { getDatabase } from "firebase/database";
 
 const firebaseConfig = {
 	apiKey: "AIzaSyANFmUTAXfwP2712AVEBEI0Lx8V03Abs7U",
@@ -13,6 +14,8 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig)
+const app = initializeApp(firebaseConfig);
 
-export default firebase
+
+// Initialize Realtime Database and get a reference to the service
+export const database = getDatabase(app);

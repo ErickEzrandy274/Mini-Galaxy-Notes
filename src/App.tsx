@@ -1,26 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes } from "react-router";
+import ArchivedPage from "./components/ArchivedPage/ArchivedPage";
+import CreatePage from "./components/CreatePage/CreatePage";
+import HomePage from "./components/HomePage/HomePage";
+import ListPage from "./components/ListPage/ListPage";
+import NotFound from "./components/NotFound/NotFound";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	return (
+		<Routes>
+			<Route path="/" element={<HomePage />} />
+			<Route path="/list" element={<ListPage />} />
+			<Route path="/create" element={<CreatePage />} />
+			<Route path="/archived" element={<ArchivedPage />} />
+			<Route path="*" element={<NotFound />} />
+		</Routes>
+	);
 }
 
 export default App;
