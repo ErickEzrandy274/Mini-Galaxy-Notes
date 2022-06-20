@@ -6,4 +6,5 @@ export interface ButtonProps {
     iconName: IconDefinition
     buttonName: string
     handleClick?: (buttonName: string) => void
+    objKey?: string | null | undefined
 }

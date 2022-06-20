@@ -1,14 +1,21 @@
 import React from "react";
 import Button from "../Button/Button";
-import { NotesCardProps } from "./interface";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import { ref, remove } from "firebase/database";
+import { database } from "../../utils/firebase/firebase";
+import { ListNotesProps } from "../ListPage/interface";
 
-const NotesCard: React.FC<NotesCardProps> = ({
+const NotesCard: React.FC<ListNotesProps> = ({
 	title,
 	body,
+	objKey,
 	archived,
 	createdAt,
 }) => {
+	const deleteCard = async (objKey: string) => {
+		await remove(ref(database, `Notes/${objKey}`))
+	}
+
 	return (
 		<div className="card w-96 bg-primary text-primary-content font-semibold">
 			<div className="card-body">
@@ -28,6 +35,8 @@ const NotesCard: React.FC<NotesCardProps> = ({
 					iconName={faTrashCan}
 					buttonName="DELETE"
 					className="bg-red-600 hover:bg-red-700 focus:ring-red-500 focus:ring-offset-red-200 w-24 h-10"
+					handleClick={deleteCard}
+					objKey={objKey}
 				/>
 			</div>
 		</div>
