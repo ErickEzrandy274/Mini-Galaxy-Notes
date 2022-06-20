@@ -44,7 +44,7 @@ const ListPage = () => {
 
 	return (
 		<MainLayout>
-			<NotesList data={data} />;
+			<NotesList data={data} />
 		</MainLayout>
 	);
 };

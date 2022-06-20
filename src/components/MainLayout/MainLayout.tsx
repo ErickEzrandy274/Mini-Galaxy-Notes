@@ -5,11 +5,11 @@ import { MainLayoutProps } from "./interface";
 
 const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
 	return (
-		<div className="relative">
+		<>
 			<Header />
 			{children}
 			<Footer />
-		</div>
+		</>
 	);
 };
 
