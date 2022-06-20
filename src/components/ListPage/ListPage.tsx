@@ -1,45 +1,22 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
-import { database } from "../../utils/firebase/firebase";
-import { ref, onValue } from "firebase/database";
 import NotesList from "../NotesList/NotesList";
 import { ListNotesProps } from "./interface";
 import MainLayout from "../MainLayout/MainLayout";
+import { getData } from "../../utils/function/function";
 
 const ListPage = () => {
 	const [data, setData] = useState<ListNotesProps[]>([] as any[]);
-	const notesListRef = ref(database, "Notes");
 
 	useEffect(() => {
-		const getData = () => {
-			const tempData: ListNotesProps[] = [];
-			onValue(notesListRef, (snapshot) => {
-				snapshot.forEach((childSnapshot) => {
-					const { id, title, createdAt, body, archived } =
-						childSnapshot.val();
-					const newObject = {
-						objKey: childSnapshot.key,
-						id,
-						title,
-						body,
-						archived,
-						createdAt,
-					};
-					tempData.push(newObject);
-				});
-			});
-
-			setData(tempData);
-		};
-
-		getData()
+		getData(setData)
 
 		const interval = setInterval(()=>{
-			getData()
+			getData(setData)
 		   }, 300)
 			 
 			 
-		return()=>clearInterval(interval)
+		return () => clearInterval(interval)
 	}, []);
 
 	return (
