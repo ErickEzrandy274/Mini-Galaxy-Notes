@@ -32,14 +32,6 @@ const HomePage = () => {
 								</button>
 							</div>
 						</div>
-						{/* <div className="hidden md:flex items-center">
-							<Link to="/list" className="text-lg uppercase mx-3 text-white cursor-pointer hover:text-gray-300">
-                                List Notes
-							</Link>
-							<Link to="/create" className="text-lg uppercase mx-3 text-white cursor-pointer hover:text-gray-300">
-                                Create New Note
-							</Link>
-						</div> */}
 					</div>
 				</nav>
 			</header>
