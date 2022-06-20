@@ -2,11 +2,11 @@ import { useState } from "react";
 import { InputType } from "./interface";
 import { useNavigate } from "react-router-dom";
 import InputForm from "./InputForm";
-import { database } from "../../utils/firebase/firebase";
-import { ref, push } from "firebase/database";
+import { push } from "firebase/database";
 import { v4 as uuidv4  } from 'uuid';
 import Button from "../Button/Button";
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { notesListRef } from "../../utils/function/function";
 
 const NotesForm = () => {
 	const navigate = useNavigate();
@@ -26,19 +26,19 @@ const NotesForm = () => {
 		});
 	};
 
-	const handleSubmit = async (e: any, title: string, content: string) => {
+	const handleSubmit = async (e: any, title: string, body: string) => {
 		try {
 			e.preventDefault()
 
 			const newNotes = {
 				id: uuidv4(),
 				title,
-				body: content,
+				body,
 				archived: false,
 				createdAt: new Date().toISOString(),
 			}
 
-			await push(ref(database, "Notes"), newNotes)
+			await push(notesListRef, newNotes)
 
 			setField({
 				title: "",
