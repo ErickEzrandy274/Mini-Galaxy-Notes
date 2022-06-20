@@ -1,4 +1,5 @@
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core"
+import { InputType } from "../Form/interface";
 
 export interface ButtonProps {
     className: string
@@ -7,4 +8,5 @@ export interface ButtonProps {
     buttonName: string
     handleClick?: (buttonName: string) => void
     objKey?: string | null | undefined
+    field?: InputType
 }

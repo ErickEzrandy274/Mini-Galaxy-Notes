@@ -26,11 +26,16 @@ const InputForm: React.FC<InputProps> = ({
                 {name.substring(0, 1).toUpperCase() + name.substring(1)}
 			</label>
             {type ? <input type={type} {...props} onChange={e => handleChange(e)} /> : <textarea {...props} />}
-			{/* {errors.exampleRequired && (
-                                <span className="text-red-500">
-                                    This field is required!
-                                </span>
-                            )} */}
+			{/* {
+				value.length === 0 ?
+                name === "title" ?
+                    value.length > 50 &&
+                    <p className="text-red-600 font-semibold -mt-3 px-2 mb-3">
+                            Tersisa {50 - value.length} karakter
+					</p>
+					:
+
+            } */}
 		</div>
 	);
 };

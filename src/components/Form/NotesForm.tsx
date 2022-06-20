@@ -76,6 +76,7 @@ const NotesForm = () => {
 					type="submit"
 					iconName={faPlus}
 					buttonName="Add New Notes"
+					field={field}
 					className="mt-2 bg-purple-600 hover:bg-purple-700 focus:ring-purple-500 focus:ring-offset-purple-200 w-full"
 				/>
 			</form>
