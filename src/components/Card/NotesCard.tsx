@@ -15,11 +15,11 @@ const NotesCard: React.FC<ListNotesProps> = ({
 	return (
 		<div className="card w-96 bg-primary text-primary-content font-semibold">
 			<div className="card-body">
-				<h2 className="card-title font-bold">{title}</h2>
-				<p className="text-ellipsis overflow-hidden">{body}</p>
+				<h2 className="card-title font-bold tracking-wide">{title}</h2>
+				<p className="text-ellipsis overflow-hidden border-2 border-dashed rounded-lg p-3 mb-2">{body}</p>
 				<p>Status:
 					<span className={`p-1.5 m-1 rounded-lg font-bold tracking-wide ${archived ? ` bg-orange-700` : `bg-base-300`} `}>
-						{archived ? `Archived` : `not Archived`}
+						{archived ? `Archived` : `Not Archived`}
 					</span>
 					
 				</p>
