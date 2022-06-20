@@ -1,5 +1,8 @@
 # Final Project Dicoding React-1
-## Application was made by using plain ReactJS and Tailwind Framework
+## Tech that is used to develop this Application:
+
+### FrontEnd: ReactJS and TailwindCSS
+### BackEnd: Firebase (hosting and database)
 <br/>
 
 ## Here Link of Application:
