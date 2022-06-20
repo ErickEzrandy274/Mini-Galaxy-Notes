@@ -27,7 +27,7 @@ const Header = () => {
 				</div>
 
 				<a
-					href="/https://github.com/ErickEzrandy274/Notes-App"
+					href="https://github.com/ErickEzrandy274/Notes-App"
 					className="flex items-center gap-2 hover:text-white text-gray-300 font-semibold"
 					aria-label="Github"
 				>
