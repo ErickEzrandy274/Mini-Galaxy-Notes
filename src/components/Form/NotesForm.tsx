@@ -28,24 +28,28 @@ const NotesForm = () => {
 
 	const handleSubmit = async (e: any, title: string, body: string) => {
 		try {
-			e.preventDefault()
+			if (title.length < 51){
+				e.preventDefault()
 
-			const newNotes = {
-				id: uuidv4(),
-				title,
-				body,
-				archived: false,
-				createdAt: new Date().toISOString(),
+				const newNotes = {
+					id: uuidv4(),
+					title,
+					body,
+					archived: false,
+					createdAt: new Date().toISOString(),
+				}
+
+				await push(notesListRef, newNotes)
+
+				navigate('/list')
+			} else {
+				alert(`Title Content yang Anda masukkan > 50 karakter!`)
 			}
-
-			await push(notesListRef, newNotes)
 
 			setField({
 				title: "",
 				content: "",
 			})
-
-			navigate('/list')
 		} catch (error) {
 			console.log(error)
 		}
