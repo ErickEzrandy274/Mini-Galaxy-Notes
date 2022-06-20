@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import NewLink from "../NewLink/NewLink";
 
 const HomePage = () => {
 	return (
@@ -14,12 +14,11 @@ const HomePage = () => {
 					<h1 className="font-extrabold text-7xl text-center sm:text-8xl text-white leading-tight mt-4">
 						Welcome to Notes Application
 					</h1>
-					<Link
+					<NewLink
 						to="/list"
-						className="bg-gray-800 hover:bg-gray-900 py-3 px-4 text-lg text-white font-bold rounded-lg shadow-xl mt-10"
-					>
-						START NOW
-					</Link>
+						linkName="START NOW"
+						fromNav={false}
+					/>
 				</div>
 			</div>
 		</div>
