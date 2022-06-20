@@ -1,4 +1,4 @@
-import { onValue, ref, remove } from "firebase/database";
+import { onValue, ref, remove, update } from "firebase/database";
 import React, { SetStateAction } from "react";
 import { ListNotesProps } from "../../components/ListPage/interface";
 import { database } from "../firebase/firebase";
@@ -27,5 +27,19 @@ export const getData = (setData: React.Dispatch<SetStateAction<ListNotesProps[]>
 };
 
 export const deleteCard = async (objKey: string) => {
-    await remove(ref(database, `Notes/${objKey}`))
+    try {
+        await remove(ref(database, `Notes/${objKey}`))
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const updateCard = async (objKey: string, prevArchived: boolean) => {
+    try {
+        await update(ref(database, `Notes/${objKey}`), {
+            archived: !prevArchived
+        })
+    } catch (error) {
+        console.log(error)
+    }
 }

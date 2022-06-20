@@ -8,19 +8,12 @@ const IconButton: React.FC<IconButtonProps> = ({
 	type,
 	iconName,
 	handleClick,
-	objKey,
 	field
 }) => {
-	const onClick = (objKey: string | null | undefined) => {
-		if (handleClick !== undefined && objKey !== null && objKey !== undefined) {
-			handleClick(objKey)
-		}
-	}
-
 	return (
 		<button
 			title={type === "submit" && (field?.title.length === 0 || field?.content.length === 0) ? `Harap isi judul dan konten notes!` : ``}
-			onClick={() => onClick(objKey)}
+			onClick={handleClick}
             type={type}
 			className={`py-2 px-4 flex justify-center items-center gap-2 font-semibold
                 text-white transition ease-in duration-200 text-center text-base shadow-xl rounded-lg

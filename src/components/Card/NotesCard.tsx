@@ -2,7 +2,7 @@ import React from "react";
 import IconButton from "../Button/IconButton";
 import { faTrashCan, faArchive } from "@fortawesome/free-solid-svg-icons";
 import { ListNotesProps } from "../ListPage/interface";
-import { deleteCard } from "../../utils/function/function";
+import { deleteCard, updateCard } from "../../utils/function/function";
 
 const NotesCard: React.FC<ListNotesProps> = ({
 	title,
@@ -18,7 +18,7 @@ const NotesCard: React.FC<ListNotesProps> = ({
 				<h2 className="card-title font-bold">{title}</h2>
 				<p className="text-ellipsis overflow-hidden">{body}</p>
 				<p>Status:
-					<span className={`p-1.5 m-1 rounded-lg ${archived ? `bg-base-100` : `bg-base-300`} `}>
+					<span className={`p-1.5 m-1 rounded-lg font-bold tracking-wide ${archived ? ` bg-orange-700` : `bg-base-300`} `}>
 						{archived ? `Archived` : `not Archived`}
 					</span>
 					
@@ -31,8 +31,8 @@ const NotesCard: React.FC<ListNotesProps> = ({
 					type="button"
 					iconName={faArchive}
 					buttonName="Archived"
-					className="bg-blue-600 hover:bg-blue-700 focus:ring-red-500 focus:ring-offset-red-200 w-28 h-10"
-					objKey={objKey}
+					className="bg-blue-600 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 w-28 h-10"
+					handleClick={() => { if (objKey !== null) updateCard(objKey, archived) }}
 				/>
 
 				<IconButton
@@ -40,8 +40,7 @@ const NotesCard: React.FC<ListNotesProps> = ({
 					iconName={faTrashCan}
 					buttonName="DELETE"
 					className="bg-red-600 hover:bg-red-700 focus:ring-red-500 focus:ring-offset-red-200 w-24 h-10"
-					handleClick={deleteCard}
-					objKey={objKey}
+					handleClick={() => { if (objKey !== null) deleteCard(objKey)}}
 				/>
 			</div>
 		</div>

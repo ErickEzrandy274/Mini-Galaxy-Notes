@@ -9,8 +9,7 @@ interface ButtonProps {
 
 export interface IconButtonProps extends ButtonProps {
     iconName: IconDefinition
-    handleClick?: (buttonName: string) => void
-    objKey?: string | null | undefined
+    handleClick?: () => void
     field?: InputType
 }
 
