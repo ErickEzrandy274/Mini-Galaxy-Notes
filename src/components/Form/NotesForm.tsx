@@ -57,7 +57,7 @@ const NotesForm = () => {
 				Create New Notes
 			</div>
 
-			<form className="flex flex-col gap-4" onSubmit={(e) => handleSubmit(e, field.title, field.content)}>
+			<form className="flex flex-col gap-4" onSubmit={e => handleSubmit(e, field.title, field.content)}>
 				<InputForm
 					name="title"
 					placeholder="Insert new title notes"

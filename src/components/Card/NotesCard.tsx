@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "../Button/Button";
 import { NotesCardProps } from "./interface";
-import { faTrashCan, faMagnifyingGlassPlus } from "@fortawesome/free-solid-svg-icons";
+import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
 const NotesCard: React.FC<NotesCardProps> = ({
 	title,
@@ -23,13 +23,6 @@ const NotesCard: React.FC<NotesCardProps> = ({
 			</div>
 
 			<div className="flex justify-end bg-base-100 p-4 gap-4">
-				<Button
-					type="button"
-					iconName={faMagnifyingGlassPlus}
-					buttonName="SEE"
-					className="bg-blue-600 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 w-24 h-10"
-				/>
-
 				<Button
 					type="button"
 					iconName={faTrashCan}

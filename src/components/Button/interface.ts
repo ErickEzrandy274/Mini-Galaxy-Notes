@@ -5,4 +5,5 @@ export interface ButtonProps {
     type: 'button' | 'submit'
     iconName: IconDefinition
     buttonName: string
+    handleClick?: (buttonName: string) => void
 }
