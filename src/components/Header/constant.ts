@@ -11,4 +11,9 @@ export const navs: NewLinkProps[] = [
 		linkName: "Create New Notes",
 		fromNav: true,
 	},
+	{
+		to: "/archived",
+		linkName: "Archived",
+		fromNav: true,
+	},
 ];

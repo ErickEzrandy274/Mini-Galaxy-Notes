@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
 import NotesList from "../NotesList/NotesList";
 import { ListNotesProps } from "./interface";
@@ -9,10 +8,10 @@ const ListPage = () => {
 	const [data, setData] = useState<ListNotesProps[]>([] as any[]);
 
 	useEffect(() => {
-		getData(setData)
+		getData(setData, false)
 
 		const interval = setInterval(()=>{
-			getData(setData)
+			getData(setData, false)
 		   }, 300)
 			 
 			 
