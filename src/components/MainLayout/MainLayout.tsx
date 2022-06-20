@@ -5,7 +5,7 @@ import { MainLayoutProps } from "./interface";
 
 const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
 	return (
-		<div className="min-h-screen">
+		<div className="relative">
 			<Header />
 			{children}
 			<Footer />

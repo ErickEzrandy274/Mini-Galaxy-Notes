@@ -1,6 +1,6 @@
 const Footer = () => {
 	return (
-		<footer className="flex flex-col items-center justify-between px-6 py-4 bg-gray-800 sm:flex-row md:absolute md:bottom-0 md:w-full">
+		<footer className="flex flex-col items-center justify-between px-6 py-4 bg-gray-800 sm:flex-row font-semibold">
 			<div className="flex gap-2 items-center grid-flow-col">
 				<svg
 					width="24"
@@ -25,7 +25,7 @@ const Footer = () => {
 
 			<a
 				href="/https://github.com/ErickEzrandy274/Notes-App"
-				className="flex flex-col items-center mx-2 text-gray-300 hover:text-gray-300"
+				className="flex items-center gap-2 text-gray-300 hover:text-gray-300"
 				aria-label="Github"
             >
                 <p>Our Repo</p>
