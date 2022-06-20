@@ -20,8 +20,8 @@ const Header = () => {
 					id="navbarNavAltMarkup"
 				>
 					<div className="flex flex-col px-2 py-3 -mx-4 md:flex-row md:mx-0 md:py-0">
-						{navs.map((item: NewLinkProps) => {
-							return <NewLink {...item} />;
+						{navs.map((item: NewLinkProps, index: number) => {
+							return <NewLink {...item} key={`navbar-` + index} />;
 						})}
 					</div>
 				</div>
