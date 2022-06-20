@@ -1,4 +1,4 @@
-import { onValue, ref } from "firebase/database";
+import { onValue, ref, remove } from "firebase/database";
 import React, { SetStateAction } from "react";
 import { ListNotesProps } from "../../components/ListPage/interface";
 import { database } from "../firebase/firebase";
@@ -25,3 +25,7 @@ export const getData = (setData: React.Dispatch<SetStateAction<ListNotesProps[]>
 
     setData(tempData);
 };
+
+export const deleteCard = async (objKey: string) => {
+    await remove(ref(database, `Notes/${objKey}`))
+}

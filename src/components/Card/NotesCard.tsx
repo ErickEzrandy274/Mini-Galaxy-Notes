@@ -1,9 +1,8 @@
 import React from "react";
 import Button from "../Button/Button";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
-import { ref, remove } from "firebase/database";
-import { database } from "../../utils/firebase/firebase";
 import { ListNotesProps } from "../ListPage/interface";
+import { deleteCard } from "../../utils/function/function";
 
 const NotesCard: React.FC<ListNotesProps> = ({
 	title,
@@ -12,9 +11,6 @@ const NotesCard: React.FC<ListNotesProps> = ({
 	archived,
 	createdAt,
 }) => {
-	const deleteCard = async (objKey: string) => {
-		await remove(ref(database, `Notes/${objKey}`))
-	}
 
 	return (
 		<div className="card w-96 bg-primary text-primary-content font-semibold">
