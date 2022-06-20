@@ -22,6 +22,10 @@ const Header = () => {
 							type="button"
 							className="text-gray-200 hover:text-gray-400 focus:outline-none focus:text-gray-400"
 							aria-label="toggle menu"
+							data-bs-toggle="collapse"
+							data-bs-target="#navbarNavAltMarkup"
+							aria-controls="navbarNavAltMarkup"
+							aria-expanded="false"
 						>
 							<svg
 								viewBox="0 0 24 24"
@@ -37,7 +41,7 @@ const Header = () => {
 				</div>
 
 				{/* Mobile Menu open: "block", Menu closed: "hidden"  */}
-				<div className="w-full md:flex md:items-center md:justify-between">
+				<div className="w-full md:flex md:items-center md:justify-between" id="navbarNavAltMarkup">
 					<div className="flex flex-col px-2 py-3 -mx-4 md:flex-row md:mx-0 md:py-0">
                         <Link
                             to="/list"
