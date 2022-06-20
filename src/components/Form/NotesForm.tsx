@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import InputForm from "./InputForm";
 import { push } from "firebase/database";
 import { v4 as uuidv4  } from 'uuid';
-import Button from "../Button/Button";
+import IconButton from "../Button/IconButton";
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { notesListRef } from "../../utils/function/function";
 
@@ -76,7 +76,7 @@ const NotesForm = () => {
 					handleChange={handleChange}
 					value={field.content}
 				/>
-				<Button
+				<IconButton
 					type="submit"
 					iconName={faPlus}
 					buttonName="Add New Notes"
