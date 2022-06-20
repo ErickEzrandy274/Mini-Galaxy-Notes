@@ -52,7 +52,7 @@ const NotesForm = () => {
 	};
 
 	return (
-		<div className="flex flex-col sm:w-full w-10/12 max-w-md px-4 mx-auto m-3 py-5 xl:py-10 xl:my-28 rounded-xl
+		<div className="flex flex-col sm:w-full w-10/12 max-w-md px-4 mx-auto m-3 py-5 xl:py-10 md:my-16 lg:my-20 xl:my-28 rounded-xl
 			shadow bg-gray-800 sm:px-6 md:px-8 lg:px-10 text-white font-semibold">
 			<div className="self-center mb-6 text-xl  sm:text-4xl text-white font-bold">
 				Create New Notes

@@ -7,7 +7,7 @@ const Footer = () => {
 	return (
         <footer className={`
                 flex flex-col items-center justify-between px-6 py-4 bg-gray-800
-                ${pathname === 'create' ? `sticky sm:fixed` : `sticky`} bottom-0 w-full sm:flex-row font-semibold`}>
+                ${pathname === 'create' && `sm:fixed sm:bottom-0`} w-full sm:flex-row font-semibold`}>
 			<div className="flex gap-2 items-center grid-flow-col">
 				<svg
 					width="24"
@@ -32,7 +32,7 @@ const Footer = () => {
 
 			<a
 				href="/https://github.com/ErickEzrandy274/Notes-App"
-				className="sm:flex items-center gap-2 hover:text-white text-gray-300 hidden"
+				className="flex items-center gap-2 hover:text-white text-gray-300"
 				aria-label="Github"
             >
                 <p>Our Repo</p>
