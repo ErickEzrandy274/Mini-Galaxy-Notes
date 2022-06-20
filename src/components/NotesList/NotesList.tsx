@@ -4,13 +4,19 @@ import { DataProps, ListNotesProps } from "../ListPage/interface";
 
 const NotesList: React.FC<DataProps> = ({ data }) => {
 	return (
-		<div className="flex flex-wrap gap-6 m-5 justify-center">
-			{data.map((item: ListNotesProps) => {
-				return (
-					<NotesCard {...item} key={item.id} />
-				)
-			})}
-		</div>
+		<>
+			{data.length > 0 ? (
+				<div className="flex flex-wrap gap-6 m-5 justify-center">
+					{data.map((item: ListNotesProps) => {
+						return <NotesCard {...item} key={item.id} />;
+					})}
+				</div>
+			) : (
+				<div>
+					<h2>Tidak ada catatan</h2>
+				</div>
+			)}
+		</>
 	);
 };
 
