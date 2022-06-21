@@ -3,12 +3,13 @@ import { useNavigate } from "react-router";
 import { useAuth } from "../../context/AuthContext";
 import MainLayout from "../MainLayout/MainLayout";
 import BaseAuth from "./BaseAuth";
+import { LoginInputType } from "./interface";
 
 const Login = () => {
 	const navigate = useNavigate();
 	const { user, login } = useAuth();
 
-	const [data, setData] = useState<{ email: string; password: string }>({
+	const [data, setData] = useState<LoginInputType>({
 		email: "",
 		password: "",
 	});
@@ -29,7 +30,7 @@ const Login = () => {
 		console.log(user);
 		try {
 			await login(data.email, data.password);
-			navigate("/dashboard");
+			navigate("/list");
 		} catch (err: any) {
 			console.log(err.message.substring(22, 36)); // user-not-found
 		}

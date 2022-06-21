@@ -2,15 +2,11 @@ import { useState } from "react";
 import { useAuth } from "../../context/AuthContext";
 import MainLayout from "../MainLayout/MainLayout";
 import BaseAuth from "./BaseAuth";
+import { RegisterInputType } from "./interface";
 
 const Register = () => {
-	const { user, register } = useAuth();
-	console.log(user);
-	const [data, setData] = useState<{
-		fullName: string;
-		email: string;
-		password: string;
-	}>({
+	const { register } = useAuth();
+	const [data, setData] = useState<RegisterInputType>({
 		fullName: "",
 		email: "",
 		password: "",
@@ -28,11 +24,11 @@ const Register = () => {
 	};
 
 	const handleRegister = async (e: any) => {
-		console.log("handleRegister is run!");
 		e.preventDefault();
 
 		try {
 			await register(data.email, data.password);
+
 		} catch (err: any) {
 			console.log(err.message);
 		}
