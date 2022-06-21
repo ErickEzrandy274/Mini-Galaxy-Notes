@@ -1,31 +1,64 @@
-import React from "react";
+import { useState } from "react";
 import BaseAuth from "./BaseAuth";
 
 const Login = () => {
+	const [data, setData] = useState<{ email: string; password: string }>({
+		email: "",
+		password: "",
+	});
+
+	const handleChange = (e: any) => {
+		const target = e.target;
+		const name = target.name;
+		const value = target.value;
+
+		setData({
+			...data,
+			[name]: value,
+		});
+	};
+
+	const handleSubmit = (e: any) => {
+		e.preventDefault();
+		console.log(data);
+	};
+
 	return (
 		<BaseAuth title="Login">
-			<div className="pt-10 pr-20">
-				<label className="text-sm font-sans font-medium">
-					Email
-				</label>
-				<input
-					type="text"
-					name="email"
-					placeholder="Write your email"
-					className="w-full bg-black py-3 px-12 border hover: border-gray-500 rounded shadow text-base font-sans"
-				/>
-			</div>
-			<div className="pt-2 pr-20">
-				<label className="text-sm font-sans font-medium">
-					Password
-				</label>
-				<input
-					type="password"
-					name="password"
-					placeholder="Write your password"
-					className=" w-full bg-black py-3 px-12 border hover: border-gray-500 rounded shadow text-base font-sans"
-				/>
-			</div>
+			<form onSubmit={handleSubmit}>
+				<div className="mt-4">
+					<label
+						className="block mb-2 text-sm font-medium text-gray-200"
+						htmlFor="email"
+					>
+						Email
+					</label>
+					<input
+						id="email"
+						className="block w-full px-4 py-2 border rounded-md text-gray-300 border-gray-600 focus:ring-opacity-40 focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300"
+						type="email"
+						onChange={handleChange}
+					/>
+				</div>
+
+				<div className="mt-4">
+					<div className="flex justify-between">
+						<label
+							className="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200"
+							htmlFor="password"
+						>
+							Password
+						</label>
+					</div>
+
+					<input
+						id="password"
+						className="block w-full px-4 py-2 bg-white border rounded-md text-gray-300 :border-gray-600 focus:ring-opacity-40 focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-300"
+						type="password"
+						onChange={handleChange}
+					/>
+				</div>
+			</form>
 		</BaseAuth>
 	);
 };
