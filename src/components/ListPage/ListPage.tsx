@@ -19,7 +19,7 @@ const ListPage = () => {
 
 		setTimeout(() => {
 			setIsLoading(false)
-		}, 2000)
+		}, 1000)
 
 		return () => clearInterval(interval);
 	}, []);
