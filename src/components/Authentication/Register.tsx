@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { useAuth } from "../../context/AuthContext";
 import MainLayout from "../MainLayout/MainLayout";
@@ -6,8 +6,8 @@ import BaseAuth from "./BaseAuth";
 import { RegisterInputType } from "./interface";
 
 const Register = () => {
-	const { register } = useAuth();
-	const navigate = useNavigate()
+	const { user, register } = useAuth();
+	const navigate = useNavigate();
 	const [data, setData] = useState<RegisterInputType>({
 		nickname: "",
 		email: "",
@@ -30,14 +30,19 @@ const Register = () => {
 
 		try {
 			await register(data.email, data.password);
-			navigate('/list')
-
+			navigate("/list");
 		} catch (err: any) {
 			console.log(err.message);
 		}
 	};
 
-	return (
+	useEffect(() => {
+		if (user) {
+			navigate("/list");
+		}
+	}, [user, navigate]);
+
+	return user ? null : (
 		<MainLayout>
 			<div className="pt-6">
 				<BaseAuth title="Register">

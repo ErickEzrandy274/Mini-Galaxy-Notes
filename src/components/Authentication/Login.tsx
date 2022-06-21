@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { useAuth } from "../../context/AuthContext";
 import MainLayout from "../MainLayout/MainLayout";
@@ -7,7 +7,7 @@ import { LoginInputType } from "./interface";
 
 const Login = () => {
 	const navigate = useNavigate();
-	const { login } = useAuth();
+	const { user, login } = useAuth();
 
 	const [data, setData] = useState<LoginInputType>({
 		email: "",
@@ -23,7 +23,7 @@ const Login = () => {
 			...data,
 			[name]: value,
 		});
-		console.log(data)
+		console.log(data);
 	};
 
 	const handleLogin = async (e: any) => {
@@ -31,14 +31,20 @@ const Login = () => {
 		console.log(data);
 		try {
 			await login(data.email, data.password);
-			console.log("bakal pindah")
+			console.log("bakal pindah");
 			navigate("/list");
 		} catch (err: any) {
 			console.log(err.message.substring(22, 36)); // user-not-found
 		}
 	};
 
-	return (
+	useEffect(() => {
+		if (user) {
+			navigate("/list");
+		}
+	}, [user, navigate]);
+
+	return user ? null : (
 		<MainLayout>
 			<div className="pt-6">
 				<BaseAuth title="Login">
