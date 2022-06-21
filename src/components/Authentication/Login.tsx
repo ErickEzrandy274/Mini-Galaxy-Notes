@@ -23,15 +23,12 @@ const Login = () => {
 			...data,
 			[name]: value,
 		});
-		console.log(data);
 	};
 
 	const handleLogin = async (e: any) => {
 		e.preventDefault();
-		console.log(data);
 		try {
 			await login(data.email, data.password);
-			console.log("bakal pindah");
 			navigate("/list");
 		} catch (err: any) {
 			console.log(err.message.substring(22, 36)); // user-not-found
