@@ -41,7 +41,7 @@ const Header = () => {
 					</div>
 				</div>
 
-				<div className="flex flex-col px-2 py-3 -mx-4 md:flex-row md:mx-0 md:py-0 items-center">
+				<div className="flex flex-col px-2 py-3 -mx-4 md:flex-row md:mx-0 md:py-0 sm:items-center">
 					{user ? (
 						<button
 							onClick={handleLogout}
