@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router";
 import { useAuth } from "../../context/AuthContext";
 import MainLayout from "../MainLayout/MainLayout";
 import BaseAuth from "./BaseAuth";
@@ -6,8 +7,9 @@ import { RegisterInputType } from "./interface";
 
 const Register = () => {
 	const { register } = useAuth();
+	const navigate = useNavigate()
 	const [data, setData] = useState<RegisterInputType>({
-		fullName: "",
+		nickname: "",
 		email: "",
 		password: "",
 	});
@@ -28,6 +30,7 @@ const Register = () => {
 
 		try {
 			await register(data.email, data.password);
+			navigate('/list')
 
 		} catch (err: any) {
 			console.log(err.message);
@@ -44,14 +47,15 @@ const Register = () => {
 								className="block mb-2 text-sm font-medium text-gray-200"
 								htmlFor="text"
 							>
-								Full Name
+								Nickname
 							</label>
 							<input
 								id="text"
-								name="fullName"
+								name="nickName"
 								className="block w-full px-4 py-2 border rounded-md text-gray-900 border-gray-600 focus:ring-opacity-50 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-500"
 								type="text"
 								onChange={handleChange}
+								placeholder="Write your nickname"
 							/>
 						</div>
 						<div className="mt-4">
@@ -67,6 +71,7 @@ const Register = () => {
 								className="block w-full px-4 py-2 border rounded-md text-gray-900 border-gray-600 focus:ring-opacity-50 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-500"
 								type="email"
 								onChange={handleChange}
+								placeholder="Write your email"
 							/>
 						</div>
 
@@ -86,6 +91,7 @@ const Register = () => {
 								className="block w-full px-4 py-2 bg-white border rounded-md text-gray-900 border-gray-600 focus:ring-opacity-50 focus:border-blue-300 focus:outline-none focus:ring focus:ring-blue-500"
 								type="password"
 								onChange={handleChange}
+								placeholder="Write your password"
 							/>
 						</div>
 

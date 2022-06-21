@@ -11,5 +11,5 @@ export interface LoginInputType {
 }
 
 export interface RegisterInputType extends LoginInputType {
-    fullName: string
+    nickname: string
 }

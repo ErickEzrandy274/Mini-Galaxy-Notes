@@ -4,6 +4,7 @@ import {
 	createUserWithEmailAndPassword,
 	signInWithEmailAndPassword,
 	signOut,
+	updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase/firebase";
 
@@ -21,13 +22,13 @@ export const AuthContextProvider = ({
 	console.log("user: " + user);
 
 	useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
-            console.log("props user adalah " + user)
+		const unsubscribe = onAuthStateChanged(auth, (user) => {
+			console.log("props user adalah " + user);
 			if (user) {
 				setUser({
 					uid: user.uid,
-                    email: user.email,
-                    token: user.getIdTokenResult,
+					email: user.email,
+					token: user.getIdTokenResult,
 					displayName: user.displayName,
 				});
 			} else {
@@ -39,11 +40,13 @@ export const AuthContextProvider = ({
 		return () => unsubscribe();
 	}, []);
 
-	const register = (email: string, password: string) => {
-		return createUserWithEmailAndPassword(auth, email, password);
+	const register = async (email: string, password: string, displayName: string) => {
+		await createUserWithEmailAndPassword(auth, email, password).then(async result => {
+			return await updateProfile(result.user, {displayName})
+		});
 	};
 
-    const login = (email: string, password: string) => {
+	const login = (email: string, password: string) => {
 		return signInWithEmailAndPassword(auth, email, password);
 	};
 
@@ -53,7 +56,7 @@ export const AuthContextProvider = ({
 	};
 
 	return (
-        <AuthContext.Provider value={{ user, login, register, logout }}>
+		<AuthContext.Provider value={{ user, login, register, logout }}>
 			{loading ? null : children}
 		</AuthContext.Provider>
 	);
