@@ -33,7 +33,9 @@ const Header = () => {
 
 				<div className="flex flex-col px-2 py-3 -mx-4 md:flex-row md:mx-0 md:py-0 items-center">
 					{user ? (
-						<div>LOGOUT</div>
+						<button onClick={logout}>
+							<NewLink to='/login' linkName="Logout" fromNav />
+						</button>
 					) : (
 						authNavs.map((item: NewLinkProps, index: number) => {
 							return (
