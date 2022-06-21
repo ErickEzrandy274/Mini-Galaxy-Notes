@@ -3,9 +3,15 @@ import React, { SetStateAction } from "react";
 import { ListNotesProps } from "../../components/ListPage/interface";
 import { database } from "../firebase/firebase";
 
+type getDataParams = {
+    setData: React.Dispatch<SetStateAction<ListNotesProps[]>>
+    isArchived: boolean
+}
+
 export const notesListRef = ref(database, "Notes");
 
-export const getData = (setData: React.Dispatch<SetStateAction<ListNotesProps[]>>, isArchived: boolean) => {
+export const getData = (item: getDataParams) => {
+    const { setData, isArchived } = item
     const tempData: ListNotesProps[] = [];
     onValue(notesListRef, (snapshot) => {
         snapshot.forEach((childSnapshot) => {

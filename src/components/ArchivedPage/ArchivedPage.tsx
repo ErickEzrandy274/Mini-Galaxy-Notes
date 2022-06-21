@@ -8,10 +8,10 @@ const ArchivedPage = () => {
 	const [data, setData] = useState<ListNotesProps[]>([] as any[]);
 
 	useEffect(() => {
-		getData(setData, true);
+		getData({setData, isArchived: true});
 
 		const interval = setInterval(() => {
-			getData(setData, true);
+			getData({setData, isArchived: true});
 		}, 300);
 
 		return () => clearInterval(interval);
