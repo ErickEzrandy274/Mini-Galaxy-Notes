@@ -13,9 +13,13 @@ export interface InputProps extends AttributeInput {
 	value: string;
 }
 
-export interface InputAuthProps extends AttributeInput { }
+export interface InputAuthProps extends AttributeInput {
+    password: string
+}
 
 export interface AuthFormProps {
+    email: string
+    password: string
     typeForm: "login" | "register"
     handleChange: (e: any) => void
     handleLogin?: (e: any) => void

@@ -50,6 +50,7 @@ const Login = () => {
 						typeForm="login"
 						handleLogin={handleLogin}
 						handleChange={handleChange}
+						{...data}
 					/>
 				</BaseAuth>
 			</div>

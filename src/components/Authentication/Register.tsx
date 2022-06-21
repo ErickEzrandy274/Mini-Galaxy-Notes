@@ -4,13 +4,12 @@ import { useAuth } from "../../context/AuthContext";
 import AuthForm from "../Form/AuthForm";
 import MainLayout from "../MainLayout/MainLayout";
 import BaseAuth from "./BaseAuth";
-import { RegisterInputType } from "./interface";
+import { LoginInputType } from "./interface";
 
 const Register = () => {
 	const { user, register } = useAuth();
 	const navigate = useNavigate();
-	const [data, setData] = useState<RegisterInputType>({
-		nickname: "",
+	const [data, setData] = useState<LoginInputType>({
 		email: "",
 		password: "",
 	});
@@ -51,6 +50,7 @@ const Register = () => {
 						typeForm="register"
 						handleChange={handleChange}
 						handleRegister={handleRegister}
+						{...data}
 					/>
 				</BaseAuth>
 			</div>
