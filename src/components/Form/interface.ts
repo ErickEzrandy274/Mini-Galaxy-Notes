@@ -1,12 +1,23 @@
 export interface InputType {
-    title: string
-    content: string
+	title: string;
+	content: string;
 }
 
-export interface InputProps {
-    type?: string
-    placeholder: string
-    name: string
+interface AttributeInput {
+	name: string;
+    handleChange: (e: any) => void;
+}
+export interface InputProps extends AttributeInput {
+	type?: string;
+	placeholder: string;
+	value: string;
+}
+
+export interface InputAuthProps extends AttributeInput { }
+
+export interface AuthFormProps {
+    typeForm: "login" | "register"
     handleChange: (e: any) => void
-    value: string
+    handleLogin?: (e: any) => void
+    handleRegister?: (e: any) => void
 }
