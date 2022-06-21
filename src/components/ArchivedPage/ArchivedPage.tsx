@@ -1,25 +1,32 @@
 import { useEffect, useState } from "react";
 import { getData } from "../../utils/function/function";
 import { ListNotesProps } from "../ListPage/interface";
+import Loader from "../Loader/Loader";
 import MainLayout from "../MainLayout/MainLayout";
 import NotesList from "../NotesList/NotesList";
 
 const ArchivedPage = () => {
-	const [data, setData] = useState<ListNotesProps[]>([] as any[]);
+	const [data, setData] = useState<ListNotesProps[]>([]);
+	const [isLoading, setIsLoading] = useState<boolean>(false)
 
 	useEffect(() => {
-		getData(setData, true);
+		setIsLoading(true)
+		getData({setData, isArchived: true});
 
 		const interval = setInterval(() => {
-			getData(setData, true);
+			getData({setData, isArchived: true});
 		}, 300);
+
+		setTimeout(() => {
+			setIsLoading(false)
+		}, 1000)
 
 		return () => clearInterval(interval);
 	}, []);
 
 	return (
 		<MainLayout>
-			<NotesList data={data} />
+			{isLoading ? <Loader /> : <NotesList data={data} />}
 		</MainLayout>
 	);
 };
