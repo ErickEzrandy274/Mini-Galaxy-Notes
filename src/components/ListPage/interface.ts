@@ -6,4 +6,5 @@ export interface ListNotesProps extends NotesCardProps {
 
 export interface DataProps {
     data: ListNotesProps[]
+    isArchived: boolean
 }

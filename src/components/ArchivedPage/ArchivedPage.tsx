@@ -28,7 +28,7 @@ const ArchivedPage = () => {
 
 	return (
 		<MainLayout>
-			{isLoading ? <Loader /> : <NotesList data={data} />}
+			{isLoading ? <Loader /> : <NotesList data={data} isArchived />}
 		</MainLayout>
 	);
 };

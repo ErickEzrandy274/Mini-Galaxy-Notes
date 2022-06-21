@@ -28,7 +28,7 @@ const ListPage = () => {
 
 	return (
 		<MainLayout>
-			{isLoading ? <Loader /> : <NotesList data={data} />}
+			{isLoading ? <Loader /> : <NotesList data={data} isArchived={false} />}
 		</MainLayout>
 	);
 };
