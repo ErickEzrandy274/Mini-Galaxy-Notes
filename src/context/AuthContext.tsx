@@ -24,8 +24,7 @@ export const AuthContextProvider: React.FC<MainLayoutProps> = ({
 				setUser({
 					uid: user.uid,
 					email: user.email,
-					token: user.getIdTokenResult,
-					displayName: user.displayName,
+					token: user.refreshToken,
 				});
 			} else {
 				setUser(null);
