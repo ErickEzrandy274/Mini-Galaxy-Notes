@@ -3,7 +3,7 @@ import { AuthProps } from "./interface";
 
 const BaseAuth: React.FC<AuthProps> = ({ children, title }) => {
 	return (
-		<div className="flex max-w-sm mx-auto overflow-hidden rounded-lg shadow-lg bg-gray-800 lg:max-w-4xl font-semibold">
+		<div className="flex max-w-sm mx-3 sm:mx-auto overflow-hidden rounded-lg shadow-lg bg-gray-800 lg:max-w-5xl font-semibold">
 			<img
 				src="/authImage.jpg"
 				alt="auth cover"
@@ -11,10 +11,10 @@ const BaseAuth: React.FC<AuthProps> = ({ children, title }) => {
 			/>
 
 			<div className="w-full px-6 py-8 md:px-8 lg:w-1/2">
-				<h2 className="text-2xl font-semibold text-center ttext-white">
+				<h2 className="text-2xl sm:text-4xl lg:text-5xl font-semibold text-center ttext-white">
 					Notes Application
 				</h2>
-				<p className="text-xl text-center text-gray-200">
+				<p className="text-xl sm:text-2xl lg:text-3xl text-center text-gray-200">
 					Welcome back!
 				</p>
 
