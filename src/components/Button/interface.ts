@@ -13,4 +13,7 @@ export interface IconButtonProps extends ButtonProps {
     field?: InputType
 }
 
-export interface BasicButtonProps extends ButtonProps {}
+export interface BasicButtonProps extends ButtonProps {
+    email: string
+    password: string
+}

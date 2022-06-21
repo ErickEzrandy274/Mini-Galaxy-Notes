@@ -17,3 +17,16 @@ export const navs: NewLinkProps[] = [
 		fromNav: true,
 	},
 ];
+
+export const authNavs: NewLinkProps[] = [
+	{
+		to: "/login",
+		linkName: "Login",
+		fromNav: true
+	},
+	{
+		to: "/register",
+		linkName: "Register",
+		fromNav: true
+	}
+]

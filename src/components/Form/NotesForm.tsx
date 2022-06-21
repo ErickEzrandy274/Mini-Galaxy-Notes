@@ -7,8 +7,10 @@ import { v4 as uuidv4  } from 'uuid';
 import IconButton from "../Button/IconButton";
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { notesListRef } from "../../utils/function/function";
+import { useAuth } from "../../context/AuthContext";
 
 const NotesForm = () => {
+	const { user } = useAuth()
 	const navigate = useNavigate();
 	const [field, setField] = useState<InputType>({
 		title: "",
@@ -37,6 +39,7 @@ const NotesForm = () => {
 					body,
 					archived: false,
 					createdAt: new Date().toISOString(),
+					userId: user.uid
 				}
 
 				await push(notesListRef, newNotes)

@@ -6,18 +6,19 @@ import { database } from "../firebase/firebase";
 type getDataParams = {
     setData: React.Dispatch<SetStateAction<ListNotesProps[]>>
     isArchived: boolean
+    uid: string
 }
 
 export const notesListRef = ref(database, "Notes");
 
 export const getData = (item: getDataParams) => {
-    const { setData, isArchived } = item
+    const { setData, isArchived, uid } = item
     const tempData: ListNotesProps[] = [];
     onValue(notesListRef, (snapshot) => {
         snapshot.forEach((childSnapshot) => {
-            const { id, title, createdAt, body, archived } =
+            const { id, title, createdAt, body, archived, userId } =
                 childSnapshot.val();
-            if (archived === isArchived) {
+            if (archived === isArchived && uid === userId) {
                 const newObject = {
                     objKey: childSnapshot.key,
                     id,
@@ -25,6 +26,7 @@ export const getData = (item: getDataParams) => {
                     body,
                     archived,
                     createdAt,
+                    userId
                 };
                 tempData.push(newObject);
             }

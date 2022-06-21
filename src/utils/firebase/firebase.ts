@@ -2,6 +2,7 @@
 // reference link: https://www.npmjs.com/package/firebase
 import { initializeApp } from "firebase/app";
 import { getDatabase } from "firebase/database";
+import { getAuth } from "firebase/auth"
 
 const firebaseConfig = {
 	apiKey: "AIzaSyANFmUTAXfwP2712AVEBEI0Lx8V03Abs7U",
@@ -19,3 +20,5 @@ const app = initializeApp(firebaseConfig);
 
 // Initialize Realtime Database and get a reference to the service
 export const database = getDatabase(app);
+
+export const auth = getAuth(app)
