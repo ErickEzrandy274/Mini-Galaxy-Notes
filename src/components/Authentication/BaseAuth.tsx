@@ -20,12 +20,6 @@ const BaseAuth: React.FC<AuthProps> = ({ children, title }) => {
 
 				{children}
 
-				<div className="mt-8">
-					<button className="w-full px-4 uppercase py-2 tracking-wide text-white transition-colors duration-200 transform bg-blue-600 rounded hover:bg-blue-700 focus:outline-none focus:bg-blue-600">
-						{title}
-					</button>
-				</div>
-
 				<div className="flex items-center justify-between mt-4">
 					<span className="w-1/5 border-b-4 border-gray-600 md:w-1/4"></span>
 
