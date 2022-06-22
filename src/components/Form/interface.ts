@@ -5,23 +5,26 @@ export interface InputType {
 
 interface AttributeInput {
 	name: string;
-    handleChange: (e: any) => void;
+	handleChange: (e: any) => void;
 }
-export interface InputProps extends AttributeInput {
-	type?: string;
-	placeholder: string;
+
+interface ValueProps {
 	value: string;
 }
-
-export interface InputAuthProps extends AttributeInput {
-    password: string
+interface TypeForm {
+	typeForm: "login" | "register";
+}
+export interface InputProps extends AttributeInput, ValueProps {
+	type?: string;
+	placeholder: string;
 }
 
-export interface AuthFormProps {
-    email: string
-    password: string
-    typeForm: "login" | "register"
-    handleChange: (e: any) => void
-    handleLogin?: (e: any) => void
-    handleRegister?: (e: any) => void
+export interface InputAuthProps extends AttributeInput, ValueProps, TypeForm {}
+
+export interface AuthFormProps extends TypeForm {
+	email: string;
+	password: string;
+	handleChange: (e: any) => void;
+	handleLogin?: (e: any) => void;
+	handleRegister?: (e: any) => void;
 }

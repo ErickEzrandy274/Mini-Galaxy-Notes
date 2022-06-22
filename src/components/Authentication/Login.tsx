@@ -15,7 +15,7 @@ const Login = () => {
 		password: "",
 	});
 
-	const [error, setError] = useState<string>('')
+	const [error, setError] = useState<any>(null)
 
 	const handleChange = (e: any) => {
 		const target = e.target;
@@ -46,6 +46,18 @@ const Login = () => {
 			navigate("/list");
 		}
 	}, [user, navigate]);
+
+	useEffect(() => {
+		if (error) {
+			setTimeout(() => {
+				setData({
+					email: "",
+					password: "",
+				})
+				setError(null)
+			}, 1200)
+		}
+	})
 
 	return user ? null : (
 		<MainLayout>
