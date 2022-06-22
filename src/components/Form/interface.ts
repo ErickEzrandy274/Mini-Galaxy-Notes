@@ -9,7 +9,7 @@ interface AttributeInput {
 }
 
 interface ValueProps {
-	value: string;
+	value: string | undefined;
 }
 interface TypeForm {
 	typeForm: "login" | "register";
@@ -24,6 +24,7 @@ export interface InputAuthProps extends AttributeInput, ValueProps, TypeForm {}
 export interface AuthFormProps extends TypeForm {
 	email: string;
 	password: string;
+	nickname?: string;
 	handleChange: (e: any) => void;
 	handleLogin?: (e: any) => void;
 	handleRegister?: (e: any) => void;

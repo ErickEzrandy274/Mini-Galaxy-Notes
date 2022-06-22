@@ -5,15 +5,17 @@ import { extractError } from "../../utils/function/function";
 import AuthForm from "../Form/AuthForm";
 import MainLayout from "../MainLayout/MainLayout";
 import BaseAuth from "./BaseAuth";
-import { LoginInputType } from "./interface";
+import { RegisterInputType } from "./interface";
 
 const Register = () => {
 	const { user, register } = useAuth();
+	// const [loading, setLoading] = useState(true);
 	const navigate = useNavigate();
-	const [error, setError] = useState<any>(null)
-	const [data, setData] = useState<LoginInputType>({
+	const [error, setError] = useState<any>(null);
+	const [data, setData] = useState<RegisterInputType>({
 		email: "",
 		password: "",
+		nickname: "",
 	});
 
 	const handleChange = (e: any) => {
@@ -31,7 +33,7 @@ const Register = () => {
 		e.preventDefault();
 
 		try {
-			await register(data.email, data.password);
+			await register(data.email, data.password, data.nickname);
 			navigate("/list");
 		} catch (err: any) {
 			setError(extractError(err));
@@ -48,9 +50,10 @@ const Register = () => {
 				setData({
 					email: "",
 					password: "",
-				})
-				setError(null)
-			}, 1500)
+					nickname: "",
+				});
+				setError(null);
+			}, 1500);
 		}
 	}, [user, navigate, error]);
 

@@ -4,6 +4,7 @@ import {
 	createUserWithEmailAndPassword,
 	signInWithEmailAndPassword,
 	signOut,
+	updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase/firebase";
 import { MainLayoutProps } from "../components/MainLayout/interface";
@@ -24,6 +25,7 @@ export const AuthContextProvider: React.FC<MainLayoutProps> = ({
 				setUser({
 					uid: user.uid,
 					email: user.email,
+					displayName: user.displayName,
 					token: user.refreshToken,
 				});
 			} else {
@@ -37,9 +39,11 @@ export const AuthContextProvider: React.FC<MainLayoutProps> = ({
 
 	const register = async (
 		email: string,
-		password: string
+		password: string,
+		displayName: string
 	) => {
-		return await createUserWithEmailAndPassword(auth, email, password);
+		const res = await createUserWithEmailAndPassword(auth, email, password);
+		return await updateProfile(res.user, { displayName })
 	};
 
 	const login = (email: string, password: string) => {

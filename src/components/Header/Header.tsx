@@ -6,7 +6,6 @@ import { navs, authNavs } from "./constant";
 
 const Header = () => {
 	const { user, logout } = useAuth();
-
 	const navigate = useNavigate();
 	const customClassLogOut = `px-2 py-1 hover:font-semibold text-lg bg-red-600 transition-colors duration-200 transform rounded-lg 
 		hover:bg-red-700 text-gray-200 hover:text-gray-100 md:mx-2`;
@@ -43,12 +42,19 @@ const Header = () => {
 
 				<div className="flex flex-col px-2 py-3 -mx-4 md:flex-row md:mx-0 md:py-0 md:items-center">
 					{user ? (
-						<button
-							onClick={handleLogout}
-							className={customClassLogOut}
-						>
-							Logout
-						</button>
+						<div className="flex flex-col sm:flex-row text-center gap-3 sm:items-center">
+							<div className="flex gap-2 sm:gap-0 sm:flex-col items-start sm:items-center font-semibold text-white">
+								<p>Hello</p>
+								<p>{user.displayName ? user.displayName : user.email}</p>
+								<p className="sm:hidden">👋👋👋</p>
+							</div>
+							<button
+								onClick={handleLogout}
+								className={customClassLogOut}
+							>
+								Logout
+							</button>
+						</div>
 					) : (
 						authNavs.map((item: NewLinkProps, index: number) => {
 							return (
