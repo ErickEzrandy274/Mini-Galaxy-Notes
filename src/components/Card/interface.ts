@@ -4,4 +4,5 @@ export interface NotesCardProps {
     body: string
     archived: boolean
     createdAt: string
+    lastModified: string
 }

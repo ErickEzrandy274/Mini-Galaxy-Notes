@@ -10,6 +10,7 @@ const NotesCard: React.FC<ListNotesProps> = ({
 	objKey,
 	archived,
 	createdAt,
+	lastModified,
 }) => {
 
 	return (
@@ -24,6 +25,7 @@ const NotesCard: React.FC<ListNotesProps> = ({
 					
 				</p>
 				<p>Created at: {createdAt}</p>
+				<p>LastModified at: {lastModified}</p>
 			</div>
 
 			<div className="flex justify-end bg-base-100 p-4 gap-4">

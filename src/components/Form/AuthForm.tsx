@@ -13,8 +13,8 @@ const AuthForm: React.FC<AuthFormProps> = ({
 }) => {
 	return (
 		<form onSubmit={typeForm === "login" ? handleLogin : handleRegister}>
-			<InputAuthForm name="email" handleChange={handleChange} password={password} />
-			<InputAuthForm name="password" handleChange={handleChange} password={password} />
+			<InputAuthForm name="email" handleChange={handleChange} value={email} typeForm={typeForm} />
+			<InputAuthForm name="password" handleChange={handleChange} value={password} typeForm={typeForm} />
 
 			<div className="mt-8">
 				<BasicButton

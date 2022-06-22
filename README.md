@@ -9,9 +9,9 @@
 
 ## [Mini Notes App](https://mini-notes-app.firebaseapp.com/)
 
-### Untuk Pennilai Dicoding
+### Untuk Penilai Dicoding
 <ol>
-    <li>Silahkan login dengan email dicoding@gmail.com</li>
+    <li>Silahkan login dengan email <b>dicodings@gmail.com</b></li>
     <li>Masukkan password berupa <b>dicoding12345</b></li>
     <li>Silahkan mencoba beberapa fitur yang telah saya buat 😁😁</li>
 </ol>

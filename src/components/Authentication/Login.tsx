@@ -15,6 +15,8 @@ const Login = () => {
 		password: "",
 	});
 
+	const [error, setError] = useState<any>(null)
+
 	const handleChange = (e: any) => {
 		const target = e.target;
 		const name = target.name;
@@ -32,7 +34,10 @@ const Login = () => {
 			await login(data.email, data.password);
 			navigate("/list");
 		} catch (err: any) {
-			console.log(err.message.substring(22, 36)); // user-not-found
+			const { code } = err
+			const newError = code.substring(5).split('-')
+			newError[0] = newError[0].substring(0,1).toUpperCase() + newError[0].substring(1)
+			setError(newError.join(" "));
 		}
 	};
 
@@ -42,10 +47,22 @@ const Login = () => {
 		}
 	}, [user, navigate]);
 
+	useEffect(() => {
+		if (error) {
+			setTimeout(() => {
+				setData({
+					email: "",
+					password: "",
+				})
+				setError(null)
+			}, 1200)
+		}
+	})
+
 	return user ? null : (
 		<MainLayout>
-			<div className="pt-6">
-				<BaseAuth title="Login">
+			<div className="flex justify-center pt-10">
+				<BaseAuth title="Login" error={error}>
 					<AuthForm
 						typeForm="login"
 						handleLogin={handleLogin}
