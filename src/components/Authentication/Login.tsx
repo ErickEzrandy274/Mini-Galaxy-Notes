@@ -61,7 +61,7 @@ const Login = () => {
 
 	return user ? null : (
 		<MainLayout>
-			<div className="pt-6">
+			<div className="flex justify-center pt-10">
 				<BaseAuth title="Login" error={error}>
 					<AuthForm
 						typeForm="login"
