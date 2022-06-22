@@ -18,7 +18,7 @@ const Header = () => {
 
 	return (
 		<nav className="shadow bg-gray-800 -m-2">
-			<div className="container px-6 py-3 mx-auto md:flex">
+			<div className="container px-6 py-2 mx-auto md:flex">
 				<div className="flex items-center justify-between">
 					<NewLink
 						customClass="text-2xl font-bold transition-colors duration-200 transform hover:text-white lg:text-3xl text-gray-300"
@@ -64,7 +64,7 @@ const Header = () => {
 					>
 						<p className="w-20 p-1">Our Repo</p>
 						<svg
-							className="w-12 h-12 fill-current"
+							className="w-10 h-10 fill-current"
 							viewBox="0 0 24 24"
 							fill="none"
 							xmlns="http://www.w3.org/2000/svg"
