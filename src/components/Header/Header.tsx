@@ -42,11 +42,11 @@ const Header = () => {
 
 				<div className="flex flex-col px-2 py-3 -mx-4 md:flex-row md:mx-0 md:py-0 md:items-center">
 					{user ? (
-						<div className="flex flex-col sm:flex-row text-center gap-3 sm:items-center">
-							<div className="flex gap-2 sm:gap-0 sm:flex-col items-start sm:items-center font-semibold text-white">
+						<div className="flex flex-col px-2 md:flex-row text-center gap-3 md:items-center">
+							<div className="flex gap-2 md:gap-0 md:flex-col items-start md:items-center font-semibold text-white">
 								<p>Hello</p>
 								<p>{user.displayName ? user.displayName : user.email}</p>
-								<p className="sm:hidden">👋👋👋</p>
+								<p className="md:hidden">👋👋👋</p>
 							</div>
 							<button
 								onClick={handleLogout}
@@ -68,7 +68,7 @@ const Header = () => {
 						className="flex items-center gap-2 hover:text-white text-gray-300 font-semibold"
 						aria-label="Github"
 					>
-						<p className="w-20 p-1">Our Repo</p>
+						<p className="w-24 p-1 px-2 md:px-1">Our Repo</p>
 						<svg
 							className="w-10 h-10 fill-current"
 							viewBox="0 0 24 24"
