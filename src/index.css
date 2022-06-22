@@ -101,3 +101,9 @@ code {
 	animation-delay: 1.25s;
 	margin-left: -60px;
 }
+
+@media screen and (max-width: 768px) {
+	.waterfall div {
+		top: 70%;
+	}
+}
