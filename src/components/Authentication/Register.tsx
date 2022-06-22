@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { useAuth } from "../../context/AuthContext";
+import { extractError } from "../../utils/function/function";
 import AuthForm from "../Form/AuthForm";
 import MainLayout from "../MainLayout/MainLayout";
 import BaseAuth from "./BaseAuth";
@@ -9,6 +10,7 @@ import { LoginInputType } from "./interface";
 const Register = () => {
 	const { user, register } = useAuth();
 	const navigate = useNavigate();
+	const [error, setError] = useState<any>(null)
 	const [data, setData] = useState<LoginInputType>({
 		email: "",
 		password: "",
@@ -32,7 +34,7 @@ const Register = () => {
 			await register(data.email, data.password);
 			navigate("/list");
 		} catch (err: any) {
-			console.log(err.message);
+			setError(extractError(err));
 		}
 	};
 
@@ -45,7 +47,7 @@ const Register = () => {
 	return user ? null : (
 		<MainLayout>
 			<div className="flex justify-center pt-10">
-				<BaseAuth title="Register">
+				<BaseAuth title="Register" error={error}>
 					<AuthForm
 						typeForm="register"
 						handleChange={handleChange}
