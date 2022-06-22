@@ -1,17 +1,21 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { useAuth } from "../../context/AuthContext";
+import { extractError } from "../../utils/function/function";
 import AuthForm from "../Form/AuthForm";
 import MainLayout from "../MainLayout/MainLayout";
 import BaseAuth from "./BaseAuth";
-import { LoginInputType } from "./interface";
+import { RegisterInputType } from "./interface";
 
 const Register = () => {
 	const { user, register } = useAuth();
+	// const [loading, setLoading] = useState(true);
 	const navigate = useNavigate();
-	const [data, setData] = useState<LoginInputType>({
+	const [error, setError] = useState<any>(null);
+	const [data, setData] = useState<RegisterInputType>({
 		email: "",
 		password: "",
+		nickname: "",
 	});
 
 	const handleChange = (e: any) => {
@@ -29,10 +33,10 @@ const Register = () => {
 		e.preventDefault();
 
 		try {
-			await register(data.email, data.password);
+			await register(data.email, data.password, data.nickname);
 			navigate("/list");
 		} catch (err: any) {
-			console.log(err.message);
+			setError(extractError(err));
 		}
 	};
 
@@ -40,12 +44,23 @@ const Register = () => {
 		if (user) {
 			navigate("/list");
 		}
-	}, [user, navigate]);
+
+		if (error) {
+			setTimeout(() => {
+				setData({
+					email: "",
+					password: "",
+					nickname: "",
+				});
+				setError(null);
+			}, 1500);
+		}
+	}, [user, navigate, error]);
 
 	return user ? null : (
 		<MainLayout>
 			<div className="flex justify-center pt-10">
-				<BaseAuth title="Register">
+				<BaseAuth title="Register" error={error}>
 					<AuthForm
 						typeForm="register"
 						handleChange={handleChange}

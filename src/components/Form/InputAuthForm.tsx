@@ -25,7 +25,7 @@ const InputAuthForm: React.FC<InputAuthProps> = ({
 				onChange={handleChange}
 				placeholder={`Write your ${name}`}
 			/>
-			{name === "password" && value.length > 0 && value.length < 10 && (
+			{name === "password" && value !== undefined && value.length > 0 && value.length < 10 && (
 				<p className="text-red-600 font-semibold px-2 mb-3">
 					Panjang password yang {typeForm !== "login" ? `dibuat` : `dimasukkan`} minimal 10 digit!
 				</p>
