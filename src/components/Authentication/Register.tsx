@@ -42,7 +42,17 @@ const Register = () => {
 		if (user) {
 			navigate("/list");
 		}
-	}, [user, navigate]);
+
+		if (error) {
+			setTimeout(() => {
+				setData({
+					email: "",
+					password: "",
+				})
+				setError(null)
+			}, 1500)
+		}
+	}, [user, navigate, error]);
 
 	return user ? null : (
 		<MainLayout>

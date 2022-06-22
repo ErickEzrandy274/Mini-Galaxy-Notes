@@ -43,9 +43,7 @@ const Login = () => {
 		if (user) {
 			navigate("/list");
 		}
-	}, [user, navigate]);
 
-	useEffect(() => {
 		if (error) {
 			setTimeout(() => {
 				setData({
@@ -55,7 +53,7 @@ const Login = () => {
 				setError(null)
 			}, 1200)
 		}
-	})
+	}, [user, navigate, error]);
 
 	return user ? null : (
 		<MainLayout>
