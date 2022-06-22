@@ -16,7 +16,7 @@ export const getData = (item: getDataParams) => {
     const tempData: ListNotesProps[] = [];
     onValue(notesListRef, (snapshot) => {
         snapshot.forEach((childSnapshot) => {
-            const { id, title, createdAt, body, archived, userId } =
+            const { id, title, createdAt, body, archived, lastModified, userId } =
                 childSnapshot.val();
             if (archived === isArchived && uid === userId) {
                 const newObject = {
@@ -26,6 +26,7 @@ export const getData = (item: getDataParams) => {
                     body,
                     archived,
                     createdAt,
+                    lastModified,
                     userId
                 };
                 tempData.push(newObject);
@@ -47,7 +48,8 @@ export const deleteCard = async (objKey: string) => {
 export const updateCard = async (objKey: string, prevArchived: boolean) => {
     try {
         await update(ref(database, `Notes/${objKey}`), {
-            archived: !prevArchived
+            archived: !prevArchived,
+            lastModified: new Date().toISOString()
         })
     } catch (error) {
         console.log(error)

@@ -32,13 +32,15 @@ const NotesForm = () => {
 		try {
 			if (title.length < 51){
 				e.preventDefault()
+				const newDate = new Date().toISOString()
 
 				const newNotes = {
 					id: uuidv4(),
 					title,
 					body,
 					archived: false,
-					createdAt: new Date().toISOString(),
+					createdAt: newDate,
+					lastModified: newDate,
 					userId: user.uid
 				}
 
