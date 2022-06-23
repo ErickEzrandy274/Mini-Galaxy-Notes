@@ -9,23 +9,27 @@ type getDataParams = {
 	uid: string;
 };
 
-export const notesListRef = ref(database, "Notes");
+type notesListRefParams = {
+	uid: string;
+	type: "get" | "delete" | "update" | "create";
+	objKey: string;
+};
+
+export const notesListRef = (refParam: notesListRefParams) => {
+	const { uid, type, objKey } = refParam;
+	return type === "get" || type === "create"
+		? ref(database, `Notes/${uid}`)
+		: ref(database, `Notes/${uid}/${objKey}`);
+};
 
 export const getData = (item: getDataParams) => {
 	const { setData, isArchived, uid } = item;
 	const tempData: ListNotesProps[] = [];
-	onValue(notesListRef, (snapshot) => {
+	onValue(notesListRef({ uid, type: "get", objKey: "" }), (snapshot) => {
 		snapshot.forEach((childSnapshot) => {
-			const {
-				id,
-				title,
-				createdAt,
-				body,
-				archived,
-				lastModified,
-				userId,
-			} = childSnapshot.val();
-			if (archived === isArchived && uid === userId) {
+			const { id, title, createdAt, body, archived, lastModified } =
+				childSnapshot.val();
+			if (archived === isArchived) {
 				const newObject = {
 					objKey: childSnapshot.key,
 					id,
@@ -34,7 +38,6 @@ export const getData = (item: getDataParams) => {
 					archived,
 					createdAt,
 					lastModified,
-					userId,
 				};
 				tempData.push(newObject);
 			}
@@ -44,17 +47,22 @@ export const getData = (item: getDataParams) => {
 	setData(tempData);
 };
 
-export const deleteCard = async (objKey: string) => {
+export const deleteCard = async (item: notesListRefParams) => {
+	const { uid, type, objKey } = item;
 	try {
-		await remove(ref(database, `Notes/${objKey}`));
+		await remove(notesListRef({ uid, type, objKey }));
 	} catch (error) {
 		console.log(error);
 	}
 };
 
-export const updateCard = async (objKey: string, prevArchived: boolean) => {
+export const updateCard = async (
+	item: notesListRefParams,
+	prevArchived: boolean
+) => {
+	const { uid, type, objKey } = item;
 	try {
-		await update(ref(database, `Notes/${objKey}`), {
+		await update(notesListRef({ uid, type, objKey }), {
 			archived: !prevArchived,
 			lastModified: new Date().toISOString(),
 		});
@@ -66,6 +74,7 @@ export const updateCard = async (objKey: string, prevArchived: boolean) => {
 export const extractError = (err: any) => {
 	const { code } = err;
 	const newError = code.substring(5).split("-");
-    newError[0] = newError[0].substring(0, 1).toUpperCase() + newError[0].substring(1);
-    return newError.join(" ")
+	newError[0] =
+		newError[0].substring(0, 1).toUpperCase() + newError[0].substring(1);
+	return newError.join(" ");
 };
