@@ -6,8 +6,8 @@ import { push } from "firebase/database";
 import { v4 as uuidv4  } from 'uuid';
 import IconButton from "../Button/IconButton";
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
-import { notesListRef } from "../../utils/function/function";
 import { useAuth } from "../../context/AuthContext";
+import { notesListRef } from "../../utils/function/function";
 
 const NotesForm = () => {
 	const { user } = useAuth()
@@ -40,11 +40,10 @@ const NotesForm = () => {
 					body,
 					archived: false,
 					createdAt: newDate,
-					lastModified: newDate,
-					userId: user.uid
+					lastModified: newDate
 				}
 
-				await push(notesListRef, newNotes)
+				await push(notesListRef({ uid: user.uid, type: "create", objKey: "" }), newNotes)
 
 				navigate('/list')
 			} else {
