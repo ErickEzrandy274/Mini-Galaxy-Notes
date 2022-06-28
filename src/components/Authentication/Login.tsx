@@ -6,9 +6,12 @@ import AuthForm from "../Form/AuthForm";
 import MainLayout from "../MainLayout/MainLayout";
 import BaseAuth from "./BaseAuth";
 import { LoginInputType } from "./interface";
+import { motion } from "framer-motion";
+import { basicAnimate } from "./constant";
 
 const Login = () => {
 	const navigate = useNavigate();
+	const { initial, animate, transition } = basicAnimate
 	const { user, login, error, setError } = useAuth();
 	const [data, setData] = useState<LoginInputType>({
 		email: "",
@@ -51,7 +54,12 @@ const Login = () => {
 
 	return user ? null : (
 		<MainLayout>
-			<div className="flex justify-center pt-10">
+			<motion.div
+				initial={initial}
+				animate={animate}
+				exit={initial}
+				transition={transition}
+				className="flex justify-center pt-10">
 				<BaseAuth title="Login" error={error}>
 					<AuthForm
 						typeForm="login"
@@ -60,7 +68,7 @@ const Login = () => {
 						{...data}
 					/>
 				</BaseAuth>
-			</div>
+			</motion.div>
 		</MainLayout>
 	);
 };

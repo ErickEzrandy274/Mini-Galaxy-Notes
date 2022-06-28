@@ -3,11 +3,10 @@ import NotesCard from "../Card/NotesCard";
 import { DataProps, ListNotesProps } from "../ListPage/interface";
 import NewLink from "../NewLink/NewLink";
 import { motion } from "framer-motion";
+import { basicAnimate } from "../Authentication/constant";
 
 const NotesList: React.FC<DataProps> = ({ data, isArchived }) => {
-	const initial = { opacity: 0 };
-	const animate = { opacity: 1 };
-	const transition = { delay: 0.25, stiffness: 100, duration: 1 };
+	const { initial, animate, transition } = basicAnimate;
 
 	return (
 		<>

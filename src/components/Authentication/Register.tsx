@@ -6,10 +6,12 @@ import AuthForm from "../Form/AuthForm";
 import MainLayout from "../MainLayout/MainLayout";
 import BaseAuth from "./BaseAuth";
 import { RegisterInputType } from "./interface";
+import { motion } from "framer-motion";
+import { basicAnimate } from "./constant";
 
 const Register = () => {
 	const { user, register } = useAuth();
-	// const [loading, setLoading] = useState(true);
+	const { initial, animate, transition } = basicAnimate
 	const navigate = useNavigate();
 	const [error, setError] = useState<any>(null);
 	const [data, setData] = useState<RegisterInputType>({
@@ -59,7 +61,12 @@ const Register = () => {
 
 	return user ? null : (
 		<MainLayout>
-			<div className="flex justify-center pt-10">
+			<motion.div
+				initial={initial}
+				animate={animate}
+				exit={initial}
+				transition={transition}
+				className="flex justify-center pt-10">
 				<BaseAuth title="Register" error={error}>
 					<AuthForm
 						typeForm="register"
@@ -68,7 +75,7 @@ const Register = () => {
 						{...data}
 					/>
 				</BaseAuth>
-			</div>
+			</motion.div>
 		</MainLayout>
 	);
 };

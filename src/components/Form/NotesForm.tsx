@@ -9,8 +9,10 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { useAuth } from "../../context/AuthContext";
 import { notesListRef } from "../../utils/function/function";
 import { motion } from "framer-motion";
+import { basicAnimate } from "../Authentication/constant";
 
 const NotesForm = () => {
+	const { initial, animate, transition } = basicAnimate;
 	const { user } = useAuth();
 	const navigate = useNavigate();
 	const [field, setField] = useState<InputType>({
@@ -65,10 +67,10 @@ const NotesForm = () => {
 
 	return (
 		<motion.div
-			initial={{ opacity: 0 }}
-			animate={{ opacity: 1 }}
-			exit={{ opacity: 0 }}
-			transition={{ delay: 0.25, stiffness: 100, duration: 1 }}
+			initial={initial}
+			animate={animate}
+			exit={initial}
+			transition={transition}
 			className="flex flex-col sm:w-full w-10/12 max-w-md px-4 mx-auto m-3 py-5 xl:py-10 my-12 md:my-16 lg:my-20 xl:my-28 rounded-xl
 			shadow bg-gray-800 sm:px-6 md:px-8 lg:px-10 text-white font-semibold"
 		>
@@ -78,7 +80,7 @@ const NotesForm = () => {
 
 			<form
 				className="flex flex-col gap-4"
-				onSubmit={e => handleSubmit(e, field.title, field.content)}
+				onSubmit={(e) => handleSubmit(e, field.title, field.content)}
 			>
 				<InputForm
 					name="title"
