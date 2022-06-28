@@ -3,14 +3,17 @@ import { InputType } from "./interface";
 import { useNavigate } from "react-router-dom";
 import InputForm from "./InputForm";
 import { push } from "firebase/database";
-import { v4 as uuidv4  } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 import IconButton from "../Button/IconButton";
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { useAuth } from "../../context/AuthContext";
 import { notesListRef } from "../../utils/function/function";
+import { motion } from "framer-motion";
+import { basicAnimate } from "../Authentication/constant";
 
 const NotesForm = () => {
-	const { user } = useAuth()
+	const { initial, animate, transition } = basicAnimate;
+	const { user } = useAuth();
 	const navigate = useNavigate();
 	const [field, setField] = useState<InputType>({
 		title: "",
@@ -30,9 +33,9 @@ const NotesForm = () => {
 
 	const handleSubmit = async (e: any, title: string, body: string) => {
 		try {
-			if (title.length < 51){
-				e.preventDefault()
-				const newDate = new Date().toISOString()
+			if (title.length < 51) {
+				e.preventDefault();
+				const newDate = new Date().toISOString();
 
 				const newNotes = {
 					id: uuidv4(),
@@ -40,33 +43,45 @@ const NotesForm = () => {
 					body,
 					archived: false,
 					createdAt: newDate,
-					lastModified: newDate
-				}
+					lastModified: newDate,
+				};
 
-				await push(notesListRef({ uid: user.uid, type: "create", objKey: "" }), newNotes)
+				await push(
+					notesListRef({ uid: user.uid, type: "create", objKey: "" }),
+					newNotes
+				);
 
-				navigate('/list')
+				navigate("/list");
 			} else {
-				alert(`Title Content yang Anda masukkan > 50 karakter!`)
+				alert(`Title Content yang Anda masukkan > 50 karakter!`);
 			}
 
 			setField({
 				title: "",
 				content: "",
-			})
+			});
 		} catch (error) {
-			console.log(error)
+			console.log(error);
 		}
 	};
 
 	return (
-		<div className="flex flex-col sm:w-full w-10/12 max-w-md px-4 mx-auto m-3 py-5 xl:py-10 my-12 md:my-16 lg:my-20 xl:my-28 rounded-xl
-			shadow bg-gray-800 sm:px-6 md:px-8 lg:px-10 text-white font-semibold">
+		<motion.div
+			initial={initial}
+			animate={animate}
+			exit={initial}
+			transition={transition}
+			className="flex flex-col sm:w-full w-10/12 max-w-md px-4 mx-auto m-3 py-5 xl:py-10 my-12 md:my-16 lg:my-20 xl:my-28 rounded-xl
+			shadow bg-gray-800 sm:px-6 md:px-8 lg:px-10 text-white font-semibold"
+		>
 			<div className="self-center mb-6 text-xl  sm:text-4xl text-white font-bold">
 				Create New Notes
 			</div>
 
-			<form className="flex flex-col gap-4" onSubmit={e => handleSubmit(e, field.title, field.content)}>
+			<form
+				className="flex flex-col gap-4"
+				onSubmit={(e) => handleSubmit(e, field.title, field.content)}
+			>
 				<InputForm
 					name="title"
 					placeholder="Insert new title notes"
@@ -88,7 +103,7 @@ const NotesForm = () => {
 					className="mt-2 bg-purple-600 hover:bg-purple-700 focus:ring-purple-500 focus:ring-offset-purple-200 w-full"
 				/>
 			</form>
-		</div>
+		</motion.div>
 	);
 };
 
