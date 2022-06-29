@@ -17,7 +17,7 @@ const ConfirmationModal: React.FC<ModalProps> = ({ setModalOpen, onClick }) => {
 				initial={initial}
 				animate={animate}
 				exit={initial}
-				transition={{ duration: .5 }}
+				transition={{ duration: .2, ease: "easeOut" }}
 				className="modal"
 			>
 				<div className="modal-box">
