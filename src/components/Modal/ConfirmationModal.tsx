@@ -1,7 +1,11 @@
 import React from "react";
 import { ModalProps } from "./interface";
+import { motion } from "framer-motion";
+import { basicAnimate } from "../Authentication/constant";
 
 const ConfirmationModal: React.FC<ModalProps> = ({ setModalOpen, onClick }) => {
+	const { initial, animate } = basicAnimate;
+
 	return (
 		<>
 			<input
@@ -9,7 +13,13 @@ const ConfirmationModal: React.FC<ModalProps> = ({ setModalOpen, onClick }) => {
 				id="confirmationModal"
 				className="modal-toggle"
 			/>
-			<div className="modal">
+			<motion.div
+				initial={initial}
+				animate={animate}
+				exit={initial}
+				transition={{ duration: .5 }}
+				className="modal"
+			>
 				<div className="modal-box">
 					<h3 className="font-bold text-lg uppercase tracking-wide">
 						Delete Confirmation
@@ -34,7 +44,7 @@ const ConfirmationModal: React.FC<ModalProps> = ({ setModalOpen, onClick }) => {
 						</button>
 					</div>
 				</div>
-			</div>
+			</motion.div>
 		</>
 	);
 };
