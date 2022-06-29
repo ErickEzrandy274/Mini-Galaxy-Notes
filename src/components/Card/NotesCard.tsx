@@ -36,7 +36,7 @@ const NotesCard: React.FC<ListNotesProps> = ({
 					</span>
 				</p>
 				<p>Created at: {createdAt}</p>
-				<p>LastModified at: {lastModified}</p>
+				<p>Last modified at: {lastModified}</p>
 			</div>
 
 			<div className="flex justify-end bg-base-100 p-4 gap-4">
