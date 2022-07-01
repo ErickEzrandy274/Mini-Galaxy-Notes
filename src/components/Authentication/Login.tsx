@@ -33,7 +33,9 @@ const Login = () => {
 	const handleLogin = async (e: any) => {
 		e.preventDefault();
 		await login(data.email, data.password);
-		navigate("/list");
+		setTimeout(() => {
+			navigate("/list");
+		}, 500)
 	};
 
 	useEffect(() => {
