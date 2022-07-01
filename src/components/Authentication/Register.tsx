@@ -36,7 +36,9 @@ const Register = () => {
 
 		try {
 			await register(data.email, data.password, data.nickname);
-			navigate("/list");
+			setTimeout(() => {
+				navigate("/list");
+			}, 500)
 		} catch (err: any) {
 			setError(extractError(err));
 		}
