@@ -19,7 +19,7 @@ const NotesCard: React.FC<ListNotesProps> = ({
 	const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
 	return (
-		<div className="card w-96 bg-primary text-primary-content font-semibold">
+		<div className="card w-96 bg-primary text-white font-semibold">
 			<div className="card-body">
 				<h2 className="card-title font-bold tracking-wide">{title}</h2>
 				<p className="text-ellipsis overflow-hidden border-2 border-dashed rounded-lg p-3 mb-2">
