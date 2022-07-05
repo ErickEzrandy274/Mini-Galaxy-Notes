@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useNavigate } from "react-router";
 import { useAuth } from "../../context/AuthContext";
 import { NewLinkProps } from "../NewLink/interface";
@@ -7,6 +8,7 @@ import { navs, authNavs } from "./constant";
 const Header = () => {
 	const { user, logout } = useAuth();
 	const navigate = useNavigate();
+	const [show, setShow] = useState<boolean>(false);
 	const customClassLogOut = `px-2 py-1 hover:font-semibold text-lg bg-red-600 transition-colors duration-200 transform rounded-lg 
 		hover:bg-red-700 text-gray-200 hover:text-gray-100 md:mx-2`;
 
@@ -25,11 +27,23 @@ const Header = () => {
 						linkName="Home"
 						fromNav
 					/>
+
+					<button
+						className={`hamburger hamburger--slider ${
+							show ? `is-active` : ``
+						}`}
+						onClick={() => setShow(!show)}
+					>
+						<span className="hamburger-box">
+							<span className="hamburger-inner"></span>
+						</span>
+					</button>
 				</div>
 
 				<div
-					className="w-full md:flex md:items-center md:justify-between"
-					id="navbarNavAltMarkup"
+					className={`${
+						show ? `md:flex` : `hidden`
+					} w-full md:items-center md:justify-between`}
 				>
 					<div className="flex flex-col px-2 py-3 -mx-4 md:flex-row md:mx-0 md:py-0">
 						{navs.map((item: NewLinkProps, index: number) => {
@@ -40,12 +54,20 @@ const Header = () => {
 					</div>
 				</div>
 
-				<div className="flex flex-col px-2 py-3 -mx-4 md:flex-row md:mx-0 md:py-0 md:items-center">
+				<div
+					className={`${
+						show ? `flex` : `hidden`
+					} flex-col px-2 py-3 -mx-4 md:flex-row md:mx-0 md:py-0 md:items-center`}
+				>
 					{user ? (
 						<div className="flex flex-col px-2 md:flex-row text-center gap-3 md:items-center">
 							<div className="flex gap-2 md:gap-0 md:flex-col items-start md:items-center font-semibold text-white">
 								<p>Hello</p>
-								<p>{user.displayName ? user.displayName : user.email}</p>
+								<p>
+									{user.displayName
+										? user.displayName
+										: user.email}
+								</p>
 								<p className="md:hidden">👋👋👋</p>
 							</div>
 							<button
