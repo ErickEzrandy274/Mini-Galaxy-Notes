@@ -16,7 +16,7 @@ const Header = () => {
 	};
 
 	return (
-		<nav className="shadow bg-gray-800 -m-2">
+		<nav className="shadow bg-gray-800 p-1">
 			<div className="container px-6 py-2 mx-auto md:flex">
 				<div className="flex items-center justify-between">
 					<NewLink
