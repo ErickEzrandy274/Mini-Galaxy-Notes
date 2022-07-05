@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { useAuth } from "../../context/AuthContext";
+import { useWindowSize } from "../../utils/function/useWindowSize";
 import { NewLinkProps } from "../NewLink/interface";
 import NewLink from "../NewLink/NewLink";
 import { navs, authNavs } from "./constant";
 
 const Header = () => {
 	const { user, logout } = useAuth();
+	const { width } = useWindowSize();
 	const navigate = useNavigate();
 	const [show, setShow] = useState<boolean>(false);
 	const customClassLogOut = `px-2 py-1 hover:font-semibold text-lg bg-red-600 transition-colors duration-200 transform rounded-lg 
@@ -18,7 +20,7 @@ const Header = () => {
 	};
 
 	return (
-		<nav className="shadow bg-gray-800 p-1">
+		<nav className="shadow bg-gray-800 p-1 sticky top-0 z-10">
 			<div className="container px-6 py-2 mx-auto md:flex">
 				<div className="flex items-center justify-between">
 					<NewLink
@@ -29,7 +31,7 @@ const Header = () => {
 					/>
 
 					<button
-						className={`hamburger hamburger--slider ${
+						className={`hamburger hamburger--slider md:hidden ${
 							show ? `is-active` : ``
 						}`}
 						onClick={() => setShow(!show)}
@@ -42,7 +44,7 @@ const Header = () => {
 
 				<div
 					className={`${
-						show ? `md:flex` : `hidden`
+						width >= 768 ? `flex` : show ? `flex` : `hidden`
 					} w-full md:items-center md:justify-between`}
 				>
 					<div className="flex flex-col px-2 py-3 -mx-4 md:flex-row md:mx-0 md:py-0">
@@ -56,7 +58,7 @@ const Header = () => {
 
 				<div
 					className={`${
-						show ? `flex` : `hidden`
+						width >= 768 ? `flex` : show ? `flex` : `hidden`
 					} flex-col px-2 py-3 -mx-4 md:flex-row md:mx-0 md:py-0 md:items-center`}
 				>
 					{user ? (
