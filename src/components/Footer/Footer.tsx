@@ -35,7 +35,8 @@ const Footer = () => {
 				</a>
 			</div>
 			<div>
-				<p>Copyright © 2022 - All right reserved by Erick Ezrandy</p>
+				<p>Copyright © 2022 - All right reserved</p>
+				<p className="text-base">made by Erick Ezrandy - Computer Science UI 2020</p>
 			</div>
 		</footer>
 	);

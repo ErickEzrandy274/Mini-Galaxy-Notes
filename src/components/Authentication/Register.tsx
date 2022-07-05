@@ -68,7 +68,7 @@ const Register = () => {
 				animate={animate}
 				exit={initial}
 				transition={transition}
-				className="flex justify-center pt-10">
+				className="flex justify-center py-5">
 				<BaseAuth title="Register" error={error}>
 					<AuthForm
 						typeForm="register"
