@@ -28,8 +28,8 @@ const NotesList: React.FC<DataProps> = ({ data, isArchived }) => {
 					transition={transition}
 					className="flex flex-wrap gap-6 m-5 justify-center"
 				>
-					{data.map((item: ListNotesProps) => {
-						return <NotesCard {...item} key={item.id} />;
+					{data.map((item: ListNotesProps, index: number) => {
+						return <NotesCard {...item} key={item.id} index={index} />;
 					})}
 				</motion.div>
 			) : (
