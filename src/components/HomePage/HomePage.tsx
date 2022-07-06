@@ -1,7 +1,10 @@
 import NewLink from "../NewLink/NewLink";
 import { motion } from "framer-motion";
+import { basicAnimate } from "../Authentication/constant";
 
 const HomePage = () => {
+	const { initial, animate } = basicAnimate;
+
 	return (
 		<div className="bg-indigo-900 relative overflow-hidden h-screen cursor-default">
 			<img
@@ -11,7 +14,12 @@ const HomePage = () => {
 			/>
 			<div className="inset-0 bg-black opacity-25 absolute"></div>
 			<div className="container mx-auto px-6 md:px-12 relative z-10 flex items-center py-32 xl:py-40">
-				<div className="w-full flex flex-col items-center relative z-10">
+				<motion.div
+					initial={initial}
+					animate={animate}
+					exit={initial}
+					transition={{ delay: 0.5, stiffness: 100, duration: 1.75 }}
+					className="w-full flex flex-col items-center relative z-10">
 					<motion.h1
 						initial={{ x: '-100vw' }}
 						animate={{ x: 0 }}
@@ -24,7 +32,7 @@ const HomePage = () => {
 						linkName="START NOW"
 						fromNav={false}
 					/>
-				</div>
+				</motion.div>
 			</div>
 		</div>
 	);
