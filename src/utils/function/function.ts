@@ -74,8 +74,7 @@ export const updateCard = async (
 export const extractError = (err: any) => {
 	const { code } = err;
 	const newError = code.substring(5).split("-");
-	newError[0] =
-		newError[0].substring(0, 1).toUpperCase() + newError[0].substring(1);
+	newError[0] = toCapitalize(newError[0]);
 	return newError.join(" ");
 };
 

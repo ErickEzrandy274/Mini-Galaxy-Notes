@@ -1,4 +1,5 @@
 import React from "react";
+import { toCapitalize } from "../../utils/function/function";
 import { InputProps } from "./interface";
 
 const InputForm: React.FC<InputProps> = ({
@@ -23,7 +24,7 @@ const InputForm: React.FC<InputProps> = ({
 	return (
 		<div className="flex flex-col gap-2">
 			<label htmlFor={name} className="text-xl">
-				{name.substring(0, 1).toUpperCase() + name.substring(1)}
+				{toCapitalize(name)}
 			</label>
 			{type ? (
 				<input

@@ -1,4 +1,5 @@
 import React from "react";
+import { toCapitalize } from "../../utils/function/function";
 import BasicButton from "../Button/BasicButton";
 import InputAuthForm from "./InputAuthForm";
 import { AuthFormProps } from "./interface";
@@ -40,10 +41,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
 					type="submit"
 					email={email}
 					password={password}
-					buttonName={
-						typeForm.substring(0, 1).toUpperCase() +
-						typeForm.substring(1)
-					}
+					buttonName={toCapitalize(typeForm)}
 					className="w-full px-4 uppercase py-2 tracking-wide rounded-lg text-white transition-colors duration-200 transform"
 				/>
 			</div>
