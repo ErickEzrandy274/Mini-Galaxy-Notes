@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { InputType } from "./interface";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import InputForm from "./InputForm";
 import { push } from "firebase/database";
 import { v4 as uuidv4 } from "uuid";
@@ -12,6 +12,7 @@ import { motion } from "framer-motion";
 import { basicAnimate } from "../Authentication/constant";
 
 const NotesForm = () => {
+	const { pathname } = useLocation();
 	const { initial, animate, transition } = basicAnimate;
 	const { user } = useAuth();
 	const navigate = useNavigate();
@@ -97,13 +98,33 @@ const NotesForm = () => {
 					value={field.content}
 				/>
 
-				<IconButton
-					type="submit"
-					iconName={faPlus}
-					buttonName="Add New Notes"
-					field={field}
-					className="bg-purple-600 hover:bg-purple-700 focus:ring-purple-500 focus:ring-offset-purple-200 w-full"
-				/>
+				{pathname === "/create" ? (
+					<>
+						<IconButton
+							type="submit"
+							iconName={faPlus}
+							buttonName="Add New Notes"
+							field={field}
+							className="bg-purple-600 hover:bg-purple-700 focus:ring-purple-500 focus:ring-offset-purple-200 w-full"
+						/>
+						<div
+							className={`tooltip tooltip-bottom tooltip-info -mt-4 ${
+								(field?.title.length === 0 ||
+									field?.content.length === 0) &&
+								`tooltip-open`
+							}`}
+							data-tip="Enter title and content to activate the button!"
+						></div>
+					</>
+				) : (
+					<IconButton
+						type="submit"
+						iconName={faPlus}
+						buttonName="Add New Notes"
+						field={field}
+						className="bg-purple-600 hover:bg-purple-700 focus:ring-purple-500 focus:ring-offset-purple-200 w-full"
+					/>
+				)}
 			</form>
 		</motion.div>
 	);
