@@ -8,16 +8,16 @@ import BaseAuth from "./BaseAuth";
 import { LoginInputType } from "./interface";
 import { motion } from "framer-motion";
 import { basicAnimate } from "./constant";
+import ScrollButton from "../Button/ScrollButton";
 
 const Login = () => {
 	const navigate = useNavigate();
-	const { initial, animate, transition } = basicAnimate
+	const { initial, animate, transition } = basicAnimate;
 	const { user, login, error, setError } = useAuth();
 	const [data, setData] = useState<LoginInputType>({
 		email: "",
 		password: "",
 	});
-
 
 	const handleChange = (e: any) => {
 		const target = e.target;
@@ -35,7 +35,7 @@ const Login = () => {
 		await login(data.email, data.password);
 		setTimeout(() => {
 			navigate("/list");
-		}, 500)
+		}, 500);
 	};
 
 	useEffect(() => {
@@ -48,30 +48,34 @@ const Login = () => {
 				setData({
 					email: "",
 					password: "",
-				})
-				setError(null)
-			}, 1200)
+				});
+				setError(null);
+			}, 1200);
 		}
 	}, [user, navigate, error]);
 
 	return user ? null : (
-		<MainLayout>
-			<motion.div
-				initial={initial}
-				animate={animate}
-				exit={initial}
-				transition={transition}
-				className="flex justify-center py-5">
-				<BaseAuth title="Login" error={error}>
-					<AuthForm
-						typeForm="login"
-						handleLogin={handleLogin}
-						handleChange={handleChange}
-						{...data}
-					/>
-				</BaseAuth>
-			</motion.div>
-		</MainLayout>
+		<>
+			<ScrollButton />
+			<MainLayout>
+				<motion.div
+					initial={initial}
+					animate={animate}
+					exit={initial}
+					transition={transition}
+					className="flex justify-center py-5"
+				>
+					<BaseAuth title="Login" error={error}>
+						<AuthForm
+							typeForm="login"
+							handleLogin={handleLogin}
+							handleChange={handleChange}
+							{...data}
+						/>
+					</BaseAuth>
+				</motion.div>
+			</MainLayout>
+		</>
 	);
 };
 

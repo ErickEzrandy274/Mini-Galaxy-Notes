@@ -8,10 +8,11 @@ import BaseAuth from "./BaseAuth";
 import { RegisterInputType } from "./interface";
 import { motion } from "framer-motion";
 import { basicAnimate } from "./constant";
+import ScrollButton from "../Button/ScrollButton";
 
 const Register = () => {
 	const { user, register } = useAuth();
-	const { initial, animate, transition } = basicAnimate
+	const { initial, animate, transition } = basicAnimate;
 	const navigate = useNavigate();
 	const [error, setError] = useState<any>(null);
 	const [data, setData] = useState<RegisterInputType>({
@@ -38,7 +39,7 @@ const Register = () => {
 			await register(data.email, data.password, data.nickname);
 			setTimeout(() => {
 				navigate("/list");
-			}, 500)
+			}, 500);
 		} catch (err: any) {
 			setError(extractError(err));
 		}
@@ -62,23 +63,27 @@ const Register = () => {
 	}, [user, navigate, error]);
 
 	return user ? null : (
-		<MainLayout>
-			<motion.div
-				initial={initial}
-				animate={animate}
-				exit={initial}
-				transition={transition}
-				className="flex justify-center py-5">
-				<BaseAuth title="Register" error={error}>
-					<AuthForm
-						typeForm="register"
-						handleChange={handleChange}
-						handleRegister={handleRegister}
-						{...data}
-					/>
-				</BaseAuth>
-			</motion.div>
-		</MainLayout>
+		<>
+			<ScrollButton />
+			<MainLayout>
+				<motion.div
+					initial={initial}
+					animate={animate}
+					exit={initial}
+					transition={transition}
+					className="flex justify-center py-5"
+				>
+					<BaseAuth title="Register" error={error}>
+						<AuthForm
+							typeForm="register"
+							handleChange={handleChange}
+							handleRegister={handleRegister}
+							{...data}
+						/>
+					</BaseAuth>
+				</motion.div>
+			</MainLayout>
+		</>
 	);
 };
 
