@@ -6,6 +6,8 @@ import { deleteCard, updateCard } from "../../utils/function/function";
 import { useAuth } from "../../context/AuthContext";
 import ConfirmationModal from "../Modal/ConfirmationModal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { motion } from "framer-motion";
+import { basicAnimate } from "../Authentication/constant";
 
 const NotesCard: React.FC<ListNotesProps> = ({
 	title,
@@ -14,12 +16,20 @@ const NotesCard: React.FC<ListNotesProps> = ({
 	archived,
 	createdAt,
 	lastModified,
+	index,
 }) => {
 	const { user } = useAuth();
 	const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+	const { initial, animate } = basicAnimate;
 
 	return (
-		<div className="card w-96 bg-primary text-white font-semibold">
+		<motion.div
+			initial={initial}
+			animate={animate}
+			exit={initial}
+			transition={{ delay: 0.25 + 0.25*(index!), stiffness: 100, duration: 1.5 }}
+			className="card w-96 bg-primary text-white font-semibold"
+		>
 			<div className="card-body">
 				<h2 className="card-title font-bold tracking-wide">{title}</h2>
 				<p className="text-ellipsis overflow-hidden border-2 border-dashed rounded-lg p-3 mb-2">
@@ -79,7 +89,7 @@ const NotesCard: React.FC<ListNotesProps> = ({
 					/>
 				)}
 			</div>
-		</div>
+		</motion.div>
 	);
 };
 
