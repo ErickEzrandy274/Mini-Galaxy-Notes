@@ -1,9 +1,10 @@
 import NewLink from "../NewLink/NewLink";
 import { motion } from "framer-motion";
-import { basicAnimate } from "../Authentication/constant";
+import { basicAnimate, customTransition } from "../Authentication/constant";
 
 const HomePage = () => {
 	const { initial, animate } = basicAnimate;
+	const { transition } = customTransition;
 
 	return (
 		<div className="bg-indigo-900 relative overflow-hidden h-screen cursor-default">
@@ -18,20 +19,23 @@ const HomePage = () => {
 					initial={initial}
 					animate={animate}
 					exit={initial}
-					transition={{ delay: 0.5, stiffness: 100, duration: 1.75 }}
-					className="w-full flex flex-col items-center relative z-10">
+					transition={transition}
+					className="w-full flex flex-col items-center relative z-10"
+				>
 					<motion.h1
-						initial={{ x: '-100vw' }}
+						initial={{ x: "-100vw" }}
 						animate={{ x: 0 }}
-						transition={{ type: "spring", stiffness: 120, duration: 4, mass: 2 }}
-						className="font-extrabold text-5xl text-center sm:text-8xl text-white leading-tight mt-4">
+						transition={{
+							type: "spring",
+							stiffness: 120,
+							duration: 4,
+							mass: 2,
+						}}
+						className="font-extrabold text-5xl text-center sm:text-8xl text-white leading-tight mt-4"
+					>
 						Welcome to Notes Application
 					</motion.h1>
-					<NewLink
-						to="/list"
-						linkName="START NOW"
-						fromNav={false}
-					/>
+					<NewLink to="/list" linkName="START NOW" fromNav={false} />
 				</motion.div>
 			</div>
 		</div>

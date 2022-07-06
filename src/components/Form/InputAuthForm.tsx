@@ -1,4 +1,5 @@
 import React from "react";
+import { toCapitalize } from "../../utils/function/function";
 import { InputAuthProps } from "./interface";
 
 const InputAuthForm: React.FC<InputAuthProps> = ({
@@ -13,7 +14,7 @@ const InputAuthForm: React.FC<InputAuthProps> = ({
 				className="block mb-2 text-sm font-medium sm:text-lg text-gray-200"
 				htmlFor={name}
 			>
-				{name.substring(0, 1).toUpperCase() + name.substring(1)}
+				{toCapitalize(name)}
 			</label>
 			<input
 				name={name}

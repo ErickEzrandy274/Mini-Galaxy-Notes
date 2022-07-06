@@ -12,7 +12,6 @@ const IconButton: React.FC<IconButtonProps> = ({
 }) => {
 	return (
 		<button
-			title={type === "submit" && (field?.title.length === 0 || field?.content.length === 0) ? `Harap isi judul dan konten notes!` : ``}
 			onClick={handleClick}
             type={type}
 			className={`py-2 px-4 flex justify-center items-center gap-2 font-semibold

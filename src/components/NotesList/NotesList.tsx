@@ -5,6 +5,7 @@ import NewLink from "../NewLink/NewLink";
 import { motion } from "framer-motion";
 import {
 	basicAnimate,
+	customTransition,
 	secondAnimate,
 	thirdAnimate,
 } from "../Authentication/constant";
@@ -17,6 +18,7 @@ const NotesList: React.FC<DataProps> = ({ data, isArchived }) => {
 		transition: secondTrans,
 	} = secondAnimate;
 	const { initial: thirdInit } = thirdAnimate;
+	const { transition: customTransitions } = customTransition;
 
 	return (
 		<>
@@ -37,7 +39,7 @@ const NotesList: React.FC<DataProps> = ({ data, isArchived }) => {
 					initial={initial}
 					animate={animate}
 					exit={initial}
-					transition={transition}
+					transition={customTransitions}
 					className="flex flex-col gap-4 text-center items-center my-10 font-semibold text-white cursor-default"
 				>
 					<motion.h2

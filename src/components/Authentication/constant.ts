@@ -13,3 +13,7 @@ export const secondAnimate = {
 export const thirdAnimate = {
 	initial: { x: "300" },
 };
+
+export const customTransition = {
+	transition: { delay: 0.5, stiffness: 100, duration: 1.75 }
+}
