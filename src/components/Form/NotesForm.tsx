@@ -71,7 +71,7 @@ const NotesForm = () => {
 			animate={animate}
 			exit={initial}
 			transition={transition}
-			className="flex flex-col sm:w-full w-10/12 max-w-md px-4 mx-auto m-3 py-5 xl:py-10 my-12 md:my-16 lg:my-20 xl:my-28 rounded-xl
+			className="flex flex-col sm:w-full w-10/12 max-w-md px-4 mx-auto my-10 lg:my-6 py-5 xl:py-10 rounded-xl
 			shadow bg-gray-800 sm:px-6 md:px-8 lg:px-10 text-white font-semibold"
 		>
 			<div className="self-center mb-6 text-xl  sm:text-4xl text-white font-bold">
@@ -79,8 +79,8 @@ const NotesForm = () => {
 			</div>
 
 			<form
-				className="flex flex-col gap-4"
-				onSubmit={(e) => handleSubmit(e, field.title, field.content)}
+				className="flex flex-col gap-5"
+				onSubmit={e => handleSubmit(e, field.title, field.content)}
 			>
 				<InputForm
 					name="title"
@@ -89,18 +89,20 @@ const NotesForm = () => {
 					handleChange={handleChange}
 					value={field.title}
 				/>
+
 				<InputForm
 					name="content"
 					placeholder="Insert new content notes"
 					handleChange={handleChange}
 					value={field.content}
 				/>
+
 				<IconButton
 					type="submit"
 					iconName={faPlus}
 					buttonName="Add New Notes"
 					field={field}
-					className="mt-2 bg-purple-600 hover:bg-purple-700 focus:ring-purple-500 focus:ring-offset-purple-200 w-full"
+					className="bg-purple-600 hover:bg-purple-700 focus:ring-purple-500 focus:ring-offset-purple-200 w-full"
 				/>
 			</form>
 		</motion.div>
