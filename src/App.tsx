@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router";
 import ArchivedPage from "./components/ArchivedPage/ArchivedPage";
 import Login from "./components/Authentication/Login";
 import Register from "./components/Authentication/Register";
+import ScrollButton from "./components/Button/ScrollButton";
 import CreatePage from "./components/CreatePage/CreatePage";
 import HomePage from "./components/HomePage/HomePage";
 import ListPage from "./components/ListPage/ListPage";
@@ -17,6 +18,7 @@ function App() {
 				path="/list"
 				element={
 					<ProtectedRoute>
+						<ScrollButton />
 						<ListPage />
 					</ProtectedRoute>
 				}
@@ -25,6 +27,7 @@ function App() {
 				path="/create"
 				element={
 					<ProtectedRoute>
+						<ScrollButton />
 						<CreatePage />
 					</ProtectedRoute>
 				}
@@ -33,6 +36,7 @@ function App() {
 				path="/archived"
 				element={
 					<ProtectedRoute>
+						<ScrollButton />
 						<ArchivedPage />
 					</ProtectedRoute>
 				}
