@@ -78,3 +78,7 @@ export const extractError = (err: any) => {
 		newError[0].substring(0, 1).toUpperCase() + newError[0].substring(1);
 	return newError.join(" ");
 };
+
+export const toCapitalize = (text: string) => {
+	return text.substring(0, 1).toUpperCase() + text.substring(1);
+};
