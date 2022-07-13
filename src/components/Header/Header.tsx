@@ -89,10 +89,10 @@ const Header = () => {
 
 					<a
 						href="https://github.com/ErickEzrandy274/Notes-App"
-						className="flex items-center gap-2 hover:text-white text-gray-300 font-semibold"
+						className="flex items-center sm:gap-1 hover:text-white text-gray-300 font-semibold"
 						aria-label="Github"
 					>
-						<p className="w-24 p-1 px-2 md:px-1">Our Repo</p>
+						<p className="w-24 sm:w-20 p-1 px-2 md:px-1 sm:text-right">Our Repo</p>
 						<svg
 							className="w-10 h-10 fill-current"
 							viewBox="0 0 24 24"
