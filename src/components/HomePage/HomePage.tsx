@@ -1,10 +1,11 @@
-import NewLink from "../NewLink/NewLink";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router";
 import { basicAnimate, customTransition } from "../Authentication/constant";
 
 const HomePage = () => {
 	const { initial, animate } = basicAnimate;
 	const { transition } = customTransition;
+	const nav = useNavigate()
 
 	return (
 		<div className="bg-indigo-900 relative overflow-hidden h-screen cursor-default">
@@ -35,7 +36,12 @@ const HomePage = () => {
 					>
 						Welcome to Notes Application
 					</motion.h1>
-					<NewLink to="/list" linkName="START NOW" fromNav={false} />
+
+					<button
+						onClick={() => nav('/list')}
+						className="bg-gray-800 hover:bg-gray-900 py-3 px-4 text-lg text-white font-bold rounded-lg shadow-xl mt-10">
+						START NOW
+					</button>
 				</motion.div>
 			</div>
 		</div>
