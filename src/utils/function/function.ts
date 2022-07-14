@@ -56,7 +56,7 @@ export const deleteCard = async (item: notesListRefParams) => {
 	}
 };
 
-export const updateCard = async (
+export const updateArchivedCard = async (
 	item: notesListRefParams,
 	prevArchived: boolean
 ) => {
@@ -64,6 +64,23 @@ export const updateCard = async (
 	try {
 		await update(notesListRef({ uid, type, objKey }), {
 			archived: !prevArchived,
+			lastModified: new Date().toISOString(),
+		});
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+export const updateContentCard = async (
+	item: notesListRefParams,
+	title: string,
+	body: string
+) => {
+	const { uid, type, objKey } = item;
+	try {
+		await update(notesListRef({ uid, type, objKey }), {
+			title,
+			body,
 			lastModified: new Date().toISOString(),
 		});
 	} catch (error) {
