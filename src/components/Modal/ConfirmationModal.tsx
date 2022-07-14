@@ -5,7 +5,11 @@ import { basicAnimate } from "../Authentication/constant";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faWarning } from "@fortawesome/free-solid-svg-icons";
 
-const ConfirmationModal: React.FC<ModalProps> = ({ setModalOpen, onClick }) => {
+const ConfirmationModal: React.FC<ModalProps> = ({
+	setModalOpen,
+	onClick,
+	type,
+}) => {
 	const { initial, animate } = basicAnimate;
 
 	return (
@@ -22,16 +26,20 @@ const ConfirmationModal: React.FC<ModalProps> = ({ setModalOpen, onClick }) => {
 				transition={{ duration: 0.2, ease: "easeOut" }}
 				className="modal"
 			>
-				<div className="modal-box text-white">
+				<div className="modal-box flex flex-col gap-3 text-white">
 					<div className="flex gap-2 items-center border-b-2 border-gray-200/50">
 						<FontAwesomeIcon icon={faWarning} className="w-5 h-5" />
 						<h3 className="font-bold text-lg uppercase tracking-wide">
-							Delete Confirmation
+							{type === "delete"
+								? `Delete Confirmation`
+								: `Update Confirmation`}
 						</h3>
 					</div>
 
-					<p className="py-4">
-						Are you sure want to delete this note?
+					<p>
+						{type === "delete"
+							? `Are you sure want to delete this note?`
+							: `Are you sure you want to keep this content log update?`}
 					</p>
 
 					<div className="modal-action">
@@ -41,6 +49,7 @@ const ConfirmationModal: React.FC<ModalProps> = ({ setModalOpen, onClick }) => {
 						>
 							Cancel
 						</button>
+
 						<button
 							className="btn btn-outline btn-success uppercase w-20"
 							onClick={onClick}

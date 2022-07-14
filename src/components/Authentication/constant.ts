@@ -17,3 +17,9 @@ export const thirdAnimate = {
 export const customTransition = {
 	transition: { delay: 0.5, stiffness: 100, duration: 1.75 }
 }
+
+export const extendBasicAnimate = {
+	initial: { opacity: 0, scale: 0 },
+	animate: { opacity: 1, scale: 1 },
+	transition: { stiffness: 120, duration: 1 },
+};
