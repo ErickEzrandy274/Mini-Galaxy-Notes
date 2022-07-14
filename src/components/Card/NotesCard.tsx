@@ -16,7 +16,7 @@ import {
 import { useAuth } from "../../context/AuthContext";
 import ConfirmationModal from "../Modal/ConfirmationModal";
 import { motion } from "framer-motion";
-import { basicAnimate } from "../Authentication/constant";
+import { basicAnimate, extendBasicAnimate } from "../Authentication/constant";
 import Input from "../Input/Input";
 import LabelModal from "../Modal/LabelModal";
 
@@ -38,6 +38,7 @@ const NotesCard: React.FC<ListNotesProps> = ({
 	const { user } = useAuth();
 	const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 	const { initial, animate } = basicAnimate;
+	const { initial: extendInit, animate: extendAnim, transition } = extendBasicAnimate;
 
 	const handleChange = (e: any) => {
 		const { name, value } = e.target;
@@ -97,7 +98,16 @@ const NotesCard: React.FC<ListNotesProps> = ({
 		>
 			<div className="card-body">
 				{isEdit && (
-					<div className="flex justify-end">
+					<motion.div
+						initial={extendInit}
+						animate={extendAnim}
+						exit={extendInit}
+						transition={{
+							...transition,
+							delay: 0.2,
+						}}
+						className="flex justify-end"
+					>
 						<IconButton
 							type="button"
 							iconName={faXmark}
@@ -105,7 +115,7 @@ const NotesCard: React.FC<ListNotesProps> = ({
 							className="bg-gray-700 hover:bg-gray-800 focus:ring-gray-600 focus:ring-offset-gray-200 w-32 h-7"
 							handleClick={handleClick}
 						/>
-					</div>
+					</motion.div>
 				)}
 
 				{isEdit ? (
