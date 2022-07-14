@@ -1,4 +1,9 @@
+import { useWindowSize } from "../../utils/function/useWindowSize";
+
 const Footer = () => {
+	const { width } = useWindowSize();
+	const size: number = width >= 640 ? 35 : 30;
+
 	return (
 		<footer className="footer footer-center gap-3 p-4 bg-gray-800 text-base-content font-semibold text-lg lg:text-xl">
 			<div>You can reach me at</div>
@@ -9,8 +14,8 @@ const Footer = () => {
 				>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
-						width="35"
-						height="35"
+						width={size}
+						height={size}
 						fill="currentColor"
 						className="text-xl hover:text-white transition-colors duration-200"
 						viewBox="0 0 1792 1792"
@@ -23,8 +28,8 @@ const Footer = () => {
 					className="text-gray-400 hover:text-white transition-colors duration-200"
 				>
 					<svg
-						width="35"
-						height="35"
+						width={size}
+						height={size}
 						fill="currentColor"
 						className="text-xl hover:text-white transition-colors duration-200"
 						viewBox="0 0 1792 1792"
@@ -34,9 +39,9 @@ const Footer = () => {
 					</svg>
 				</a>
 			</div>
-			<div>
+			<div className="text-sm sm:text-base">
 				<p>Copyright © 2022 - All right reserved</p>
-				<p className="text-base">
+				<p>
 					made by Erick Ezrandy - Computer Science University of
 					Indonesia 2020
 				</p>
