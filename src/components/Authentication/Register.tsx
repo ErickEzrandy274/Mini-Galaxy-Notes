@@ -9,8 +9,10 @@ import { RegisterInputType } from "./interface";
 import { motion } from "framer-motion";
 import { basicAnimate } from "./constant";
 import ScrollButton from "../Button/ScrollButton";
+import { useDocumentTitle } from "../../utils/function/useDocumentTitle";
 
 const Register = () => {
+	useDocumentTitle("Notes App | Register")
 	const { user, register } = useAuth();
 	const { initial, animate, transition } = basicAnimate;
 	const navigate = useNavigate();

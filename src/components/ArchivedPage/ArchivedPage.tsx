@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../../context/AuthContext";
 import { getData } from "../../utils/function/function";
+import { useDocumentTitle } from "../../utils/function/useDocumentTitle";
 import { ListNotesProps } from "../ListPage/interface";
 import Loader from "../Loader/Loader";
 import MainLayout from "../MainLayout/MainLayout";
 import NotesList from "../NotesList/NotesList";
 
 const ArchivedPage = () => {
+	useDocumentTitle("Notes App | Archived Notes")
 	const { user } = useAuth()
 	const [data, setData] = useState<ListNotesProps[]>([]);
 	const [isLoading, setIsLoading] = useState<boolean>(false)

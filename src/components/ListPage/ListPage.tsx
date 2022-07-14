@@ -5,8 +5,10 @@ import MainLayout from "../MainLayout/MainLayout";
 import { getData } from "../../utils/function/function";
 import Loader from "../Loader/Loader";
 import { useAuth } from "../../context/AuthContext";
+import { useDocumentTitle } from "../../utils/function/useDocumentTitle";
 
 const ListPage = () => {
+	useDocumentTitle("Notes App | List Notes")
 	const { user } = useAuth()
 	const [data, setData] = useState<ListNotesProps[]>([]);
 	const [isLoading, setIsLoading] = useState<boolean>(false)
