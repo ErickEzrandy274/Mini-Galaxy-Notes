@@ -36,7 +36,10 @@ const Footer = () => {
 			</div>
 			<div>
 				<p>Copyright © 2022 - All right reserved</p>
-				<p className="text-base">made by Erick Ezrandy - Computer Science UI 2020</p>
+				<p className="text-base">
+					made by Erick Ezrandy - Computer Science University of
+					Indonesia 2020
+				</p>
 			</div>
 		</footer>
 	);
