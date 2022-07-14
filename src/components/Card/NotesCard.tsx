@@ -104,7 +104,7 @@ const NotesCard: React.FC<ListNotesProps> = ({
 						exit={extendInit}
 						transition={{
 							...transition,
-							delay: 0.2,
+							delay: 0.1,
 						}}
 						className="flex justify-end"
 					>
