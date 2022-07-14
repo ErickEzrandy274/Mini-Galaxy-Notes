@@ -12,7 +12,7 @@ const Input: React.FC<InputProps> = ({ type, title, body, handleChange }) => {
 			initial={initial}
 			animate={animate}
 			exit={initial}
-			transition={{...transition, delay: 0.2}}
+			transition={{...transition, delay: 0.3}}
 			autoFocus
 			type="text"
 			name="title"
@@ -25,7 +25,7 @@ const Input: React.FC<InputProps> = ({ type, title, body, handleChange }) => {
 			initial={initial}
 			animate={animate}
 			exit={initial}
-			transition={{...transition, delay: 0.4}}
+			transition={{...transition, delay: 0.45}}
 			name="body"
 			value={body}
 			className={`${className} w-full h-40`}
