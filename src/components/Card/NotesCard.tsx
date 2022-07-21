@@ -142,7 +142,7 @@ const NotesCard: React.FC<ListNotesProps> = ({
 				<p>Last modified at: {lastModified}</p>
 			</div>
 
-			<div className="flex justify-end bg-base-100 p-2 py-4 sm:p-4 gap-2 sm:gap-4">
+			<div className="flex justify-center bg-base-100 p-4 gap-4">
 				{isEdit ? (
 					<LabelModal
 						labelName="Save"
