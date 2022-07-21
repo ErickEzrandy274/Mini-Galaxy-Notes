@@ -9,7 +9,6 @@ import { motion } from "framer-motion";
 import { basicAnimate, extendBasicAnimate } from "../Authentication/constant";
 import Input from "../Input/Input";
 import LabelModal from "../Modal/LabelModal";
-import { setColor } from "./notesFunction";
 
 const NotesCard: React.FC<ListNotesProps> = ({
 	title,
@@ -100,7 +99,7 @@ const NotesCard: React.FC<ListNotesProps> = ({
 							type="button"
 							iconName={faXmark}
 							buttonName="Close Edit"
-							className={`${setColor("Close Edit")} w-32 h-7`}
+							className="bg-gray-700 hover:bg-gray-800 focus:ring-gray-500 focus:ring-offset-gray-200 w-32 h-7"
 							handleClick={handleClick}
 						/>
 					</motion.div>
@@ -149,7 +148,7 @@ const NotesCard: React.FC<ListNotesProps> = ({
 						labelName="Save"
 						setIsModalOpen={setIsModalOpen}
 						setModalType={setModalType}
-						className={`${setColor("Edit")} w-1/3 h-10`}
+						className="bg-green-600 hover:bg-green-700 focus:ring-green-500 focus:ring-offset-green-200 w-1/3 h-10"
 						icon={faFloppyDisk}
 					/>
 				) : (
@@ -157,7 +156,7 @@ const NotesCard: React.FC<ListNotesProps> = ({
 						type="button"
 						iconName={faPenToSquare}
 						buttonName="Edit"
-						className={`${setColor("Edit")} w-1/3 h-10`}
+						className="bg-green-600 hover:bg-green-700 focus:ring-green-500 focus:ring-offset-green-200 w-1/3 h-10"
 						handleClick={handleClick}
 					/>
 				)}
@@ -166,7 +165,7 @@ const NotesCard: React.FC<ListNotesProps> = ({
 					type="button"
 					iconName={faArchive}
 					buttonName="Archive"
-					className={`${setColor("Archive")} w-1/3 h-10`}
+					className="bg-blue-600 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 w-1/3 h-10"
 					handleClick={handleArchive}
 				/>
 
@@ -174,7 +173,7 @@ const NotesCard: React.FC<ListNotesProps> = ({
 					labelName="Delete"
 					setIsModalOpen={setIsModalOpen}
 					setModalType={setModalType}
-					className={setColor("Delete")}
+					className="bg-red-600 hover:bg-red-700 focus:ring-red-500 focus:ring-offset-red-200"
 					icon={faTrashCan}
 				/>
 

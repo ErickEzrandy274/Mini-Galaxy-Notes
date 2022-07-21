@@ -11,7 +11,6 @@ import { notesListRef } from "../../utils/function/function";
 import { motion } from "framer-motion";
 import { basicAnimate } from "../Authentication/constant";
 import InfoTooltip from "../ToolTip/InfoTooltip";
-import { setColor } from "../Card/notesFunction";
 
 const NotesForm = () => {
 	const { pathname } = useLocation();
@@ -105,7 +104,7 @@ const NotesForm = () => {
 					iconName={faPlus}
 					buttonName="Add New Notes"
 					field={field}
-					className={`${setColor("Add Notes")} w-full`}
+					className="bg-purple-600 hover:bg-purple-700 focus:ring-purple-500 focus:ring-offset-purple-200 w-full"
 				/>
 
 				{pathname === "/create" && <InfoTooltip {...field} />}
