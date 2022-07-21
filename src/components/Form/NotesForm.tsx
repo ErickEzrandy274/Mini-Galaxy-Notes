@@ -10,6 +10,8 @@ import { useAuth } from "../../context/AuthContext";
 import { notesListRef } from "../../utils/function/function";
 import { motion } from "framer-motion";
 import { basicAnimate } from "../Authentication/constant";
+import InfoTooltip from "../ToolTip/InfoTooltip";
+import { setColor } from "../Card/notesFunction";
 
 const NotesForm = () => {
 	const { pathname } = useLocation();
@@ -81,7 +83,7 @@ const NotesForm = () => {
 
 			<form
 				className="flex flex-col gap-5"
-				onSubmit={e => handleSubmit(e, field.title, field.content)}
+				onSubmit={(e) => handleSubmit(e, field.title, field.content)}
 			>
 				<InputForm
 					name="title"
@@ -98,33 +100,15 @@ const NotesForm = () => {
 					value={field.content}
 				/>
 
-				{pathname === "/create" ? (
-					<>
-						<IconButton
-							type="submit"
-							iconName={faPlus}
-							buttonName="Add New Notes"
-							field={field}
-							className="bg-purple-600 hover:bg-purple-700 focus:ring-purple-500 focus:ring-offset-purple-200 w-full"
-						/>
-						<div
-							className={`tooltip tooltip-bottom tooltip-info -mt-4 ${
-								(field?.title.length === 0 ||
-									field?.content.length === 0) &&
-								`tooltip-open`
-							}`}
-							data-tip="Enter title and content to activate the button!"
-						></div>
-					</>
-				) : (
-					<IconButton
-						type="submit"
-						iconName={faPlus}
-						buttonName="Add New Notes"
-						field={field}
-						className="bg-purple-600 hover:bg-purple-700 focus:ring-purple-500 focus:ring-offset-purple-200 w-full"
-					/>
-				)}
+				<IconButton
+					type="submit"
+					iconName={faPlus}
+					buttonName="Add New Notes"
+					field={field}
+					className={`${setColor("Add Notes")} w-full`}
+				/>
+
+				{pathname === "/create" && <InfoTooltip {...field} />}
 			</form>
 		</motion.div>
 	);

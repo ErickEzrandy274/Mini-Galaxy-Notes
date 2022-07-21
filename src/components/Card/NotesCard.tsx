@@ -1,24 +1,15 @@
 import React, { useState } from "react";
 import IconButton from "../Button/IconButton";
-import {
-	faTrashCan,
-	faArchive,
-	faPenToSquare,
-	faFloppyDisk,
-	faXmark,
-} from "@fortawesome/free-solid-svg-icons";
+import { faTrashCan, faArchive, faPenToSquare, faFloppyDisk, faXmark, } from "@fortawesome/free-solid-svg-icons";
 import { ListNotesProps } from "../ListPage/interface";
-import {
-	deleteCard,
-	updateArchivedCard,
-	updateContentCard,
-} from "../../utils/function/function";
+import { deleteCard, updateArchivedCard, updateContentCard } from "../../utils/function/function";
 import { useAuth } from "../../context/AuthContext";
 import ConfirmationModal from "../Modal/ConfirmationModal";
 import { motion } from "framer-motion";
 import { basicAnimate, extendBasicAnimate } from "../Authentication/constant";
 import Input from "../Input/Input";
 import LabelModal from "../Modal/LabelModal";
+import { setColor } from "./notesFunction";
 
 const NotesCard: React.FC<ListNotesProps> = ({
 	title,
@@ -31,10 +22,7 @@ const NotesCard: React.FC<ListNotesProps> = ({
 }) => {
 	const [isEdit, setIsEdit] = useState<boolean>(false);
 	const [modalType, setModalType] = useState<"delete" | "update">("delete");
-	const [editData, setEditData] = useState({
-		title: "",
-		body: "",
-	});
+	const [editData, setEditData] = useState({ title: "", body: "", });
 	const { user } = useAuth();
 	const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 	const { initial, animate } = basicAnimate;
@@ -112,7 +100,7 @@ const NotesCard: React.FC<ListNotesProps> = ({
 							type="button"
 							iconName={faXmark}
 							buttonName="Close Edit"
-							className="bg-gray-700 hover:bg-gray-800 focus:ring-gray-600 focus:ring-offset-gray-200 w-32 h-7"
+							className={`${setColor("Close Edit")} w-32 h-7`}
 							handleClick={handleClick}
 						/>
 					</motion.div>
@@ -155,13 +143,13 @@ const NotesCard: React.FC<ListNotesProps> = ({
 				<p>Last modified at: {lastModified}</p>
 			</div>
 
-			<div className="flex justify-end bg-base-100 p-4 gap-4">
+			<div className="flex justify-end bg-base-100 p-2 py-4 sm:p-4 gap-2 sm:gap-4">
 				{isEdit ? (
 					<LabelModal
 						labelName="Save"
 						setIsModalOpen={setIsModalOpen}
 						setModalType={setModalType}
-						className="bg-green-600 hover:bg-green-700 focus:ring-green-500 focus:ring-offset-green-200"
+						className={`${setColor("Edit")} w-1/3 h-10`}
 						icon={faFloppyDisk}
 					/>
 				) : (
@@ -169,7 +157,7 @@ const NotesCard: React.FC<ListNotesProps> = ({
 						type="button"
 						iconName={faPenToSquare}
 						buttonName="Edit"
-						className="bg-green-600 hover:bg-green-700 focus:ring-green-500 focus:ring-offset-green-200 w-28 h-10"
+						className={`${setColor("Edit")} w-1/3 h-10`}
 						handleClick={handleClick}
 					/>
 				)}
@@ -177,8 +165,8 @@ const NotesCard: React.FC<ListNotesProps> = ({
 				<IconButton
 					type="button"
 					iconName={faArchive}
-					buttonName="Archived"
-					className="bg-blue-600 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 w-28 h-10"
+					buttonName="Archive"
+					className={`${setColor("Archive")} w-1/3 h-10`}
 					handleClick={handleArchive}
 				/>
 
@@ -186,7 +174,7 @@ const NotesCard: React.FC<ListNotesProps> = ({
 					labelName="Delete"
 					setIsModalOpen={setIsModalOpen}
 					setModalType={setModalType}
-					className="bg-red-600 hover:bg-red-700 focus:ring-red-500 focus:ring-offset-red-200"
+					className={setColor("Delete")}
 					icon={faTrashCan}
 				/>
 
