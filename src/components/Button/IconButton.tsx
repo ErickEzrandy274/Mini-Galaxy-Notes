@@ -12,6 +12,7 @@ const IconButton: React.FC<IconButtonProps> = ({
 	field,
 }) => {
 	const { width } = useWindowSize();
+	const isNewNoteButton: boolean = buttonName === "Add New Notes";
 
 	return (
 		<button
@@ -20,13 +21,14 @@ const IconButton: React.FC<IconButtonProps> = ({
 			className={`py-2 px-4 flex justify-center items-center gap-2 font-semibold
                 text-white transition ease-in duration-200 text-center text-base shadow-xl rounded-lg
                 ${
-					!!field?.title.length || !!field?.content.length
+					isNewNoteButton &&
+					(!field?.title.length || !field?.content.length)
 						? `bg-gray-600 cursor-not-allowed`
 						: `focus:outline-none focus:ring-2 focus:ring-offset-2 ${className}`
 				}`}
 			disabled={
-				buttonName === "Add New Notes" &&
-				(!!field?.title.length || !!field?.content.length ? true : false)
+				isNewNoteButton &&
+				(!field?.title.length || !field?.content.length ? true : false)
 			}
 		>
 			{width >= 350 && <FontAwesomeIcon icon={iconName} />}
