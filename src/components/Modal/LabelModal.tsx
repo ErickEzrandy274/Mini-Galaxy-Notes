@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
+import { useWindowSize } from "../../utils/function/useWindowSize";
 import { LabelModalProps } from "./interface";
 
 const LabelModal: React.FC<LabelModalProps> = ({
@@ -10,18 +11,19 @@ const LabelModal: React.FC<LabelModalProps> = ({
     setIsModalOpen,
 }) => {
     const modalType = labelName === "Save" ? "update" : "delete";
+	const { width } = useWindowSize();
 
 	return (
 		<label
 			htmlFor="confirmationModal"
 			className={`flex justify-center items-center gap-2 upppercase focus:ring-2 focus:ring-offset-2 
-					w-28 h-10 cursor-pointer rounded-lg py-2 px-4 ${className}`}
+					w-1/3 h-10 cursor-pointer rounded-lg py-2 px-4 ${className}`}
             onClick={() => {
                 setModalType(modalType);
 		        setIsModalOpen(true);
             }}
 		>
-			<FontAwesomeIcon icon={icon} />
+			{width >= 400 && <FontAwesomeIcon icon={icon} />}
 			{labelName}
 		</label>
 	);
