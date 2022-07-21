@@ -29,7 +29,7 @@ const IconButton: React.FC<IconButtonProps> = ({
 				(!!field?.title.length || !!field?.content.length ? true : false)
 			}
 		>
-			{width >= 400 && <FontAwesomeIcon icon={iconName} />}
+			{width >= 350 && <FontAwesomeIcon icon={iconName} />}
 			{buttonName}
 		</button>
 	);

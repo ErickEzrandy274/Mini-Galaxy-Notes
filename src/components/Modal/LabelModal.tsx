@@ -23,7 +23,7 @@ const LabelModal: React.FC<LabelModalProps> = ({
 		        setIsModalOpen(true);
             }}
 		>
-			{width >= 400 && <FontAwesomeIcon icon={icon} />}
+			{width >= 350 && <FontAwesomeIcon icon={icon} />}
 			{labelName}
 		</label>
 	);

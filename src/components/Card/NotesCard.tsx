@@ -100,7 +100,7 @@ const NotesCard: React.FC<ListNotesProps> = ({
 							type="button"
 							iconName={faXmark}
 							buttonName="Close Edit"
-							className="bg-gray-700 hover:bg-gray-800 focus:ring-gray-600 focus:ring-offset-gray-200 w-32 h-7"
+							className={`${setColor("Close Edit")} w-32 h-7`}
 							handleClick={handleClick}
 						/>
 					</motion.div>
