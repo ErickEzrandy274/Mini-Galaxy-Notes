@@ -47,19 +47,17 @@ const NotesList: React.FC<DataProps> = ({ data, isArchived }) => {
 						animate={secondAnim}
 						exit={initial}
 						transition={secondTrans}
-						className="text-5xl md:text-6xl"
-					>{`Tidak ada catatan${
-						isArchived ? ` yang diarsip` : ``
-					}!`}</motion.h2>
+						className="text-4xl sm:text-5xl md:text-6xl"
+					>{`You don't have ${isArchived ? `archived` : ``} notes!`}</motion.h2>
 
 					<motion.h2
 						initial={thirdInit}
 						animate={secondAnim}
 						exit={initial}
 						transition={secondTrans}
-						className="text-3xl md:text-4xl"
+						className="text-3xl sm:text-4xl md:text-5xl"
 					>
-						Silahkan buat catatan terlebih dahulu!
+						Make a new note first!
 					</motion.h2>
 
 					<NewLink
