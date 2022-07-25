@@ -9,6 +9,7 @@ import { motion } from "framer-motion";
 import { basicAnimate, extendBasicAnimate } from "../Authentication/constant";
 import Input from "../Input/Input";
 import LabelModal from "../Modal/LabelModal";
+import { editDataType } from "./interface";
 
 const NotesCard: React.FC<ListNotesProps> = ({
 	title,
@@ -21,7 +22,7 @@ const NotesCard: React.FC<ListNotesProps> = ({
 }) => {
 	const [isEdit, setIsEdit] = useState<boolean>(false);
 	const [modalType, setModalType] = useState<"delete" | "update">("delete");
-	const [editData, setEditData] = useState({ title: "", body: "", });
+	const [editData, setEditData] = useState<editDataType>({ title: "", body: "", });
 	const { user } = useAuth();
 	const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 	const { initial, animate } = basicAnimate;
@@ -128,6 +129,7 @@ const NotesCard: React.FC<ListNotesProps> = ({
 						<p className="text-ellipsis overflow-hidden">{body}</p>
 					)}
 				</div>
+				
 				<p>
 					Status:
 					<span
@@ -148,8 +150,10 @@ const NotesCard: React.FC<ListNotesProps> = ({
 						labelName="Save"
 						setIsModalOpen={setIsModalOpen}
 						setModalType={setModalType}
-						className="bg-green-600 hover:bg-green-700 focus:ring-green-500 focus:ring-offset-green-200 w-1/3 h-10"
+						className="bg-green-600 hover:bg-green-700 focus:ring-green-500 focus:ring-offset-green-200 w-1/3 h-10 cursor-pointer"
 						icon={faFloppyDisk}
+						oldContentCard={{ title, body }}
+						newContentCard={editData}
 					/>
 				) : (
 					<IconButton
@@ -173,7 +177,7 @@ const NotesCard: React.FC<ListNotesProps> = ({
 					labelName="Delete"
 					setIsModalOpen={setIsModalOpen}
 					setModalType={setModalType}
-					className="bg-red-600 hover:bg-red-700 focus:ring-red-500 focus:ring-offset-red-200"
+					className="bg-red-600 hover:bg-red-700 focus:ring-red-500 focus:ring-offset-red-200 cursor-pointer"
 					icon={faTrashCan}
 				/>
 
