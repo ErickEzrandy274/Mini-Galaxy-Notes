@@ -26,6 +26,7 @@ const InputForm: React.FC<InputProps> = ({
 			<label htmlFor={name} className="text-xl">
 				{toCapitalize(name)}
 			</label>
+
 			{type ? (
 				<input
 					type={type}
@@ -35,12 +36,13 @@ const InputForm: React.FC<InputProps> = ({
 			) : (
 				<textarea {...props} />
 			)}
-			{value !== undefined &&
-				value.length > 0 &&
+
+			{!!value &&
+				!!value.length &&
 				value.length < 50 &&
 				name === "title" && (
 					<p className="text-red-600 font-semibold px-2">
-						Tersisa {50 - value.length} karakter
+						{50 - value.length} characters left
 					</p>
 				)}
 		</div>
