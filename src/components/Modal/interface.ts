@@ -1,5 +1,6 @@
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import { SetStateAction } from "react";
+import { editDataType } from "../Card/interface";
 
 export interface ModalProps {
     setModalOpen: React.Dispatch<SetStateAction<boolean>>
@@ -13,4 +14,6 @@ export interface LabelModalProps {
     className: string
     setIsModalOpen: React.Dispatch<SetStateAction<boolean>>
     setModalType: React.Dispatch<SetStateAction<"delete" | "update">>
+    oldContentCard?: editDataType
+    newContentCard?: editDataType
 }

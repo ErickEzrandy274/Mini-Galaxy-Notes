@@ -1,5 +1,6 @@
 import { onValue, ref, remove, update } from "firebase/database";
 import React, { SetStateAction } from "react";
+import { editDataType } from "../../components/Card/interface";
 import { ListNotesProps } from "../../components/ListPage/interface";
 import { database } from "../firebase/firebase";
 
@@ -97,4 +98,17 @@ export const extractError = (err: any) => {
 
 export const toCapitalize = (text: string) => {
 	return text.substring(0, 1).toUpperCase() + text.substring(1);
+};
+
+export const isNoteContentChange = (
+	oldContentCard: editDataType,
+	newContentCard: editDataType
+) => {
+	const { title: oldTitle, body: oldBody } = oldContentCard;
+	const { title: newTitle, body: newBody } = newContentCard;
+
+	if (oldTitle !== newTitle) return true;
+	if (oldBody !== newBody) return true;
+
+	return false;
 };
