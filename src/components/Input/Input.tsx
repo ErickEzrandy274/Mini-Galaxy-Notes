@@ -27,10 +27,10 @@ const Input: React.FC<InputProps> = ({ type, title, body, handleChange }) => {
 					initial={initial}
 					animate={animate}
 					exit={initial}
-					transition={{ ...transition, delay: 0.25 }}
-					className="text-gray-200 font-semibold p-1 px-2 -mt-2 text-right"
+					transition={{ ...transition, delay: 0.2 }}
+					className="text-red-600 font-semibold p-1 px-2 text-right"
 				>
-					{50 - title!.length} characters left
+					<span className="bg-black p-1 px-2 rounded-lg shadow-md">{50 - title!.length} characters left</span>
 				</motion.p>
 			)}
 		</>
