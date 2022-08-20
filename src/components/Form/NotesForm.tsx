@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { InputType } from "./interface";
+import { InputType, inputObj } from "./interface";
 import { useLocation, useNavigate } from "react-router-dom";
 import InputForm from "./InputForm";
 import { push } from "firebase/database";
@@ -17,10 +17,7 @@ const NotesForm = () => {
 	const { initial, animate, transition } = basicAnimate;
 	const { user } = useAuth();
 	const navigate = useNavigate();
-	const [field, setField] = useState<InputType>({
-		title: "",
-		content: "",
-	});
+	const [field, setField] = useState<InputType>(inputObj);
 
 	const handleChange = (e: any) => {
 		const target = e.target;
@@ -55,13 +52,10 @@ const NotesForm = () => {
 
 				navigate("/list");
 			} else {
-				alert(`Title Content yang Anda masukkan > 50 karakter!`);
+				alert(`Your new notes title is more than 50 character!`);
 			}
 
-			setField({
-				title: "",
-				content: "",
-			});
+			setField(inputObj);
 		} catch (error) {
 			console.log(error);
 		}

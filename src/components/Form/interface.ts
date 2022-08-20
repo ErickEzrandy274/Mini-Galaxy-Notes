@@ -29,3 +29,8 @@ export interface AuthFormProps extends TypeForm {
 	handleLogin?: (e: any) => void;
 	handleRegister?: (e: any) => void;
 }
+
+export const inputObj = {
+	title: "",
+	content: "",
+};

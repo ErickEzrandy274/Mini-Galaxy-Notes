@@ -12,7 +12,7 @@ import ScrollButton from "../Button/ScrollButton";
 import { useDocumentTitle } from "../../utils/function/useDocumentTitle";
 
 const Login = () => {
-	useDocumentTitle("Notes App | Login")
+	useDocumentTitle("Notes App | Login");
 	const navigate = useNavigate();
 	const { initial, animate, transition } = basicAnimate;
 	const { user, login, error, setError } = useAuth();
@@ -41,9 +41,7 @@ const Login = () => {
 	};
 
 	useEffect(() => {
-		if (user) {
-			navigate("/list");
-		}
+		user && navigate("/list");
 
 		if (error) {
 			setTimeout(() => {
