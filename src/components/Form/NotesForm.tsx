@@ -55,7 +55,7 @@ const NotesForm = () => {
 
 				navigate("/list");
 			} else {
-				alert(`Title Content yang Anda masukkan > 50 karakter!`);
+				alert(`Your new notes title is more than 50 character!`);
 			}
 
 			setField({

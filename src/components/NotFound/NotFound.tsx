@@ -5,8 +5,8 @@ const NotFound = () => {
 		<div className="bg-indigo-900 relative overflow-hidden h-screen">
 			<img
 				src="/not-found.svg"
-                className="absolute h-full w-full object-cover"
-                alt="error cover page"
+				className="absolute h-full w-full object-cover"
+				alt="error cover page"
 			/>
 			<div className="inset-0 bg-black opacity-25 absolute"></div>
 			<div className="container mx-auto px-6 md:px-12 relative z-10 flex items-center py-20 xl:py-40">
@@ -16,13 +16,13 @@ const NotFound = () => {
 					</h1>
 					<p className="font-extrabold text-8xl my-20 text-white animate-bounce">
 						404
-                    </p>
-                    
-                    <NewLink
+					</p>
+
+					<NewLink
 						to="/"
 						linkName="BACK TO HOME"
-                        fromNav
-                        customClass="bg-blue-700 hover:bg-blue-800 py-3 px-4 text-xl text-white font-bold rounded-lg shadow-xl tracking-wider"
+						fromNav
+						customClass="bg-blue-700 hover:bg-blue-800 py-3 px-4 text-xl text-white font-bold rounded-lg shadow-xl tracking-wider"
 					/>
 				</div>
 			</div>
