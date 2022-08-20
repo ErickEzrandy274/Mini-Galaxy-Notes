@@ -5,28 +5,22 @@ import { extractError } from "../../utils/function/function";
 import AuthForm from "../Form/AuthForm";
 import MainLayout from "../MainLayout/MainLayout";
 import BaseAuth from "./BaseAuth";
-import { RegisterInputType } from "./interface";
+import { RegisterInputType, authObj } from "./interface";
 import { motion } from "framer-motion";
 import { basicAnimate } from "./constant";
 import ScrollButton from "../Button/ScrollButton";
 import { useDocumentTitle } from "../../utils/function/useDocumentTitle";
 
 const Register = () => {
-	useDocumentTitle("Notes App | Register")
+	useDocumentTitle("Notes App | Register");
 	const { user, register } = useAuth();
 	const { initial, animate, transition } = basicAnimate;
 	const navigate = useNavigate();
 	const [error, setError] = useState<any>(null);
-	const [data, setData] = useState<RegisterInputType>({
-		email: "",
-		password: "",
-		nickname: "",
-	});
+	const [data, setData] = useState<RegisterInputType>(authObj);
 
 	const handleChange = (e: any) => {
-		const target = e.target;
-		const name = target.name;
-		const value = target.value;
+		const { name, value } = e.target;
 
 		setData({
 			...data,
@@ -48,20 +42,13 @@ const Register = () => {
 	};
 
 	useEffect(() => {
-		if (user) {
-			navigate("/list");
-		}
+		user && navigate("/list");
 
-		if (error) {
+		error &&
 			setTimeout(() => {
-				setData({
-					email: "",
-					password: "",
-					nickname: "",
-				});
+				setData(authObj);
 				setError(null);
 			}, 1500);
-		}
 	}, [user, navigate, error]);
 
 	return user ? null : (
