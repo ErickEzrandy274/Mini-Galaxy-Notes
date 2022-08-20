@@ -8,9 +8,7 @@ const ProtectedRoute: React.FC<MainLayoutProps> = ({ children }) => {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		if (!user) {
-			navigate("/login");
-		}
+		!user && navigate("/login");
 	}, [user, navigate]);
 
 	return <>{user ? children : null}</>;

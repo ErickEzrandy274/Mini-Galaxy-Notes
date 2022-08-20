@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { basicAnimate } from "../Authentication/constant";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faWarning } from "@fortawesome/free-solid-svg-icons";
+import { toCapitalize } from "../../utils/function/function";
 
 const ConfirmationModal: React.FC<ModalProps> = ({
 	setModalOpen,
@@ -14,11 +15,7 @@ const ConfirmationModal: React.FC<ModalProps> = ({
 
 	return (
 		<>
-			<input
-				type="checkbox"
-				id="confirmationModal"
-				className="modal-toggle"
-			/>
+			<input type="checkbox" id="confirmationModal" className="modal-toggle" />
 			<motion.div
 				initial={initial}
 				animate={animate}
@@ -30,16 +27,15 @@ const ConfirmationModal: React.FC<ModalProps> = ({
 					<div className="flex gap-2 items-center border-b-2 border-gray-200/50">
 						<FontAwesomeIcon icon={faWarning} className="w-5 h-5" />
 						<h3 className="font-bold text-lg uppercase tracking-wide">
-							{type === "delete"
-								? `Delete Confirmation`
-								: `Update Confirmation`}
+							{toCapitalize(type)} Confirmation
 						</h3>
 					</div>
 
 					<p>
+						Are you sure
 						{type === "delete"
-							? `Are you sure want to delete this note?`
-							: `Are you sure you want to keep this content log update?`}
+							? ` want to delete this note?`
+							: ` you want to keep this content log update?`}
 					</p>
 
 					<div className="modal-action">
