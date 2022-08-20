@@ -57,7 +57,7 @@ const NotesList: React.FC<DataProps> = ({ data, isArchived }) => {
 						transition={secondTrans}
 						className="text-3xl sm:text-4xl md:text-5xl"
 					>
-						{`Make a new note first${isArchived ? ` or archive if you already have` : ``}!`}
+						{`Make a new note first${isArchived ? ` or archive the existing one` : ``}!`}
 					</motion.h2>
 
 					<NewLink
