@@ -1,32 +1,20 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import NotesList from "../NotesList/NotesList";
-import { ListNotesProps } from "./interface";
 import MainLayout from "../MainLayout/MainLayout";
-import { getData } from "../../utils/function/function";
 import Loader from "../Loader/Loader";
 import { useAuth } from "../../context/AuthContext";
 import { useDocumentTitle } from "../../utils/function/useDocumentTitle";
+import useHTTP from "../../utils/hooks/use-http";
 
 const ListPage = () => {
 	useDocumentTitle("Notes App | List Notes")
-	const { user } = useAuth()
-	const [data, setData] = useState<ListNotesProps[]>([]);
-	const [isLoading, setIsLoading] = useState<boolean>(false)
+	const { user: { uid } } = useAuth()
+	//  use custom hooks because the method is same with archivedPage
+	const {isLoading, data, sendRequest: fetchData} = useHTTP()
 
 	useEffect(() => {
-		setIsLoading(true)
-		getData({setData, isArchived: false, uid: user.uid});
-
-		const interval = setInterval(() => {
-			getData({setData, isArchived: false, uid: user.uid});
-		}, 300);
-
-		setTimeout(() => {
-			setIsLoading(false)
-		}, 1000)
-
-		return () => clearInterval(interval);
-	}, [user.uid]);
+		fetchData(uid, false)
+	}, [fetchData, uid]);
 
 	return (
 		<MainLayout>
