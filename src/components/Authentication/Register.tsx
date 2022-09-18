@@ -14,7 +14,6 @@ import { useDocumentTitle } from "../../utils/function/useDocumentTitle";
 const Register = () => {
 	useDocumentTitle("Notes App | Register");
 	const { user, register } = useAuth();
-	const [isRegisterClick, setIsRegisterClick] = useState<boolean>(false);
 	const { initial, animate, transition } = basicAnimate;
 	const navigate = useNavigate();
 	const [error, setError] = useState<any>(null);
@@ -31,7 +30,6 @@ const Register = () => {
 
 	const handleRegister = async (e: any) => {
 		e.preventDefault();
-		setIsRegisterClick(true);
 
 		try {
 			await register(data.email, data.password, data.nickname);
@@ -44,7 +42,6 @@ const Register = () => {
 	};
 
 	useEffect(() => {
-		setIsRegisterClick(false);
 		user && navigate("/list");
 
 		error &&
@@ -62,9 +59,7 @@ const Register = () => {
 					initial={initial}
 					animate={animate}
 					exit={initial}
-					transition={
-						isRegisterClick && user ? { ...transition, delay: 0.4 } : transition
-					}
+					transition={user ? { ...transition, delay: 0.4 } : transition}
 					className="flex justify-center py-5"
 				>
 					<BaseAuth title="Register" error={error}>
