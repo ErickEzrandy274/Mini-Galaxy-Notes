@@ -15,6 +15,7 @@ const Login = () => {
 	useDocumentTitle("Notes App | Login");
 	const navigate = useNavigate();
 	const { initial, animate, transition } = basicAnimate;
+	const [isLoginClick, setIsLoginClick] = useState<boolean>(false);
 	const { user, login, error, setError } = useAuth();
 	const [data, setData] = useState<LoginInputType>({
 		email: "",
@@ -34,6 +35,7 @@ const Login = () => {
 
 	const handleLogin = async (e: any) => {
 		e.preventDefault();
+		setIsLoginClick(true);
 		await login(data.email, data.password);
 		setTimeout(() => {
 			navigate("/list");
@@ -41,6 +43,7 @@ const Login = () => {
 	};
 
 	useEffect(() => {
+		setIsLoginClick(false);
 		user && navigate("/list");
 
 		if (error) {
@@ -62,7 +65,9 @@ const Login = () => {
 					initial={initial}
 					animate={animate}
 					exit={initial}
-					transition={transition}
+					transition={
+						isLoginClick && user ? { ...transition, delay: 0.3 } : transition
+					}
 					className="flex justify-center py-5"
 				>
 					<BaseAuth title="Login" error={error}>
