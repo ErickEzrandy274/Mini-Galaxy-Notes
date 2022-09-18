@@ -63,7 +63,7 @@ const Register = () => {
 					animate={animate}
 					exit={initial}
 					transition={
-						isRegisterClick && user ? { ...transition, delay: 0.3 } : transition
+						isRegisterClick && user ? { ...transition, delay: 0.4 } : transition
 					}
 					className="flex justify-center py-5"
 				>

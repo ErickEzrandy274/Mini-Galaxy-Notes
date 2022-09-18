@@ -66,7 +66,7 @@ const Login = () => {
 					animate={animate}
 					exit={initial}
 					transition={
-						isLoginClick && user ? { ...transition, delay: 0.3 } : transition
+						isLoginClick && user ? { ...transition, delay: 0.4 } : transition
 					}
 					className="flex justify-center py-5"
 				>
