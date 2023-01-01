@@ -7,22 +7,23 @@ const BasicButton: React.FC<BasicButtonProps> = ({
 	className,
 	email,
 	password,
+	typeForm,
+	nickname,
 }) => {
-	const disableClassName =
-		(email.length < 5 && !email.includes("@")) || password.length < 10
-			? ` bg-gray-400 cursor-not-allowed`
-			: ` bg-blue-600 
-				rounded hover:bg-blue-700 focus:outline-none focus:bg-blue-600`;
+	const disable: boolean =
+		(email.length < 5 && !email.includes("@")) ||
+		password.length < 10 ||
+		(typeForm === "register" && !nickname);
+
+	const disableClassName = disable
+		? ` bg-gray-400 cursor-not-allowed`
+		: ` bg-blue-600 hover:bg-blue-700 focus:outline-none focus:bg-blue-600`;
+
 	return (
 		<button
 			type={type}
 			className={className + disableClassName}
-			disabled={
-				(email.length < 5 && !email.includes("@")) ||
-				password.length < 10
-					? true
-					: false
-			}
+			disabled={disable}
 		>
 			{buttonName}
 		</button>
