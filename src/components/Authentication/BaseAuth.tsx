@@ -1,8 +1,7 @@
 import React from "react";
-import ErrorAlert from "../Alert/ErrorAlert";
 import { AuthProps } from "./interface";
 
-const BaseAuth: React.FC<AuthProps> = ({ children, title, error }) => {
+const BaseAuth: React.FC<AuthProps> = ({ children, title }) => {
 	return (
 		<div className="flex justify-between max-w-sm mx-3 sm:mx-auto overflow-hidden rounded-lg shadow-lg bg-gray-800 md:max-w-2xl lg:max-w-3xl xl:max-w-4xl font-semibold">
 			<img
@@ -33,8 +32,6 @@ const BaseAuth: React.FC<AuthProps> = ({ children, title, error }) => {
 
 					<span className="w-1/5 border-b-4 border-gray-600 md:w-1/4"></span>
 				</div>
-
-				{error && <ErrorAlert error={error} />}
 			</div>
 		</div>
 	);
