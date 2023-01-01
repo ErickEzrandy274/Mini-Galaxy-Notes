@@ -1,9 +1,9 @@
 import { useEffect } from "react";
+import { useAuth } from "../../context/AuthContext";
+import { useDocumentTitle } from "../../utils/function/useDocumentTitle";
 import NotesList from "../NotesList/NotesList";
 import MainLayout from "../MainLayout/MainLayout";
 import Loader from "../Loader/Loader";
-import { useAuth } from "../../context/AuthContext";
-import { useDocumentTitle } from "../../utils/function/useDocumentTitle";
 import useHTTP from "../../utils/hooks/use-http";
 
 const ListPage = () => {
