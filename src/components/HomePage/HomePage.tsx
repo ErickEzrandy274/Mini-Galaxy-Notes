@@ -21,7 +21,7 @@ const HomePage = () => {
 					animate={animate}
 					exit={initial}
 					transition={transition}
-					className="w-full flex flex-col items-center relative z-10"
+					className="w-full flex flex-col gap-20 justify-between text-center relative z-10"
 				>
 					<motion.h1
 						initial={{ x: "-100vw" }}
@@ -32,16 +32,17 @@ const HomePage = () => {
 							duration: 4,
 							mass: 2,
 						}}
-						className="font-extrabold text-5xl text-center sm:text-8xl text-white leading-tight mt-4"
+						className="font-extrabold text-5xl sm:text-8xl text-white leading-tight mt-4"
 					>
 						Welcome to Notes Application
 					</motion.h1>
 
-					<button
-						onClick={() => nav('/list')}
-						className="bg-gray-800 hover:bg-gray-900 py-3 px-4 text-lg text-white font-bold rounded-lg shadow-xl mt-10">
-						START NOW
-					</button>
+					<h2
+						onClick={() => nav("/list")}
+						className="text-2xl lg:text-4xl tracking-wide text-gray-300 hover:text-white duration-300 font-bold underline cursor-pointer"
+					>
+						Go to My Account
+					</h2>
 				</motion.div>
 			</div>
 		</div>

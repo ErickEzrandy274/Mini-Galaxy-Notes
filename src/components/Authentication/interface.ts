@@ -15,8 +15,12 @@ export interface RegisterInputType extends LoginInputType {
 	nickname: string;
 }
 
-export const authObj = {
+export const loginObj = {
 	email: "",
 	password: "",
+};
+
+export const registerObj = {
+	...loginObj,
 	nickname: "",
 };

@@ -3,8 +3,8 @@ import { useNavigate } from "react-router";
 import { useAuth } from "../../context/AuthContext";
 import { useWindowSize } from "../../utils/function/useWindowSize";
 import { NewLinkProps } from "../NewLink/interface";
-import NewLink from "../NewLink/NewLink";
 import { navs, authNavs } from "./constant";
+import NewLink from "../NewLink/NewLink";
 
 const Header = () => {
 	const { user, logout } = useAuth();

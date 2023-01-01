@@ -8,3 +8,4 @@ export interface NotesCardProps {
 }
 
 export type editDataType = { title: string; body: string };
+export const editDataObj: editDataType = { title: "", body: "" };

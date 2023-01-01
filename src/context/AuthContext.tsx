@@ -11,6 +11,7 @@ import {
 import { auth } from "../utils/firebase/firebase";
 import { MainLayoutProps } from "../components/MainLayout/interface";
 import { extractError } from "../utils/function/function";
+import toast from "react-hot-toast";
 
 const AuthContext = createContext<any>({});
 
@@ -46,23 +47,31 @@ export const AuthContextProvider: React.FC<MainLayoutProps> = ({
 		password: string,
 		displayName: string
 	) => {
-		const res = await createUserWithEmailAndPassword(auth, email, password);
-		return await updateProfile(res.user, { displayName });
+		await createUserWithEmailAndPassword(auth, email, password)
+			.then(async ({ user }) => {
+				await updateProfile(user, { displayName });
+				toast.success("Successfully created a new account!");
+			})
+			.catch((err: any) => {
+				setError(extractError(err));
+				toast.error(extractError(err));
+			});
 	};
 
 	const login = async (email: string, password: string) => {
-		setPersistence(auth, browserSessionPersistence)
-			.then(() => {
-				// Existing and future Auth states are now persisted in the current
-				// Closing the window would clear any existing state even
-				// if a user forgets to sign out.
-				// ...
-				// New sign-in will be persisted with session persistence.
-				return signInWithEmailAndPassword(auth, email, password);
-			})
-			.catch((err: any) => {
-				setError(extractError(err))
-			});
+		setPersistence(auth, browserSessionPersistence).then(() => {
+			// Existing and future Auth states are now persisted in the current
+			// Closing the window would clear any existing state even
+			// if a user forgets to sign out.
+			// ...
+			// New sign-in will be persisted with session persistence.
+			signInWithEmailAndPassword(auth, email, password)
+				.then(({ user }) => toast.success(`Welcome back ${user.displayName}!`))
+				.catch((err: any) => {
+					setError(extractError(err));
+					toast.error(extractError(err));
+				});
+		});
 	};
 
 	const logout = async () => {
@@ -71,7 +80,9 @@ export const AuthContextProvider: React.FC<MainLayoutProps> = ({
 	};
 
 	return (
-		<AuthContext.Provider value={{ user, login, register, logout, error, setError }}>
+		<AuthContext.Provider
+			value={{ user, login, register, logout, error, setError }}
+		>
 			{loading ? null : children}
 		</AuthContext.Provider>
 	);

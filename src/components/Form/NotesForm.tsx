@@ -1,16 +1,17 @@
 import { useState } from "react";
 import { InputType, inputObj } from "./interface";
 import { useLocation, useNavigate } from "react-router-dom";
-import InputForm from "./InputForm";
 import { push } from "firebase/database";
 import { v4 as uuidv4 } from "uuid";
-import IconButton from "../Button/IconButton";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { useAuth } from "../../context/AuthContext";
 import { notesListRef } from "../../utils/function/function";
 import { motion } from "framer-motion";
 import { basicAnimate } from "../Authentication/constant";
+import InputForm from "./InputForm";
 import InfoTooltip from "../ToolTip/InfoTooltip";
+import IconButton from "../Button/IconButton";
+import toast from "react-hot-toast";
 
 const NotesForm = () => {
 	const { pathname } = useLocation();
@@ -20,9 +21,7 @@ const NotesForm = () => {
 	const [field, setField] = useState<InputType>(inputObj);
 
 	const handleChange = (e: any) => {
-		const target = e.target;
-		const name = target.name;
-		const value = target.value;
+		const { name, value } = e.target;
 
 		setField({
 			...field,
@@ -31,9 +30,9 @@ const NotesForm = () => {
 	};
 
 	const handleSubmit = async (e: any, title: string, body: string) => {
+		e.preventDefault();
 		try {
 			if (title.length < 51) {
-				e.preventDefault();
 				const newDate = new Date().toISOString();
 
 				const newNotes = {
@@ -52,12 +51,12 @@ const NotesForm = () => {
 
 				navigate("/list");
 			} else {
-				alert(`Your new notes title is more than 50 character!`);
+				toast(`Your new notes title is more than 50 character!`);
 			}
 
 			setField(inputObj);
 		} catch (error) {
-			console.log(error);
+			console.error(error);
 		}
 	};
 
