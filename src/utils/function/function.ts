@@ -93,7 +93,7 @@ export const extractError = (err: any) => {
 	const { code } = err;
 	const newError = code.substring(5).split("-");
 	newError[0] = toCapitalize(newError[0]);
-	return newError.join(" ");
+	return `${newError.join(" ")}!`;
 };
 
 export const toCapitalize = (text: string) => {
@@ -111,4 +111,11 @@ export const isNoteContentChange = (
 	if (oldBody !== newBody) return true;
 
 	return false;
+};
+
+export const dateFormat = (date: string) => {
+	return Intl.DateTimeFormat("en-us", {
+		dateStyle: "long",
+		timeStyle: "medium",
+	}).format(new Date(date));
 };
