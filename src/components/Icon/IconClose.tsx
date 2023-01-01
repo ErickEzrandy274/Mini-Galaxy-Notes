@@ -2,7 +2,6 @@ import React from "react";
 import { BaseIconProps } from "./interface";
 
 const IconClose: React.FC<BaseIconProps> = ({ width = 30, height = 30 }) => {
-	console.log("CLOSE");
 	return (
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
