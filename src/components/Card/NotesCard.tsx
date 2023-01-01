@@ -1,15 +1,26 @@
 import React, { useState } from "react";
-import IconButton from "../Button/IconButton";
-import { faTrashCan, faArchive, faPenToSquare, faFloppyDisk, faXmark, } from "@fortawesome/free-solid-svg-icons";
+import {
+	faTrashCan,
+	faArchive,
+	faPenToSquare,
+	faFloppyDisk,
+	faXmark,
+} from "@fortawesome/free-solid-svg-icons";
 import { ListNotesProps } from "../ListPage/interface";
-import { deleteCard, updateArchivedCard, updateContentCard } from "../../utils/function/function";
+import {
+	dateFormat,
+	deleteCard,
+	updateArchivedCard,
+	updateContentCard,
+} from "../../utils/function/function";
 import { useAuth } from "../../context/AuthContext";
-import ConfirmationModal from "../Modal/ConfirmationModal";
 import { motion } from "framer-motion";
 import { basicAnimate, extendBasicAnimate } from "../Authentication/constant";
+import { editDataObj, editDataType } from "./interface";
+import IconButton from "../Button/IconButton";
+import ConfirmationModal from "../Modal/ConfirmationModal";
 import Input from "../Input/Input";
 import LabelModal from "../Modal/LabelModal";
-import { editDataType } from "./interface";
 
 const NotesCard: React.FC<ListNotesProps> = ({
 	title,
@@ -22,11 +33,15 @@ const NotesCard: React.FC<ListNotesProps> = ({
 }) => {
 	const [isEdit, setIsEdit] = useState<boolean>(false);
 	const [modalType, setModalType] = useState<"delete" | "update">("delete");
-	const [editData, setEditData] = useState<editDataType>({ title: "", body: "", });
-	const { user } = useAuth();
+	const [editData, setEditData] = useState<editDataType>(editDataObj);
 	const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+	const { user } = useAuth();
 	const { initial, animate } = basicAnimate;
-	const { initial: extendInit, animate: extendAnim, transition } = extendBasicAnimate;
+	const {
+		initial: extendInit,
+		animate: extendAnim,
+		transition,
+	} = extendBasicAnimate;
 
 	const handleChange = (e: any) => {
 		const { name, value } = e.target;
@@ -37,7 +52,7 @@ const NotesCard: React.FC<ListNotesProps> = ({
 		setEditData(
 			!isEdit
 				? { ...editData, title, body }
-				: { ...editData, title: "", body: "" }
+				: { ...editData, ...editDataObj }
 		);
 		setIsEdit(!isEdit);
 	};
@@ -45,11 +60,7 @@ const NotesCard: React.FC<ListNotesProps> = ({
 	const handleUpdate = () => {
 		if (objKey !== null) {
 			const { title, body } = editData;
-			updateContentCard(
-				{ uid: user.uid, type: "update", objKey },
-				title,
-				body
-			);
+			updateContentCard({ uid: user.uid, type: "update", objKey }, title, body);
 			setIsEdit(false);
 			setIsModalOpen(false);
 		}
@@ -57,10 +68,7 @@ const NotesCard: React.FC<ListNotesProps> = ({
 
 	const handleArchive = () => {
 		if (objKey !== null)
-			updateArchivedCard(
-				{ uid: user.uid, type: "update", objKey },
-				archived
-			);
+			updateArchivedCard({ uid: user.uid, type: "update", objKey }, archived);
 	};
 
 	const handleDelete = () => {
@@ -82,7 +90,7 @@ const NotesCard: React.FC<ListNotesProps> = ({
 				stiffness: 100,
 				duration: 1.5,
 			}}
-			className="card w-96 bg-primary text-white font-semibold"
+			className="card w-[25rem] bg-primary text-white font-semibold"
 		>
 			<div className="card-body">
 				{isEdit && (
@@ -113,9 +121,7 @@ const NotesCard: React.FC<ListNotesProps> = ({
 						handleChange={handleChange}
 					/>
 				) : (
-					<h2 className="card-title font-bold tracking-wide">
-						{title}
-					</h2>
+					<h2 className="card-title font-bold tracking-wide">{title}</h2>
 				)}
 
 				<div className="border-2 border-dashed rounded-lg p-3 mb-2">
@@ -129,7 +135,7 @@ const NotesCard: React.FC<ListNotesProps> = ({
 						<p className="text-ellipsis overflow-hidden">{body}</p>
 					)}
 				</div>
-				
+
 				<p>
 					Status:
 					<span
@@ -140,8 +146,8 @@ const NotesCard: React.FC<ListNotesProps> = ({
 						{archived ? `Archived` : `Not Archived`}
 					</span>
 				</p>
-				<p>Created at: {createdAt}</p>
-				<p>Last modified at: {lastModified}</p>
+				<p>Created at: {dateFormat(createdAt)}</p>
+				<p>Last modified at: {dateFormat(lastModified)}</p>
 			</div>
 
 			<div className="flex justify-center bg-base-100 p-4 gap-4">
@@ -160,7 +166,7 @@ const NotesCard: React.FC<ListNotesProps> = ({
 						type="button"
 						iconName={faPenToSquare}
 						buttonName="Edit"
-						className="bg-green-600 hover:bg-green-700 focus:ring-green-500 focus:ring-offset-green-200 w-1/3 h-10"
+						className="bg-green-600 hover:bg-green-700 focus:ring-green-500 focus:ring-offset-green-200 w-1/4 h-10"
 						handleClick={handleClick}
 					/>
 				)}
@@ -168,8 +174,8 @@ const NotesCard: React.FC<ListNotesProps> = ({
 				<IconButton
 					type="button"
 					iconName={faArchive}
-					buttonName="Archive"
-					className="bg-blue-600 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 w-1/3 h-10"
+					buttonName={!archived ? `Archived` : `Not Archived`}
+					className="bg-blue-600 hover:bg-blue-700 focus:ring-blue-500 focus:ring-offset-blue-200 h-10"
 					handleClick={handleArchive}
 				/>
 
@@ -177,7 +183,7 @@ const NotesCard: React.FC<ListNotesProps> = ({
 					labelName="Delete"
 					setIsModalOpen={setIsModalOpen}
 					setModalType={setModalType}
-					className="bg-red-600 hover:bg-red-700 focus:ring-red-500 focus:ring-offset-red-200 cursor-pointer"
+					className="bg-red-600 hover:bg-red-700 focus:ring-red-500 focus:ring-offset-red-200 w-1/4 cursor-pointer"
 					icon={faTrashCan}
 				/>
 
@@ -185,9 +191,7 @@ const NotesCard: React.FC<ListNotesProps> = ({
 					<ConfirmationModal
 						type={modalType}
 						setModalOpen={setIsModalOpen}
-						onClick={
-							modalType === "delete" ? handleDelete : handleUpdate
-						}
+						onClick={modalType === "delete" ? handleDelete : handleUpdate}
 					/>
 				)}
 			</div>

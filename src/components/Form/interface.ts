@@ -11,7 +11,7 @@ interface AttributeInput {
 interface ValueProps {
 	value: string | undefined;
 }
-interface TypeForm {
+export interface TypeForm {
 	typeForm: "login" | "register";
 }
 export interface InputProps extends AttributeInput, ValueProps {
