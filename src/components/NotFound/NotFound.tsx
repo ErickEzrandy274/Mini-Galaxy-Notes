@@ -1,6 +1,8 @@
-import NewLink from "../NewLink/NewLink";
+import { useNavigate } from "react-router";
 
 const NotFound = () => {
+	const nav = useNavigate();
+
 	return (
 		<div className="bg-indigo-900 relative overflow-hidden h-screen">
 			<img
@@ -18,12 +20,12 @@ const NotFound = () => {
 						404
 					</p>
 
-					<NewLink
-						to="/"
-						linkName="BACK TO HOME"
-						fromNav
-						customClass="bg-blue-700 hover:bg-blue-800 py-3 px-4 text-xl text-white font-bold rounded-lg shadow-xl tracking-wider"
-					/>
+					<div
+						onClick={() => nav("/list")}
+						className="text-2xl lg:text-5xl tracking-wide uppercase text-gray-300 hover:text-white font-bold underline cursor-pointer"
+					>
+						back to home
+					</div>
 				</div>
 			</div>
 		</div>
