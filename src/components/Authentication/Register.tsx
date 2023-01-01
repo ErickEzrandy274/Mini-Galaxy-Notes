@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { useAuth } from "../../context/AuthContext";
 import { extractError } from "../../utils/function/function";
+import { RegisterInputType, registerObj } from "./interface";
+import { motion } from "framer-motion";
+import { basicAnimate } from "./constant";
+import { useDocumentTitle } from "../../utils/function/useDocumentTitle";
 import AuthForm from "../Form/AuthForm";
 import MainLayout from "../MainLayout/MainLayout";
 import BaseAuth from "./BaseAuth";
-import { RegisterInputType, authObj } from "./interface";
-import { motion } from "framer-motion";
-import { basicAnimate } from "./constant";
 import ScrollButton from "../Button/ScrollButton";
-import { useDocumentTitle } from "../../utils/function/useDocumentTitle";
 
 const Register = () => {
 	useDocumentTitle("Notes App | Register");
@@ -17,7 +17,7 @@ const Register = () => {
 	const { initial, animate, transition } = basicAnimate;
 	const navigate = useNavigate();
 	const [error, setError] = useState<any>(null);
-	const [data, setData] = useState<RegisterInputType>(authObj);
+	const [data, setData] = useState<RegisterInputType>(registerObj);
 
 	const handleChange = (e: any) => {
 		const { name, value } = e.target;
@@ -44,11 +44,14 @@ const Register = () => {
 	useEffect(() => {
 		user && navigate("/list");
 
-		error &&
-			setTimeout(() => {
-				setData(authObj);
+		if (error) {
+			const errTimeOut = setTimeout(() => {
+				setData(registerObj);
 				setError(null);
 			}, 1500);
+
+			return () => clearTimeout(errTimeOut);
+		}
 	}, [user, navigate, error]);
 
 	return user ? null : (

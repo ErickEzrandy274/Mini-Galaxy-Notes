@@ -2,29 +2,24 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { useAuth } from "../../context/AuthContext";
+import { LoginInputType, loginObj } from "./interface";
+import { motion } from "framer-motion";
+import { basicAnimate } from "./constant";
+import { useDocumentTitle } from "../../utils/function/useDocumentTitle";
 import AuthForm from "../Form/AuthForm";
 import MainLayout from "../MainLayout/MainLayout";
 import BaseAuth from "./BaseAuth";
-import { LoginInputType } from "./interface";
-import { motion } from "framer-motion";
-import { basicAnimate } from "./constant";
 import ScrollButton from "../Button/ScrollButton";
-import { useDocumentTitle } from "../../utils/function/useDocumentTitle";
 
 const Login = () => {
 	useDocumentTitle("Notes App | Login");
 	const navigate = useNavigate();
 	const { initial, animate, transition } = basicAnimate;
 	const { user, login, error, setError } = useAuth();
-	const [data, setData] = useState<LoginInputType>({
-		email: "",
-		password: "",
-	});
+	const [data, setData] = useState<LoginInputType>(loginObj);
 
 	const handleChange = (e: any) => {
-		const target = e.target;
-		const name = target.name;
-		const value = target.value;
+		const { name, value } = e.target;
 
 		setData({
 			...data,
@@ -44,13 +39,12 @@ const Login = () => {
 		user && navigate("/list");
 
 		if (error) {
-			setTimeout(() => {
-				setData({
-					email: "",
-					password: "",
-				});
+			const errTimeOut = setTimeout(() => {
+				setData(loginObj);
 				setError(null);
 			}, 1200);
+
+			return () => clearTimeout(errTimeOut);
 		}
 	}, [user, navigate, error]);
 
