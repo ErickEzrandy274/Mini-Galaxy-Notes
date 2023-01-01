@@ -1,8 +1,9 @@
 import { AnimatePresence } from "framer-motion";
+import { MainLayoutProps } from "./interface";
+import Toaster from "../Toaster";
 import React from "react";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
-import { MainLayoutProps } from "./interface";
 
 const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
 	return (
@@ -11,6 +12,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
 				<Header />
 				{children}
 				<Footer />
+				<Toaster />
 			</div>
 		</AnimatePresence>
 	);
