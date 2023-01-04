@@ -1,15 +1,18 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import { useAuth } from "../../context/AuthContext";
-import { LoginInputType, loginObj } from "./interface";
+import { useAuth } from "context";
+import { useDocumentTitle } from "utils";
 import { motion } from "framer-motion";
-import { basicAnimate } from "./constant";
-import { useDocumentTitle } from "../../utils/function/useDocumentTitle";
-import AuthForm from "../Form/AuthForm";
-import MainLayout from "../MainLayout/MainLayout";
-import BaseAuth from "./BaseAuth";
-import ScrollButton from "../Button/ScrollButton";
+import {
+	AuthForm,
+	MainLayout,
+	BaseAuth,
+	ScrollButton,
+	basicAnimate,
+	LoginInputType,
+	loginObj,
+} from "components";
 
 const Login = () => {
 	useDocumentTitle("Notes App | Login");

@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import { useAuth } from "../../context/AuthContext";
-import { extractError } from "../../utils/function/function";
-import { RegisterInputType, registerObj } from "./interface";
+import { useAuth } from "context";
+import { useDocumentTitle, extractError } from "utils";
 import { motion } from "framer-motion";
-import { basicAnimate } from "./constant";
-import { useDocumentTitle } from "../../utils/function/useDocumentTitle";
-import AuthForm from "../Form/AuthForm";
-import MainLayout from "../MainLayout/MainLayout";
-import BaseAuth from "./BaseAuth";
-import ScrollButton from "../Button/ScrollButton";
+import {
+	AuthForm,
+	MainLayout,
+	BaseAuth,
+	ScrollButton,
+	basicAnimate,
+	RegisterInputType,
+	registerObj,
+} from "components";
 
 const Register = () => {
 	useDocumentTitle("Notes App | Register");
