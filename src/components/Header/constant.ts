@@ -1,4 +1,4 @@
-import { NewLinkProps } from "../NewLink/interface";
+import { NewLinkProps } from "components";
 
 export const navs: NewLinkProps[] = [
 	{
@@ -22,11 +22,11 @@ export const authNavs: NewLinkProps[] = [
 	{
 		to: "/login",
 		linkName: "Login",
-		fromNav: true
+		fromNav: true,
 	},
 	{
 		to: "/register",
 		linkName: "Register",
-		fromNav: true
-	}
-]
+		fromNav: true,
+	},
+];
