@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
-import { ListNotesProps } from "../../components/ListPage/interface";
-import { getData } from "../function/function";
+import { getData } from "../function";
+import { ListNotesProps } from "components";
 
 const useHTTP = () => {
 	const [isLoading, setIsLoading] = useState<boolean>(false);
