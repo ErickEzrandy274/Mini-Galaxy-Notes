@@ -1,8 +1,6 @@
 import React from "react";
-import { toCapitalize } from "../../utils/function/function";
-import { AuthFormProps } from "./interface";
-import BasicButton from "../Button/BasicButton";
-import InputAuthForm from "./InputAuthForm";
+import { toCapitalize } from "utils";
+import { Button, InputAuthForm, AuthFormProps } from "components";
 
 const AuthForm: React.FC<AuthFormProps> = ({
 	handleChange,
@@ -37,7 +35,7 @@ const AuthForm: React.FC<AuthFormProps> = ({
 			/>
 
 			<div className="mt-8">
-				<BasicButton
+				<Button
 					type="submit"
 					email={email}
 					password={password}

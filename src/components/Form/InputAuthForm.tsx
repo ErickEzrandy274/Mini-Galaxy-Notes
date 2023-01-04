@@ -1,6 +1,6 @@
 import React from "react";
-import { toCapitalize } from "../../utils/function/function";
-import { InputAuthProps } from "./interface";
+import { toCapitalize } from "utils";
+import { InputAuthProps } from "components";
 
 const InputAuthForm: React.FC<InputAuthProps> = ({
 	name,
