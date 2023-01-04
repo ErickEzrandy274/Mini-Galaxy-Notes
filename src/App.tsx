@@ -1,14 +1,16 @@
 // reference link private route https://github.com/sairajchouhan/nextjs-firebase-auth/blob/main/pages/_app.tsx
 import { Route, Routes } from "react-router";
-import ArchivedPage from "./components/ArchivedPage/ArchivedPage";
-import Login from "./components/Authentication/Login";
-import Register from "./components/Authentication/Register";
-import ScrollButton from "./components/Button/ScrollButton";
-import CreatePage from "./components/CreatePage/CreatePage";
-import HomePage from "./components/HomePage/HomePage";
-import ListPage from "./components/ListPage/ListPage";
-import NotFound from "./components/NotFound/NotFound";
-import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import {
+	ArchivedPage,
+	CreatePage,
+	HomePage,
+	ListPage,
+	Login,
+	NotFound,
+	ProtectedRoute,
+	Register,
+	ScrollButton,
+} from "./components";
 
 function App() {
 	return (
