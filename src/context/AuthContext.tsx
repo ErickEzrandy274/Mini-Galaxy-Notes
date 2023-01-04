@@ -8,9 +8,8 @@ import {
 	setPersistence,
 	browserSessionPersistence,
 } from "firebase/auth";
-import { auth } from "../utils/firebase/firebase";
-import { MainLayoutProps } from "../components/MainLayout/interface";
-import { extractError } from "../utils/function/function";
+import { auth, extractError } from "utils";
+import { MainLayoutProps } from "components";
 import toast from "react-hot-toast";
 
 const AuthContext = createContext<any>({});
