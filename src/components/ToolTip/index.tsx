@@ -1,6 +1,5 @@
 import React from "react";
-import { extendBasicAnimate } from "../Authentication/constant";
-import { InputType } from "../Form/interface";
+import { extendBasicAnimate, InputType } from "components";
 import { motion } from "framer-motion";
 
 const InfoTooltip: React.FC<InputType> = ({ title, content }) => {

@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router";
+import { motion } from "framer-motion";
 
 const NotFound = () => {
 	const nav = useNavigate();
@@ -20,12 +21,22 @@ const NotFound = () => {
 						404
 					</p>
 
-					<div
+					<motion.div
+						animate={{
+							opacity: [0, 0.2, 0.4, 0.6, 0.8, 1],
+							transition: {
+								type: "spring",
+								stiffness: 140,
+								mass: 50,
+								duration: 2,
+								repeat: Infinity,
+							},
+						}}
 						onClick={() => nav("/list")}
 						className="text-2xl lg:text-5xl tracking-wide uppercase text-gray-300 hover:text-white font-bold underline cursor-pointer"
 					>
 						back to home
-					</div>
+					</motion.div>
 				</div>
 			</div>
 		</div>

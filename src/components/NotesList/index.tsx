@@ -1,14 +1,15 @@
 import React from "react";
-import NotesCard from "../Card/NotesCard";
-import { DataProps, ListNotesProps } from "../ListPage/interface";
-import NewLink from "../NewLink/NewLink";
 import { motion } from "framer-motion";
 import {
+	NotesCard,
+	NewLink,
+	DataProps,
+	ListNotesProps,
 	basicAnimate,
 	customTransition,
 	secondAnimate,
 	thirdAnimate,
-} from "../Authentication/constant";
+} from "components";
 
 const NotesList: React.FC<DataProps> = ({ data, isArchived }) => {
 	const { initial, animate, transition } = basicAnimate;
@@ -57,14 +58,12 @@ const NotesList: React.FC<DataProps> = ({ data, isArchived }) => {
 						transition={secondTrans}
 						className="text-3xl sm:text-4xl md:text-5xl"
 					>
-						{`Make a new note first${isArchived ? ` or archive the existing one` : ``}!`}
+						{`Make a new note first${
+							isArchived ? ` or archive the existing one` : ``
+						}!`}
 					</motion.h2>
 
-					<NewLink
-						to="/create"
-						linkName="Create New Note"
-						fromNav={false}
-					/>
+					<NewLink to="/create" linkName="Create New Note" fromNav={false} />
 				</motion.div>
 			)}
 		</>
