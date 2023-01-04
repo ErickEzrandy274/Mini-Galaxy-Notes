@@ -1,4 +1,4 @@
-import { useWindowSize } from "../../utils/function/useWindowSize";
+import { useWindowSize } from "utils";
 
 const Footer = () => {
 	const { width } = useWindowSize();
@@ -42,8 +42,7 @@ const Footer = () => {
 			<div className="text-sm sm:text-base">
 				<p>Copyright © 2022 - All right reserved</p>
 				<p>
-					made by Erick Ezrandy - Computer Science University of
-					Indonesia 2020
+					made by Erick Ezrandy - Computer Science University of Indonesia 2020
 				</p>
 			</div>
 		</footer>
