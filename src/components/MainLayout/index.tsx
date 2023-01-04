@@ -1,9 +1,6 @@
-import { AnimatePresence } from "framer-motion";
-import { MainLayoutProps } from "./interface";
-import Toaster from "../Toaster";
 import React from "react";
-import Footer from "../Footer/Footer";
-import Header from "../Header/Header";
+import { AnimatePresence } from "framer-motion";
+import { Toaster, Footer, Header, MainLayoutProps } from "components";
 
 const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
 	return (

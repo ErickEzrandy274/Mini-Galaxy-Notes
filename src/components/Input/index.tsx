@@ -1,7 +1,7 @@
 import React from "react";
 import { InputProps } from "./interface";
 import { motion } from "framer-motion";
-import { extendBasicAnimate } from "../Authentication/constant";
+import { extendBasicAnimate } from "components";
 
 const Input: React.FC<InputProps> = ({ type, title, body, handleChange }) => {
 	const { initial, animate, transition } = extendBasicAnimate;
@@ -30,7 +30,9 @@ const Input: React.FC<InputProps> = ({ type, title, body, handleChange }) => {
 					transition={{ ...transition, delay: 0.2 }}
 					className="text-red-600 font-semibold p-1 px-2 text-right"
 				>
-					<span className="bg-black p-1 px-2 rounded-lg shadow-md">{50 - title!.length} characters left</span>
+					<span className="bg-black p-1 px-2 rounded-lg shadow-md">
+						{50 - title!.length} characters left
+					</span>
 				</motion.p>
 			)}
 		</>
