@@ -1,10 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import { useAuth } from "../../context/AuthContext";
-import { useWindowSize } from "../../utils/function/useWindowSize";
-import { NewLinkProps } from "../NewLink/interface";
-import { navs, authNavs } from "./constant";
-import NewLink from "../NewLink/NewLink";
+import { useAuth } from "context";
+import { useWindowSize } from "utils";
+import { NewLink, NewLinkProps, navs, authNavs } from "components";
 
 const Header = () => {
 	const { user, logout } = useAuth();
@@ -49,9 +47,7 @@ const Header = () => {
 				>
 					<div className="flex flex-col px-2 py-3 -mx-4 md:flex-row md:mx-0 md:py-0">
 						{navs.map((item: NewLinkProps, index: number) => {
-							return (
-								<NewLink {...item} key={`navbar-` + index} />
-							);
+							return <NewLink {...item} key={`navbar-` + index} />;
 						})}
 					</div>
 				</div>
@@ -65,25 +61,16 @@ const Header = () => {
 						<div className="flex flex-col px-2 md:flex-row text-center gap-3 md:items-center">
 							<div className="flex gap-2 md:gap-0 md:flex-col items-start md:items-center font-semibold text-white">
 								<p>Hello</p>
-								<p>
-									{user.displayName
-										? user.displayName
-										: user.email}
-								</p>
+								<p>{user.displayName ? user.displayName : user.email}</p>
 								<p className="md:hidden">👋👋👋</p>
 							</div>
-							<button
-								onClick={handleLogout}
-								className={customClassLogOut}
-							>
+							<button onClick={handleLogout} className={customClassLogOut}>
 								Logout
 							</button>
 						</div>
 					) : (
 						authNavs.map((item: NewLinkProps, index: number) => {
-							return (
-								<NewLink {...item} key={`navbar-` + index} />
-							);
+							return <NewLink {...item} key={`navbar-` + index} />;
 						})
 					)}
 
@@ -92,7 +79,9 @@ const Header = () => {
 						className="flex items-center sm:gap-1 hover:text-white text-gray-300 font-semibold"
 						aria-label="Github"
 					>
-						<p className="w-24 sm:w-20 p-1 px-2 md:px-1 sm:text-right">Our Repo</p>
+						<p className="w-24 sm:w-20 p-1 px-2 md:px-1 sm:text-right">
+							Our Repo
+						</p>
 						<svg
 							className="w-10 h-10 fill-current"
 							viewBox="0 0 24 24"

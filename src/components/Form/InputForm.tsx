@@ -1,6 +1,6 @@
 import React from "react";
-import { toCapitalize } from "../../utils/function/function";
-import { InputProps } from "./interface";
+import { toCapitalize } from "utils";
+import { InputProps } from "components";
 
 const InputForm: React.FC<InputProps> = ({
 	type,

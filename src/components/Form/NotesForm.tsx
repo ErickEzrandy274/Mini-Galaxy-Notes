@@ -1,16 +1,19 @@
 import { useState } from "react";
-import { InputType, inputObj } from "./interface";
 import { useLocation, useNavigate } from "react-router-dom";
 import { push } from "firebase/database";
 import { v4 as uuidv4 } from "uuid";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import { useAuth } from "../../context/AuthContext";
-import { notesListRef } from "../../utils/function/function";
+import { useAuth } from "context";
+import { notesListRef } from "utils";
 import { motion } from "framer-motion";
-import { basicAnimate } from "../Authentication/constant";
-import InputForm from "./InputForm";
-import InfoTooltip from "../ToolTip/InfoTooltip";
-import IconButton from "../Button/IconButton";
+import {
+	IconButton,
+	InputForm,
+	InfoTooltip,
+	InputType,
+	inputObj,
+	basicAnimate,
+} from "components";
 import toast from "react-hot-toast";
 
 const NotesForm = () => {

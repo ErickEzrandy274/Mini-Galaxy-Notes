@@ -1,11 +1,11 @@
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router";
-import { basicAnimate, customTransition } from "../Authentication/constant";
+import { basicAnimate, customTransition } from "components";
 
 const HomePage = () => {
 	const { initial, animate } = basicAnimate;
 	const { transition } = customTransition;
-	const nav = useNavigate()
+	const nav = useNavigate();
 
 	return (
 		<div className="bg-indigo-900 relative overflow-hidden h-screen cursor-default">

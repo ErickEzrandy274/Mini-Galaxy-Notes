@@ -1,7 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useWindowSize } from "../../utils/function/useWindowSize";
 import { IconButtonProps } from "./interface";
+import { useWindowSize } from "utils";
 
 const IconButton: React.FC<IconButtonProps> = ({
 	buttonName,

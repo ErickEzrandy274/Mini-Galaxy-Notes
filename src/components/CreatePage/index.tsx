@@ -1,10 +1,9 @@
-import MainLayout from "../MainLayout/MainLayout";
-import NotesForm from "../Form/NotesForm";
-import { useDocumentTitle } from "../../utils/function/useDocumentTitle";
+import { useDocumentTitle } from "utils";
+import { MainLayout, NotesForm } from "components";
 
 const CreatePage = () => {
 	useDocumentTitle("Notes App | Create New Notes");
-	
+
 	return (
 		<MainLayout>
 			<NotesForm />

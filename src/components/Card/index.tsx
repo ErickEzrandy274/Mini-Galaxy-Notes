@@ -6,21 +6,24 @@ import {
 	faFloppyDisk,
 	faXmark,
 } from "@fortawesome/free-solid-svg-icons";
-import { ListNotesProps } from "../ListPage/interface";
 import {
 	dateFormat,
 	deleteCard,
 	updateArchivedCard,
 	updateContentCard,
-} from "../../utils/function/function";
-import { useAuth } from "../../context/AuthContext";
+} from "utils";
+import { useAuth } from "context";
 import { motion } from "framer-motion";
-import { basicAnimate, extendBasicAnimate } from "../Authentication/constant";
 import { editDataObj, editDataType } from "./interface";
-import IconButton from "../Button/IconButton";
-import ConfirmationModal from "../Modal/ConfirmationModal";
-import Input from "../Input/Input";
-import LabelModal from "../Modal/LabelModal";
+import {
+	ConfirmationModal,
+	LabelModal,
+	Input,
+	IconButton,
+	ListNotesProps,
+	basicAnimate,
+	extendBasicAnimate,
+} from "components";
 
 const NotesCard: React.FC<ListNotesProps> = ({
 	title,
@@ -50,9 +53,7 @@ const NotesCard: React.FC<ListNotesProps> = ({
 
 	const handleClick = () => {
 		setEditData(
-			!isEdit
-				? { ...editData, title, body }
-				: { ...editData, ...editDataObj }
+			!isEdit ? { ...editData, title, body } : { ...editData, ...editDataObj }
 		);
 		setIsEdit(!isEdit);
 	};
@@ -92,7 +93,7 @@ const NotesCard: React.FC<ListNotesProps> = ({
 			}}
 			className="card w-[25rem] bg-primary text-white font-semibold"
 		>
-			<div className="card-body">
+			<div className="card-body p-6">
 				{isEdit && (
 					<motion.div
 						initial={extendInit}
@@ -132,7 +133,9 @@ const NotesCard: React.FC<ListNotesProps> = ({
 							handleChange={handleChange}
 						/>
 					) : (
-						<p className="text-ellipsis overflow-hidden">{body}</p>
+						<p className={`${body.length > 150 && "h-24 overflow-y-scroll"}`}>
+							{body}
+						</p>
 					)}
 				</div>
 
@@ -156,7 +159,7 @@ const NotesCard: React.FC<ListNotesProps> = ({
 						labelName="Save"
 						setIsModalOpen={setIsModalOpen}
 						setModalType={setModalType}
-						className="bg-green-600 hover:bg-green-700 focus:ring-green-500 focus:ring-offset-green-200 w-1/3 h-10 cursor-pointer"
+						className="bg-green-600 hover:bg-green-700 focus:ring-green-500 focus:ring-offset-green-200 h-10 cursor-pointer"
 						icon={faFloppyDisk}
 						oldContentCard={{ title, body }}
 						newContentCard={editData}
