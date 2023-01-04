@@ -1,5 +1,5 @@
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
-import { InputType, TypeForm } from "../Form/interface";
+import { InputType, TypeForm } from "components";
 
 interface ButtonProps {
 	className: string;
