@@ -1,10 +1,10 @@
 import React from "react";
 import { ModalProps } from "./interface";
 import { motion } from "framer-motion";
-import { basicAnimate } from "../Authentication/constant";
+import { basicAnimate } from "components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faWarning } from "@fortawesome/free-solid-svg-icons";
-import { toCapitalize } from "../../utils/function/function";
+import { toCapitalize } from "utils";
 
 const ConfirmationModal: React.FC<ModalProps> = ({
 	setModalOpen,
