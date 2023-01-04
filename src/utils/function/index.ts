@@ -1,8 +1,7 @@
-import { onValue, ref, remove, update } from "firebase/database";
 import React, { SetStateAction } from "react";
-import { editDataType } from "../../components/Card/interface";
-import { ListNotesProps } from "../../components/ListPage/interface";
-import { database } from "../firebase/firebase";
+import { onValue, ref, remove, update } from "firebase/database";
+import { editDataType, ListNotesProps } from "components";
+import { database } from "../firebase";
 
 type getDataParams = {
 	setData: React.Dispatch<SetStateAction<ListNotesProps[]>>;
