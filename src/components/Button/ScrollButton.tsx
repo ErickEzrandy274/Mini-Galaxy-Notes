@@ -1,5 +1,5 @@
 // reference https://www.geeksforgeeks.org/how-to-create-a-scroll-to-top-button-in-react-js/
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 const ScrollButton = () => {
 	const [visible, setVisible] = useState(false);
@@ -14,12 +14,12 @@ const ScrollButton = () => {
 		};
 	}, []);
 
-	const scrollToTop = () => {
+	const scrollToTop = useCallback(() => {
 		window.scrollTo({
 			top: 0,
 			behavior: "smooth",
 		});
-	};
+	}, []);
 
 	return (
 		<button

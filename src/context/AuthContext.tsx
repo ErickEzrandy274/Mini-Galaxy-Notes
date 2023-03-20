@@ -27,7 +27,7 @@ export const AuthContextProvider: React.FC<MainLayoutProps> = ({
 	children,
 }) => {
 	const [user, setUser] = useState<any>(null);
-	const [error, setError] = useState<any>(null);
+	const [errorAuth, setErrorAuth] = useState<any>(null);
 	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
@@ -56,7 +56,7 @@ export const AuthContextProvider: React.FC<MainLayoutProps> = ({
 					toast.success("Successfully created a new account!");
 				})
 				.catch((err: any) => {
-					setError(extractError(err));
+					setErrorAuth(extractError(err));
 					toast.error(extractError(err));
 				});
 		},
@@ -73,7 +73,7 @@ export const AuthContextProvider: React.FC<MainLayoutProps> = ({
 			signInWithEmailAndPassword(auth, email, password)
 				.then(({ user }) => toast.success(`Welcome back ${user.displayName}!`))
 				.catch((err: any) => {
-					setError(extractError(err));
+					setErrorAuth(extractError(err));
 					toast.error(extractError(err));
 				});
 		});
@@ -86,7 +86,7 @@ export const AuthContextProvider: React.FC<MainLayoutProps> = ({
 
 	return (
 		<AuthContext.Provider
-			value={{ user, login, register, logout, error, setError }}
+			value={{ user, login, register, logout, errorAuth, setErrorAuth }}
 		>
 			{loading ? null : children}
 		</AuthContext.Provider>

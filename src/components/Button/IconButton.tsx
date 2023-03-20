@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IconButtonProps } from "./interface";
 import { useWindowSize } from "utils";
@@ -12,7 +12,10 @@ const IconButton: React.FC<IconButtonProps> = ({
 	field,
 }) => {
 	const { width } = useWindowSize();
-	const isNewNoteButton: boolean = buttonName === "Add New Notes";
+	const isNewNoteButton: boolean = useMemo(
+		() => buttonName === "Add New Notes",
+		[buttonName]
+	);
 	const isEmpty: boolean = !field?.title.length || !field?.content.length;
 
 	return (
