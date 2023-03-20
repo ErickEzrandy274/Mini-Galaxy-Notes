@@ -8,15 +8,15 @@ const HomePage = () => {
 	const nav = useNavigate();
 
 	return (
-		<div className="bg-indigo-900 relative overflow-hidden h-screen cursor-default">
+		<section className="bg-indigo-900 relative overflow-hidden h-screen cursor-default">
 			<img
 				src="https://www.tailwind-kit.com/images/landscape/6.svg"
 				className="absolute h-full w-full object-cover"
 				alt="cover page"
 			/>
 			<div className="inset-0 bg-black opacity-25 absolute"></div>
-			<div className="container mx-auto px-6 md:px-12 relative z-10 flex items-center py-32 xl:py-40">
-				<motion.div
+			<section className="container mx-auto px-6 md:px-12 relative z-10 flex items-center py-32 xl:py-40">
+				<motion.article
 					initial={initial}
 					animate={animate}
 					exit={initial}
@@ -34,7 +34,7 @@ const HomePage = () => {
 						}}
 						className="font-extrabold text-5xl sm:text-8xl text-white leading-tight mt-4"
 					>
-						Welcome to Notes Application
+						Mini Galaxy Notes
 					</motion.h1>
 
 					<h2
@@ -43,9 +43,9 @@ const HomePage = () => {
 					>
 						Go to My Account
 					</h2>
-				</motion.div>
-			</div>
-		</div>
+				</motion.article>
+			</section>
+		</section>
 	);
 };
 
