@@ -5,13 +5,13 @@ import { getDatabase } from "firebase/database";
 import { getAuth } from "firebase/auth"
 
 const firebaseConfig = {
-	apiKey: "AIzaSyANFmUTAXfwP2712AVEBEI0Lx8V03Abs7U",
-	authDomain: "mini-notes-app.firebaseapp.com",
-	projectId: "mini-notes-app",
-	storageBucket: "mini-notes-app.appspot.com",
-	messagingSenderId: "791834748637",
-	appId: "1:791834748637:web:08ff1f2ff2cd9805f15d34",
-	measurementId: "G-WHVSKEMKPQ",
+	apiKey: process.env.REACT_APP_API_KEY,
+	authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+	projectId: process.env.REACT_APP_PROJECT_ID,
+	storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+	messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+	appId: process.env.REACT_APP_APP_ID,
+	measurementId: process.env.REACT_APP_MEASUREMENT_ID,
 };
 
 // Initialize Firebase
