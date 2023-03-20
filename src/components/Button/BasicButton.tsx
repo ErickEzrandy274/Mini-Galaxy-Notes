@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { BasicButtonProps } from "./interface";
 
 const BasicButton: React.FC<BasicButtonProps> = ({
@@ -15,9 +15,13 @@ const BasicButton: React.FC<BasicButtonProps> = ({
 		password.length < 10 ||
 		(typeForm === "register" && !nickname);
 
-	const disableClassName = disable
-		? ` bg-gray-400 cursor-not-allowed`
-		: ` bg-blue-600 hover:bg-blue-700 focus:outline-none focus:bg-blue-600`;
+	const disableClassName = useMemo(
+		() =>
+			disable
+				? ` bg-gray-400 cursor-not-allowed`
+				: ` bg-blue-600 hover:bg-blue-700 focus:outline-none focus:bg-blue-600`,
+		[disable]
+	);
 
 	return (
 		<button
