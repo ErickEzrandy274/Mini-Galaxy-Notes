@@ -7,7 +7,7 @@
 
 ## Here Link of Application:
 
-## [Mini Notes App](https://mini-notes-app.firebaseapp.com/)
+## [Mini Galaxy Notes](https://mini-galaxy-notes.vercel.app/)
 
 ### Untuk Penilai Dicoding
 <ol>

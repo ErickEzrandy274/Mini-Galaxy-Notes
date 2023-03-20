@@ -1,4 +1,10 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import {
+	createContext,
+	useCallback,
+	useContext,
+	useEffect,
+	useState,
+} from "react";
 import {
 	onAuthStateChanged,
 	createUserWithEmailAndPassword,
@@ -10,6 +16,7 @@ import {
 } from "firebase/auth";
 import { auth, extractError } from "utils";
 import { MainLayoutProps } from "components";
+import { LoginProps, RegisterProps } from "./interface";
 import toast from "react-hot-toast";
 
 const AuthContext = createContext<any>({});
@@ -41,23 +48,22 @@ export const AuthContextProvider: React.FC<MainLayoutProps> = ({
 		return () => unsubscribe();
 	}, []);
 
-	const register = async (
-		email: string,
-		password: string,
-		displayName: string
-	) => {
-		await createUserWithEmailAndPassword(auth, email, password)
-			.then(async ({ user }) => {
-				await updateProfile(user, { displayName });
-				toast.success("Successfully created a new account!");
-			})
-			.catch((err: any) => {
-				setError(extractError(err));
-				toast.error(extractError(err));
-			});
-	};
+	const register = useCallback(
+		async ({ email, password, displayName }: RegisterProps) => {
+			await createUserWithEmailAndPassword(auth, email, password)
+				.then(async ({ user }) => {
+					await updateProfile(user, { displayName });
+					toast.success("Successfully created a new account!");
+				})
+				.catch((err: any) => {
+					setError(extractError(err));
+					toast.error(extractError(err));
+				});
+		},
+		[]
+	);
 
-	const login = async (email: string, password: string) => {
+	const login = useCallback(async ({ email, password }: LoginProps) => {
 		setPersistence(auth, browserSessionPersistence).then(() => {
 			// Existing and future Auth states are now persisted in the current
 			// Closing the window would clear any existing state even
@@ -71,12 +77,12 @@ export const AuthContextProvider: React.FC<MainLayoutProps> = ({
 					toast.error(extractError(err));
 				});
 		});
-	};
+	}, []);
 
-	const logout = async () => {
+	const logout = useCallback(async () => {
 		setUser(null);
 		await signOut(auth);
-	};
+	}, []);
 
 	return (
 		<AuthContext.Provider
