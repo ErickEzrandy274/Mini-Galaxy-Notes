@@ -1,7 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { useAuth } from "context";
-import { useDocumentTitle, extractError } from "utils";
+import { useDocumentTitle, useHandleAuth } from "utils";
 import { motion } from "framer-motion";
 import {
 	AuthForm,
@@ -15,67 +16,41 @@ import {
 
 const Register = () => {
 	useDocumentTitle("Notes App | Register");
-	const { user, register } = useAuth();
-	const { initial, animate, transition } = basicAnimate;
 	const navigate = useNavigate();
-	const [error, setError] = useState<any>(null);
+	const { user, errorAuth, setErrorAuth } = useAuth();
+	const { handleChange, handleRegister } = useHandleAuth();
+	const { initial, animate, transition } = basicAnimate;
 	const [data, setData] = useState<RegisterInputType>(registerObj);
-
-	const handleChange = (e: any) => {
-		const { name, value } = e.target;
-
-		setData({
-			...data,
-			[name]: value,
-		});
-	};
-
-	const handleRegister = async (e: any) => {
-		e.preventDefault();
-
-		try {
-			await register(data.email, data.password, data.nickname);
-			setTimeout(() => {
-				navigate("/list");
-			}, 500);
-		} catch (err: any) {
-			setError(extractError(err));
-		}
-	};
 
 	useEffect(() => {
 		user && navigate("/list");
 
-		if (error) {
-			const errTimeOut = setTimeout(() => {
-				setData(registerObj);
-				setError(null);
-			}, 1500);
-
-			return () => clearTimeout(errTimeOut);
+		if (errorAuth) {
+			setData(registerObj);
+			setErrorAuth(null);
 		}
-	}, [user, navigate, error]);
+	}, [user, navigate, errorAuth]);
 
-	return user ? null : (
+	return (
 		<>
 			<ScrollButton />
 			<MainLayout>
-				<motion.div
+				<motion.section
 					initial={initial}
 					animate={animate}
 					exit={initial}
 					transition={user ? { ...transition, delay: 0.4 } : transition}
 					className="flex justify-center py-5"
 				>
-					<BaseAuth title="Register" error={error}>
+					<BaseAuth title="Register" error={errorAuth}>
 						<AuthForm
 							typeForm="register"
-							handleChange={handleChange}
-							handleRegister={handleRegister}
+							handleChange={(e) => handleChange(e, setData)}
+							handleRegister={(e) => handleRegister(e, data)}
 							{...data}
 						/>
 					</BaseAuth>
-				</motion.div>
+				</motion.section>
 			</MainLayout>
 		</>
 	);

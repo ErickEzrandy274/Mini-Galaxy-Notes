@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { useAuth } from "context";
-import { useDocumentTitle } from "utils";
+import { useDocumentTitle, useHandleAuth } from "utils";
 import { motion } from "framer-motion";
 import {
 	AuthForm,
@@ -17,60 +17,40 @@ import {
 const Login = () => {
 	useDocumentTitle("Notes App | Login");
 	const navigate = useNavigate();
+	const { user, errorAuth, setErrorAuth } = useAuth();
+	const { handleChange, handleLogin } = useHandleAuth();
 	const { initial, animate, transition } = basicAnimate;
-	const { user, login, error, setError } = useAuth();
 	const [data, setData] = useState<LoginInputType>(loginObj);
-
-	const handleChange = (e: any) => {
-		const { name, value } = e.target;
-
-		setData({
-			...data,
-			[name]: value,
-		});
-	};
-
-	const handleLogin = async (e: any) => {
-		e.preventDefault();
-		await login(data.email, data.password);
-		setTimeout(() => {
-			navigate("/list");
-		}, 500);
-	};
 
 	useEffect(() => {
 		user && navigate("/list");
 
-		if (error) {
-			const errTimeOut = setTimeout(() => {
-				setData(loginObj);
-				setError(null);
-			}, 1200);
-
-			return () => clearTimeout(errTimeOut);
+		if (errorAuth) {
+			setData(loginObj);
+			setErrorAuth(null);
 		}
-	}, [user, navigate, error]);
+	}, [user, navigate, errorAuth]);
 
-	return user ? null : (
+	return (
 		<>
 			<ScrollButton />
 			<MainLayout>
-				<motion.div
+				<motion.section
 					initial={initial}
 					animate={animate}
 					exit={initial}
 					transition={user ? { ...transition, delay: 0.4 } : transition}
 					className="flex justify-center py-5"
 				>
-					<BaseAuth title="Login" error={error}>
+					<BaseAuth title="Login" error={errorAuth}>
 						<AuthForm
 							typeForm="login"
-							handleLogin={handleLogin}
-							handleChange={handleChange}
+							handleLogin={(e) => handleLogin(e, data)}
+							handleChange={(e) => handleChange(e, setData)}
 							{...data}
 						/>
 					</BaseAuth>
-				</motion.div>
+				</motion.section>
 			</MainLayout>
 		</>
 	);
