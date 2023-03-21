@@ -4,5 +4,5 @@ export interface LoginProps {
 }
 
 export interface RegisterProps extends LoginProps {
-	displayName: string;
+	nickname: string;
 }
