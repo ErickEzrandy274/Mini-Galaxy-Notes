@@ -4,7 +4,7 @@ import { useDocumentTitle, useHTTP } from "utils";
 import { NotesList, MainLayout, Loader } from "components";
 
 const ListPage = () => {
-	useDocumentTitle("Notes App | List Notes");
+	useDocumentTitle("Mini Galaxy Notes App | List Notes");
 	const {
 		user: { uid },
 	} = useAuth();

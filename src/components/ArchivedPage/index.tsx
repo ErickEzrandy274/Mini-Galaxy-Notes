@@ -4,7 +4,7 @@ import { useDocumentTitle, useHTTP } from "utils";
 import { MainLayout, Loader, NotesList } from "components";
 
 const ArchivedPage = () => {
-	useDocumentTitle("Notes App | Archived Notes");
+	useDocumentTitle("Mini Galaxy Notes App | Archived Notes");
 	const {
 		user: { uid },
 	} = useAuth();

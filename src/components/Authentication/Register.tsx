@@ -16,7 +16,7 @@ import {
 import { useFormik } from "formik";
 
 const Register = () => {
-	useDocumentTitle("Notes App | Register");
+	useDocumentTitle("Mini Galaxy Notes App | Register");
 	const navigate = useNavigate();
 	const { user, register, errorAuth, setErrorAuth } = useAuth();
 	const { initial, animate, transition } = useMemo(() => basicAnimate, []);
