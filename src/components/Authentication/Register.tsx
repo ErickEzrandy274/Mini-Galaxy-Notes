@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState } from "react";
+import { useEffect, useMemo } from "react";
 import { useNavigate } from "react-router";
 import { useAuth } from "context";
-import { useDocumentTitle, useHandleAuth } from "utils";
+import { useDocumentTitle } from "utils";
 import { motion } from "framer-motion";
 import {
 	AuthForm,
@@ -10,25 +10,39 @@ import {
 	BaseAuth,
 	ScrollButton,
 	basicAnimate,
-	RegisterInputType,
 	registerObj,
+	registerValidationSchema,
 } from "components";
+import { useFormik } from "formik";
 
 const Register = () => {
 	useDocumentTitle("Notes App | Register");
 	const navigate = useNavigate();
-	const { user, errorAuth, setErrorAuth } = useAuth();
-	const { handleChange, handleRegister } = useHandleAuth();
-	const { initial, animate, transition } = basicAnimate;
-	const [data, setData] = useState<RegisterInputType>(registerObj);
+	const { user, register, errorAuth, setErrorAuth } = useAuth();
+	const { initial, animate, transition } = useMemo(() => basicAnimate, []);
+
+	const { initialValues, validationSchema } = useMemo(() => {
+		return {
+			initialValues: registerObj,
+			validationSchema: registerValidationSchema,
+		};
+	}, []);
+
+	const formik = useFormik({
+		initialValues,
+		validationSchema,
+		onSubmit: (values, { resetForm }) => {
+			if (values) {
+				register(values);
+				resetForm();
+			}
+		},
+	});
 
 	useEffect(() => {
 		user && navigate("/list");
 
-		if (errorAuth) {
-			setData(registerObj);
-			setErrorAuth(null);
-		}
+		errorAuth && setErrorAuth(null);
 	}, [user, navigate, errorAuth]);
 
 	return (
@@ -43,12 +57,7 @@ const Register = () => {
 					className="flex justify-center py-5"
 				>
 					<BaseAuth title="Register" error={errorAuth}>
-						<AuthForm
-							typeForm="register"
-							handleChange={(e) => handleChange(e, setData)}
-							handleRegister={(e) => handleRegister(e, data)}
-							{...data}
-						/>
+						<AuthForm typeForm="register" formik={formik} />
 					</BaseAuth>
 				</motion.section>
 			</MainLayout>
