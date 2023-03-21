@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import {
 	faTrashCan,
 	faArchive,
@@ -11,6 +11,7 @@ import {
 	deleteCard,
 	updateArchivedCard,
 	updateContentCard,
+	useHandleChange,
 } from "utils";
 import { useAuth } from "context";
 import { motion } from "framer-motion";
@@ -38,18 +39,16 @@ const NotesCard: React.FC<ListNotesProps> = ({
 	const [modalType, setModalType] = useState<"delete" | "update">("delete");
 	const [editData, setEditData] = useState<editDataType>(editDataObj);
 	const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-	const { user } = useAuth();
-	const { initial, animate } = basicAnimate;
+	const {
+		user: { uid },
+	} = useAuth();
+	const { initial, animate } = useMemo(() => basicAnimate, []);
 	const {
 		initial: extendInit,
 		animate: extendAnim,
 		transition,
-	} = extendBasicAnimate;
-
-	const handleChange = (e: any) => {
-		const { name, value } = e.target;
-		setEditData({ ...editData, [name]: value });
-	};
+	} = useMemo(() => extendBasicAnimate, []);
+	const { handleChange } = useHandleChange();
 
 	const handleClick = () => {
 		setEditData(
@@ -61,7 +60,7 @@ const NotesCard: React.FC<ListNotesProps> = ({
 	const handleUpdate = () => {
 		if (objKey !== null) {
 			const { title, body } = editData;
-			updateContentCard({ uid: user.uid, type: "update", objKey }, title, body);
+			updateContentCard({ uid, type: "update", objKey }, title, body);
 			setIsEdit(false);
 			setIsModalOpen(false);
 		}
@@ -69,13 +68,13 @@ const NotesCard: React.FC<ListNotesProps> = ({
 
 	const handleArchive = () => {
 		if (objKey !== null)
-			updateArchivedCard({ uid: user.uid, type: "update", objKey }, archived);
+			updateArchivedCard({ uid, type: "update", objKey }, archived);
 	};
 
 	const handleDelete = () => {
 		if (objKey !== null)
 			deleteCard({
-				uid: user.uid,
+				uid,
 				type: "delete",
 				objKey,
 			});
@@ -119,7 +118,7 @@ const NotesCard: React.FC<ListNotesProps> = ({
 					<Input
 						type="title"
 						title={editData.title}
-						handleChange={handleChange}
+						handleChange={(e) => handleChange(e, setEditData)}
 					/>
 				) : (
 					<h2 className="card-title font-bold tracking-wide">{title}</h2>
@@ -130,7 +129,7 @@ const NotesCard: React.FC<ListNotesProps> = ({
 						<Input
 							type="body"
 							body={editData.body}
-							handleChange={handleChange}
+							handleChange={(e) => handleChange(e, setEditData)}
 						/>
 					) : (
 						<p className={`${body.length > 150 && "h-24 overflow-y-scroll"}`}>

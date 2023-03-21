@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState } from "react";
+import { useEffect, useMemo } from "react";
 import { useNavigate } from "react-router";
 import { useAuth } from "context";
-import { useDocumentTitle, useHandleAuth } from "utils";
+import { useDocumentTitle } from "utils";
 import { motion } from "framer-motion";
 import {
 	AuthForm,
@@ -10,25 +10,38 @@ import {
 	BaseAuth,
 	ScrollButton,
 	basicAnimate,
-	LoginInputType,
 	loginObj,
+	loginValidationSchema,
 } from "components";
+import { useFormik } from "formik";
 
 const Login = () => {
 	useDocumentTitle("Notes App | Login");
 	const navigate = useNavigate();
-	const { user, errorAuth, setErrorAuth } = useAuth();
-	const { handleChange, handleLogin } = useHandleAuth();
-	const { initial, animate, transition } = basicAnimate;
-	const [data, setData] = useState<LoginInputType>(loginObj);
+	const { user, login, errorAuth, setErrorAuth } = useAuth();
+	const { initial, animate, transition } = useMemo(() => basicAnimate, []);
+	const { initialValues, validationSchema } = useMemo(() => {
+		return {
+			initialValues: loginObj,
+			validationSchema: loginValidationSchema,
+		};
+	}, []);
+
+	const formik = useFormik({
+		initialValues,
+		validationSchema,
+		onSubmit: (values, { resetForm }) => {
+			if (values) {
+				login(values);
+				resetForm();
+			}
+		},
+	});
 
 	useEffect(() => {
 		user && navigate("/list");
 
-		if (errorAuth) {
-			setData(loginObj);
-			setErrorAuth(null);
-		}
+		errorAuth && setErrorAuth(null);
 	}, [user, navigate, errorAuth]);
 
 	return (
@@ -43,12 +56,7 @@ const Login = () => {
 					className="flex justify-center py-5"
 				>
 					<BaseAuth title="Login" error={errorAuth}>
-						<AuthForm
-							typeForm="login"
-							handleLogin={(e) => handleLogin(e, data)}
-							handleChange={(e) => handleChange(e, setData)}
-							{...data}
-						/>
+						<AuthForm typeForm="login" formik={formik} />
 					</BaseAuth>
 				</motion.section>
 			</MainLayout>

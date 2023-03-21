@@ -49,7 +49,7 @@ export const AuthContextProvider: React.FC<MainLayoutProps> = ({
 	}, []);
 
 	const register = useCallback(
-		async ({ email, password, displayName }: RegisterProps) => {
+		async ({ email, password, nickname: displayName }: RegisterProps) => {
 			await createUserWithEmailAndPassword(auth, email, password)
 				.then(async ({ user }) => {
 					await updateProfile(user, { displayName });

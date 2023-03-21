@@ -1,5 +1,5 @@
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
-import { InputType, TypeForm } from "components";
+import { InputType } from "components";
 
 interface ButtonProps {
 	className: string;
@@ -13,8 +13,6 @@ export interface IconButtonProps extends ButtonProps {
 	field?: InputType;
 }
 
-export interface BasicButtonProps extends ButtonProps, TypeForm {
-	email: string;
-	password: string;
-	nickname?: string;
+export interface BasicButtonProps extends ButtonProps {
+	errors: Object;
 }

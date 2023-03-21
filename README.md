@@ -12,6 +12,6 @@
 ### Untuk Penilai Dicoding
 <ol>
     <li>Silahkan login dengan email <b>dicodings@gmail.com</b></li>
-    <li>Masukkan password berupa <b>dicoding12345</b></li>
+    <li>Masukkan password berupa <b>@Dico#Dings78#</b></li>
     <li>Silahkan mencoba beberapa fitur yang telah saya buat 😁😁</li>
 </ol>

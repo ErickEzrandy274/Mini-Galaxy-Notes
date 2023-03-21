@@ -5,15 +5,12 @@ const BasicButton: React.FC<BasicButtonProps> = ({
 	type,
 	buttonName,
 	className,
-	email,
-	password,
-	typeForm,
-	nickname,
+	errors,
 }) => {
-	const disable: boolean =
-		(email.length < 5 && !email.includes("@")) ||
-		password.length < 10 ||
-		(typeForm === "register" && !nickname);
+	const disable: boolean = useMemo(
+		() => Object.values(errors).some((value) => value !== ""),
+		[errors]
+	);
 
 	const disableClassName = useMemo(
 		() =>
