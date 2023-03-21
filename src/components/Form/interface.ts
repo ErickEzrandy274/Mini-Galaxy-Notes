@@ -19,18 +19,10 @@ export interface InputProps extends AttributeInput, ValueProps {
 	placeholder: string;
 }
 
-export interface InputAuthProps extends AttributeInput, ValueProps, TypeForm {}
-
-export interface AuthFormProps extends TypeForm {
-	email: string;
-	password: string;
-	nickname?: string;
-	handleChange: (e: any) => void;
-	handleLogin?: (e: any) => void;
-	handleRegister?: (e: any) => void;
+export interface InputAuthProps extends AttributeInput, ValueProps {
+	errorMsg: string;
 }
 
-export const inputObj = {
-	title: "",
-	content: "",
-};
+export interface AuthFormProps extends TypeForm {
+	formik: any;
+}
