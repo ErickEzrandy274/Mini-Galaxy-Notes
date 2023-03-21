@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { push } from "firebase/database";
 import { v4 as uuidv4 } from "uuid";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { useAuth } from "context";
-import { notesListRef } from "utils";
+import { notesListRef, useHandleChange } from "utils";
 import { motion } from "framer-motion";
 import {
 	IconButton,
@@ -18,19 +18,13 @@ import toast from "react-hot-toast";
 
 const NotesForm = () => {
 	const { pathname } = useLocation();
-	const { initial, animate, transition } = basicAnimate;
-	const { user } = useAuth();
-	const navigate = useNavigate();
+	const { initial, animate, transition } = useMemo(() => basicAnimate, []);
+	const {
+		user: { uid },
+	} = useAuth();
 	const [field, setField] = useState<InputType>(inputObj);
-
-	const handleChange = (e: any) => {
-		const { name, value } = e.target;
-
-		setField({
-			...field,
-			[name]: value,
-		});
-	};
+	const { handleChange } = useHandleChange();
+	const navigate = useNavigate();
 
 	const handleSubmit = async (e: any, title: string, body: string) => {
 		e.preventDefault();
@@ -47,10 +41,7 @@ const NotesForm = () => {
 					lastModified: newDate,
 				};
 
-				await push(
-					notesListRef({ uid: user.uid, type: "create", objKey: "" }),
-					newNotes
-				);
+				await push(notesListRef({ uid, type: "create", objKey: "" }), newNotes);
 
 				navigate("/list");
 			} else {
@@ -84,14 +75,14 @@ const NotesForm = () => {
 					name="title"
 					placeholder="Insert new title notes"
 					type="text"
-					handleChange={handleChange}
+					handleChange={(e) => handleChange(e, setField)}
 					value={field.title}
 				/>
 
 				<InputForm
 					name="content"
 					placeholder="Insert new content notes"
-					handleChange={handleChange}
+					handleChange={(e) => handleChange(e, setField)}
 					value={field.content}
 				/>
 
