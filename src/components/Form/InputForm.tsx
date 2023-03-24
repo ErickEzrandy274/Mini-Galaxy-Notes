@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { toCapitalize } from "utils";
 import { InputProps } from "components";
 
@@ -9,9 +9,11 @@ const InputForm: React.FC<InputProps> = ({
 	handleChange,
 	value,
 }) => {
-	const style = `rounded-lg border border-gray-300 w-full py-2 px-4 
-            bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base 
-                focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent`;
+	const style = useMemo(
+		() =>
+			"rounded-lg border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent",
+		[]
+	);
 
 	const props = {
 		name,
@@ -27,24 +29,13 @@ const InputForm: React.FC<InputProps> = ({
 				{toCapitalize(name)}
 			</label>
 
-			{type ? (
-				<input
-					type={type}
-					{...props}
-					onChange={(e) => handleChange(e)}
-				/>
-			) : (
-				<textarea {...props} />
-			)}
+			{type ? <input type={type} {...props} /> : <textarea {...props} />}
 
-			{!!value &&
-				!!value.length &&
-				value.length < 50 &&
-				name === "title" && (
-					<p className="text-red-600 font-semibold px-2">
-						{50 - value.length} characters left
-					</p>
-				)}
+			{value && value.length < 50 && name === "title" && (
+				<p className="text-red-600 font-semibold px-2">
+					{50 - value.length} characters left
+				</p>
+			)}
 		</div>
 	);
 };
