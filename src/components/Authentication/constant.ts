@@ -41,6 +41,12 @@ export const inputObj = {
 	content: "",
 };
 
+export const authInput = [
+	{ name: "nickname", type: "register" },
+	{ name: "email", type: "all" },
+	{ name: "password", type: "all" },
+];
+
 const authValidationSchema = {
 	email: string()
 		.email()

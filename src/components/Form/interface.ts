@@ -1,3 +1,5 @@
+import { BaseSyntheticEvent } from "react";
+
 export interface InputType {
 	title: string;
 	content: string;
@@ -20,7 +22,9 @@ export interface InputProps extends AttributeInput, ValueProps {
 }
 
 export interface InputAuthProps extends AttributeInput, ValueProps {
-	errorMsg: string;
+	errMsg: string;
+	errTouched: boolean;
+	handleBlur: (e: BaseSyntheticEvent) => void;
 }
 
 export interface AuthFormProps extends TypeForm {

@@ -1,32 +1,26 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { toCapitalize } from "utils";
-import { Button, InputAuthForm, AuthFormProps } from "components";
+import { Button, InputAuthForm, AuthFormProps, authInput } from "components";
 
 const AuthForm: React.FC<AuthFormProps> = ({ typeForm, formik }) => {
+	const memoizedAuthInput = useMemo(() => authInput, []);
+
 	return (
 		<form onSubmit={formik.handleSubmit}>
-			{typeForm === "register" && (
-				<InputAuthForm
-					name="nickname"
-					handleChange={formik.handleChange}
-					value={formik.values.nickname}
-					errorMsg={formik.errors.nickname}
-				/>
-			)}
+			{memoizedAuthInput.map(({ name, type }) => {
+				const props = {
+					name: name,
+					value: formik.values[name],
+					errMsg: formik.errors[name],
+					errTouched: formik.touched[name],
+					handleChange: formik.handleChange,
+					handleBlur: formik.handleBlur,
+				};
 
-			<InputAuthForm
-				name="email"
-				handleChange={formik.handleChange}
-				value={formik.values.email}
-				errorMsg={formik.errors.email}
-			/>
-
-			<InputAuthForm
-				name="password"
-				handleChange={formik.handleChange}
-				value={formik.values.password}
-				errorMsg={formik.errors.password}
-			/>
+				return type === "all" || type === typeForm ? (
+					<InputAuthForm key={name} {...props} />
+				) : null;
+			})}
 
 			<div className="mt-8">
 				<Button

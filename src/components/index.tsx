@@ -3,7 +3,7 @@ export * from "./Authentication";
 export * from "./Button";
 export { default as NotesCard } from "./Card";
 export * from "./Card/interface";
-export { default as CreatePage } from "./CreatePage";
+export * from "./CreatePage";
 export { default as Footer } from "./Footer";
 export * from "./Form";
 export { default as Header } from "./Header";

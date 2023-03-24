@@ -1,13 +1,21 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { toCapitalize } from "utils";
 import { InputAuthProps } from "components";
 
 const InputAuthForm: React.FC<InputAuthProps> = ({
 	name,
-	handleChange,
 	value,
-	errorMsg,
+	errMsg,
+	errTouched,
+	handleChange,
+	handleBlur,
 }) => {
+	const inputStyle = useMemo(
+		() =>
+			"block w-full px-4 py-2 border rounded-md text-gray-900  border-gray-600 focus:ring-opacity-50 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-500",
+		[]
+	);
+
 	return (
 		<section className="mt-4">
 			<label
@@ -19,17 +27,16 @@ const InputAuthForm: React.FC<InputAuthProps> = ({
 
 			<input
 				name={name}
-				className="block w-full px-4 py-2 border rounded-md text-gray-900 
-                    border-gray-600 focus:ring-opacity-50 focus:border-blue-400 
-                        focus:outline-none focus:ring focus:ring-blue-500"
 				type={name}
 				value={value}
-				onChange={handleChange}
+				className={inputStyle}
 				placeholder={`Write your ${name}`}
+				onChange={handleChange}
+				onBlur={handleBlur}
 			/>
 
-			{errorMsg && (
-				<p className="text-red-600 font-semibold px-2 mb-3">{errorMsg}</p>
+			{errTouched && errMsg && (
+				<p className="text-red-600 font-semibold px-2 mb-3">{errMsg}</p>
 			)}
 		</section>
 	);

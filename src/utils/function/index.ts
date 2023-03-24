@@ -1,7 +1,9 @@
 import React, { SetStateAction } from "react";
-import { onValue, ref, remove, update } from "firebase/database";
-import { editDataType, ListNotesProps } from "components";
+import { onValue, ref, remove, update, push } from "firebase/database";
+import { editDataType, inputObj, InputType, ListNotesProps } from "components";
 import { database } from "../firebase";
+import { NavigateFunction } from "react-router";
+import { v4 as uuidv4 } from "uuid";
 
 type getDataParams = {
 	setData: React.Dispatch<SetStateAction<ListNotesProps[]>>;
@@ -13,6 +15,16 @@ type notesListRefParams = {
 	uid: string;
 	type: "get" | "delete" | "update" | "create";
 	objKey: string;
+};
+
+export type paramsType = {
+	e: any;
+	title: string;
+	body: string;
+	uid: string;
+	navigate: NavigateFunction;
+	toast: any;
+	setField: (value: React.SetStateAction<InputType>) => void;
 };
 
 export const notesListRef = (refParam: notesListRefParams) => {
@@ -117,4 +129,40 @@ export const dateFormat = (date: string) => {
 		dateStyle: "long",
 		timeStyle: "medium",
 	}).format(new Date(date));
+};
+
+export const handleSubmit = async ({
+	e,
+	title,
+	body,
+	navigate,
+	setField,
+	toast,
+	uid,
+}: paramsType) => {
+	e.preventDefault();
+	try {
+		if (title.length < 51) {
+			const newDate = new Date().toISOString();
+
+			const newNotes = {
+				id: uuidv4(),
+				title,
+				body,
+				archived: false,
+				createdAt: newDate,
+				lastModified: newDate,
+			};
+
+			await push(notesListRef({ uid, type: "create", objKey: "" }), newNotes);
+
+			navigate("/list");
+		} else {
+			toast(`Your new notes title is more than 50 character!`);
+		}
+
+		setField(inputObj);
+	} catch (error) {
+		console.error(error);
+	}
 };
