@@ -1,4 +1,4 @@
-import React, { SetStateAction } from "react";
+import React, { BaseSyntheticEvent, SetStateAction } from "react";
 import { onValue, ref, remove, update, push } from "firebase/database";
 import { editDataType, inputObj, InputType, ListNotesProps } from "components";
 import { database } from "../firebase";
@@ -18,7 +18,7 @@ type notesListRefParams = {
 };
 
 export type paramsType = {
-	e: any;
+	e: BaseSyntheticEvent;
 	title: string;
 	body: string;
 	uid: string;

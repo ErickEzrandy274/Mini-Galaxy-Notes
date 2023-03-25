@@ -1,7 +1,7 @@
-import { useCallback } from "react";
+import { BaseSyntheticEvent, useCallback } from "react";
 
 const useHandleChange = () => {
-	const handleChange = useCallback((e: any, setData: any) => {
+	const handleChange = useCallback((e: BaseSyntheticEvent, setData: any) => {
 		const { name, value } = e.target;
 
 		setData((prevData: any) => {
