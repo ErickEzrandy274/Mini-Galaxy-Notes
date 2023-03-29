@@ -22,8 +22,10 @@ const IconButton: React.FC<IconButtonProps> = ({
 		<button
 			onClick={handleClick}
 			type={type}
-			className={`py-2 px-4 flex justify-center items-center gap-2 tracking-[0.01rem] font-medium
-                text-white transition ease-in duration-200 text-center text-base shadow-xl rounded-lg
+			className={`py-2 px-2 sm:px-4 flex justify-center items-center gap-2 sm:tracking-[0.01rem] font-medium
+                text-white transition ease-in duration-200 text-center shadow-xl rounded-lg ${
+									width >= 360 ? "text-base" : "text-sm"
+								}
                 ${
 									isNewNoteButton && isEmpty
 										? `bg-gray-600 cursor-not-allowed`
@@ -31,7 +33,9 @@ const IconButton: React.FC<IconButtonProps> = ({
 								}`}
 			disabled={isNewNoteButton && (isEmpty ? true : false)}
 		>
-			{width >= 350 && <FontAwesomeIcon icon={iconName} />}
+			{(buttonName === "Close Edit" || width >= 450) && (
+				<FontAwesomeIcon icon={iconName} />
+			)}
 			{buttonName}
 		</button>
 	);

@@ -37,13 +37,15 @@ const LabelModal: React.FC<LabelModalProps> = ({
 					: MODALCONFIRM
 			}
 			className={`flex justify-center items-center gap-2 upppercase focus:ring-2 focus:ring-offset-2 
-					w-1/4 h-10 rounded-lg py-2 px-4 ${customClassName}`}
+					w-1/4 h-10 rounded-lg py-2 px-2 sm:px-4 ${
+						width >= 360 ? "text-base" : "text-sm"
+					} ${customClassName}`}
 			onClick={() => {
 				setModalType(modalType);
 				setIsModalOpen(true);
 			}}
 		>
-			{width >= 350 && <FontAwesomeIcon icon={icon} />}
+			{width >= 450 && <FontAwesomeIcon icon={icon} />}
 			{labelName}
 		</label>
 	);

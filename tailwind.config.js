@@ -25,6 +25,10 @@ module.exports = {
 			fontFamily: {
 				sans: ["Poppins", "sans-serif", ...defaultTheme.fontFamily.sans],
 			},
+			fontSize: {
+				xs: "13px",
+				sm: "14px",
+			},
 		},
 	},
 	plugins: [require("daisyui")],
