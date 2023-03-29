@@ -81,7 +81,7 @@ const NotesCard: React.FC<ListNotesProps> = ({
 	};
 
 	return (
-		<motion.div
+		<motion.section
 			initial={initial}
 			animate={animate}
 			exit={initial}
@@ -90,11 +90,11 @@ const NotesCard: React.FC<ListNotesProps> = ({
 				stiffness: 100,
 				duration: 1.5,
 			}}
-			className="card w-[25rem] bg-primary text-white font-semibold"
+			className="card w-[25rem] bg-gradient-to-br from-primary to-accent text-white font-medium"
 		>
-			<div className="card-body p-6">
+			<section className="card-body p-6">
 				{isEdit && (
-					<motion.div
+					<motion.section
 						initial={extendInit}
 						animate={extendAnim}
 						exit={extendInit}
@@ -108,10 +108,10 @@ const NotesCard: React.FC<ListNotesProps> = ({
 							type="button"
 							iconName={faXmark}
 							buttonName="Close Edit"
-							className="bg-gray-700 hover:bg-gray-800 focus:ring-gray-500 focus:ring-offset-gray-200 w-32 h-7"
+							className="bg-gray-700 hover:bg-gray-800 focus:ring-gray-500 focus:ring-offset-gray-200 w-36 h-7"
 							handleClick={handleClick}
 						/>
-					</motion.div>
+					</motion.section>
 				)}
 
 				{isEdit ? (
@@ -124,7 +124,7 @@ const NotesCard: React.FC<ListNotesProps> = ({
 					<h2 className="card-title font-bold tracking-wide">{title}</h2>
 				)}
 
-				<div className="border-2 border-dashed rounded-lg p-3 mb-2">
+				<section className="border-2 border-dashed rounded-lg p-3 mb-2">
 					{isEdit ? (
 						<Input
 							type="body"
@@ -136,7 +136,7 @@ const NotesCard: React.FC<ListNotesProps> = ({
 							{body}
 						</p>
 					)}
-				</div>
+				</section>
 
 				<p>
 					Status:
@@ -150,9 +150,9 @@ const NotesCard: React.FC<ListNotesProps> = ({
 				</p>
 				<p>Created at: {dateFormat(createdAt)}</p>
 				<p>Last modified at: {dateFormat(lastModified)}</p>
-			</div>
+			</section>
 
-			<div className="flex justify-center bg-base-100 p-4 gap-4">
+			<section className="flex justify-center bg-base-100 p-4 gap-3">
 				{isEdit ? (
 					<LabelModal
 						labelName="Save"
@@ -196,8 +196,8 @@ const NotesCard: React.FC<ListNotesProps> = ({
 						onClick={modalType === "delete" ? handleDelete : handleUpdate}
 					/>
 				)}
-			</div>
-		</motion.div>
+			</section>
+		</motion.section>
 	);
 };
 
