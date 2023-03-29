@@ -22,13 +22,13 @@ const BaseAuth: React.FC<AuthProps> = ({ children, title }) => {
 			<article className=" w-screen px-6 py-8 md:px-8 lg:w-1/2 mx-auto">
 				<section className="flex flex-col gap-5">
 					<h1
-						className={`text-2xl sm:text-4xl lg:text-5xl font-semibold text-center ${gradientTitle}`}
+						className={`text-3xl sm:text-4xl lg:text-5xl font-semibold text-center ${gradientTitle}`}
 					>
 						Notes Application
 					</h1>
 
 					<p
-						className={`text-xl sm:text-2xl lg:text-3xl text-center ${gradientSubTitle}`}
+						className={`text-2xl sm:text-2xl lg:text-3xl text-center ${gradientSubTitle}`}
 					>
 						Welcome back!
 					</p>
