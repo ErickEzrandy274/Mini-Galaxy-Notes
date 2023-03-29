@@ -94,7 +94,7 @@ const NotesCard: React.FC<ListNotesProps> = ({
 		>
 			<section className="card-body p-6">
 				{isEdit && (
-					<motion.div
+					<motion.section
 						initial={extendInit}
 						animate={extendAnim}
 						exit={extendInit}
@@ -111,7 +111,7 @@ const NotesCard: React.FC<ListNotesProps> = ({
 							className="bg-gray-700 hover:bg-gray-800 focus:ring-gray-500 focus:ring-offset-gray-200 w-36 h-7"
 							handleClick={handleClick}
 						/>
-					</motion.div>
+					</motion.section>
 				)}
 
 				{isEdit ? (

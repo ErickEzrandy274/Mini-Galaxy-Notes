@@ -10,6 +10,7 @@ const BaseAuth: React.FC<AuthProps> = ({ children, title }) => {
 				"text-transparent bg-gradient-to-r from-white via-gray-300 to-gray-500 bg-clip-text",
 		};
 	}, []);
+
 	return (
 		<section className="flex justify-between max-w-sm mx-3 sm:mx-auto overflow-hidden rounded-lg shadow-lg bg-gray-800 md:max-w-2xl lg:max-w-3xl xl:max-w-4xl font-semibold">
 			<img
