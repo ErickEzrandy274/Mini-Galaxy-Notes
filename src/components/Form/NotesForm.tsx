@@ -1,8 +1,7 @@
 import { useMemo, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import { useAuth } from "context";
-import { handleSubmit, paramsType, useHandleChange } from "utils";
+import { useAuth, handleSubmit, paramsType, useHandleChange } from "utils";
 import { motion } from "framer-motion";
 import {
 	IconButton,

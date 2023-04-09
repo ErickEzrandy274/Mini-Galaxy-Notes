@@ -1,6 +1,5 @@
 import { useEffect } from "react";
-import { useAuth } from "context";
-import { useDocumentTitle, useHTTP } from "utils";
+import { useAuth, useDocumentTitle, useHTTP } from "utils";
 import { NotesList, MainLayout, Loader } from "components";
 
 const ListPage = () => {
