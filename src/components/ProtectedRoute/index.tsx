@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router";
-import { useAuth } from "context";
 import { MainLayoutProps } from "components";
+import { useAuth } from "utils";
 
 const ProtectedRoute: React.FC<MainLayoutProps> = ({ children }) => {
 	const { user } = useAuth();

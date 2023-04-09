@@ -7,13 +7,13 @@ import {
 	faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 import {
+	useAuth,
 	dateFormat,
 	deleteCard,
 	updateArchivedCard,
 	updateContentCard,
 	useHandleChange,
 } from "utils";
-import { useAuth } from "context";
 import { motion } from "framer-motion";
 import { editDataObj, editDataType } from "./interface";
 import {

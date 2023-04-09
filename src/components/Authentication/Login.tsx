@@ -1,8 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useMemo } from "react";
 import { useNavigate } from "react-router";
-import { useAuth } from "context";
-import { useDocumentTitle } from "utils";
+import { useDocumentTitle, useAuth } from "utils";
 import { motion } from "framer-motion";
 import {
 	AuthForm,

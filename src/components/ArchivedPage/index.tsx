@@ -1,6 +1,5 @@
-import { useAuth } from "context";
 import { useEffect } from "react";
-import { useDocumentTitle, useHTTP } from "utils";
+import { useAuth, useDocumentTitle, useHTTP } from "utils";
 import { MainLayout, Loader, NotesList } from "components";
 
 const ArchivedPage = () => {

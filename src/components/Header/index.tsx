@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import { useAuth } from "context";
-import { useWindowSize } from "utils";
+import { useAuth, useWindowSize } from "utils";
 import { NewLink, NewLinkProps, navs, authNavs, IconGithub } from "components";
 
 const Header = () => {
