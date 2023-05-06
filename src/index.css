@@ -67,44 +67,55 @@ code {
 .waterfall div {
 	-webkit-animation: waterfall 1.5s infinite;
 	animation: waterfall 1.5s infinite;
-	background-color: var(--primary);
-	height: 20px;
+	width: 1.25rem;
+	height: 1.25rem;
 	left: 50%;
 	margin-top: -10px;
-	opacity: 0;
+	opacity: 100;
+	border-radius: .2rem;
 	position: absolute;
 	top: 45%;
-	width: 20px;
 }
 .waterfall div:nth-of-type(1) {
+	background-color: #22d3ee;
 	-webkit-animation-delay: 0.25s;
 	animation-delay: 0.25s;
 	margin-left: -10px;
 }
 .waterfall div:nth-of-type(2) {
+	background-color: #38bdf8;
 	-webkit-animation-delay: 0.5s;
 	animation-delay: 0.5s;
-	margin-left: 15px;
+	margin-left: 20px;
 }
 .waterfall div:nth-of-type(3) {
+	background-color: #60a5fa;
 	-webkit-animation-delay: 0.75s;
 	animation-delay: 0.75s;
-	margin-left: -35px;
+	margin-left: -40px;
 }
 .waterfall div:nth-of-type(4) {
+	background-color: #818cf8;
 	-webkit-animation-delay: 1s;
 	animation-delay: 1s;
-	margin-left: 40px;
+	margin-left: 50px;
 }
 .waterfall div:nth-of-type(5) {
+	background-color: #a78bfa;
 	-webkit-animation-delay: 1.25s;
 	animation-delay: 1.25s;
-	margin-left: -60px;
+	margin-left: -70px;
 }
 
 @media screen and (max-width: 768px) {
 	.waterfall div {
 		top: 45%;
+	}
+}
+
+@media screen and (max-width: 654px) {
+	.waterfall div {
+		top: 40%;
 	}
 }
 
