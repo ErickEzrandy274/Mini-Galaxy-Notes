@@ -17,7 +17,7 @@ const useHTTP = () => {
 
 		setTimeout(() => {
 			setIsLoading(false);
-		}, 1000);
+		}, 1200);
 
 		return () => clearInterval(interval);
 	}, []);
