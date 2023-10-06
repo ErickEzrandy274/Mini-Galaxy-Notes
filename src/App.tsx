@@ -1,46 +1,44 @@
 // reference link private route https://github.com/sairajchouhan/nextjs-firebase-auth/blob/main/pages/_app.tsx
 import { Route, Routes } from "react-router";
+import { lazy } from "react";
 import {
-	ArchivedPage,
-	CreatePage,
 	HomePage,
-	ListPage,
 	Login,
 	NotFound,
-	ProtectedRoute,
+	ProtectedLayout,
 	Register,
-	ScrollButton,
 } from "./components";
 
 function App() {
+	const ListPage = lazy(() => import("./components/ListPage"));
+	const CreatePage = lazy(() => import("./components/CreatePage/CreatePage"));
+	const ArchivedPage = lazy(() => import("./components/ArchivedPage"));
+
 	return (
 		<Routes>
 			<Route path="/" element={<HomePage />} />
 			<Route
 				path="/list"
 				element={
-					<ProtectedRoute>
-						<ScrollButton />
-						<ListPage />
-					</ProtectedRoute>
-				}
+				<ProtectedLayout>
+					<ListPage />
+				</ProtectedLayout>
+			}
 			/>
 			<Route
 				path="/create"
 				element={
-					<ProtectedRoute>
-						<ScrollButton />
+					<ProtectedLayout>
 						<CreatePage />
-					</ProtectedRoute>
+					</ProtectedLayout>
 				}
 			/>
 			<Route
 				path="/archived"
 				element={
-					<ProtectedRoute>
-						<ScrollButton />
+					<ProtectedLayout>
 						<ArchivedPage />
-					</ProtectedRoute>
+					</ProtectedLayout>
 				}
 			/>
 			<Route path="/login" element={<Login />} />
